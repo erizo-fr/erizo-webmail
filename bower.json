@@ -6,7 +6,8 @@
     "handlebars": "1.2.1",
     "foundation": "zurb/bower-foundation#~5.3.3",
     "foundation-icons": "*",
-    "moment": "~2.8.1"
+    "moment": "~2.8.1",
+    "animate.css": "~3.2.0"
   },
   "devDependencies": {
     "ember-mocha-adapter": "0.1.2"

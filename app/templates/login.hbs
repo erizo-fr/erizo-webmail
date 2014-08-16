@@ -27,8 +27,15 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="small-12">
-				<p class="text-center">{{errorMessage}}</p>
+			<div class="small-12 text-center">
+				<p id="errorMessage">{{errorMessage}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-12 text-center">
+				{{#if requestRunning}}
+					<img id="loadingAnimation" class="loading" src="images/loading.gif"/>
+				{{/if}}
 			</div>
 		</div>
 	</div>

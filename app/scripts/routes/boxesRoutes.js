@@ -11,15 +11,20 @@ Client.BoxesRoute = Ember.Route.extend({
 		});
 	},
 	
-	adaptResult : function(result) {
+	adaptResult : function(result, path) {
 		//Transform object to array
 		var adaptedResult = [];
 		for (var key in result) {
     		if (result.hasOwnProperty(key)) {
 				var box = result[key];
 				box.name = key;
+				if(path) {
+					box.path = path + box.delimiter + box.name;
+				} else {
+					box.path = box.name;
+				}
 				if(box.children !== null) {
-					box.children = this.adaptResult(box.children);
+					box.children = this.adaptResult(box.children, box.path);
 				} else {
 					delete box.chilren;
 				}
