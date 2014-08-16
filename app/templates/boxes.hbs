@@ -1,0 +1,40 @@
+<header>
+	<nav class="top-bar" data-topbar>
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="#">Erizo Mail</a></h1>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+
+<div class="row">
+	<div class="small-3 columns">
+		<div class="row">
+			<div class="small-12 columns">
+				<div class="icon-bar one-up">
+					<a class="item small"><i class="foundicon-mail"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-12 columns">
+				<ul class="side-nav">
+					{{#each box in model}}
+						<li>
+							{{box-item box=box}}
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="small-9 columns">
+		{{outlet}}
+	</div>
+</div>
+
+
+<footer>
+</footer>

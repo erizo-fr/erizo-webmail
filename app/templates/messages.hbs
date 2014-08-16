@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="small-12">
+		<div class="icon-bar five-up">
+			<a class="item small"><i class="foundicon-refresh"></i></a>
+			<a class="item small"><i class="foundicon-folder"></i></a>
+			<a class="item small"><i class="foundicon-flag"></i></a>
+			<a class="item small"><i class="foundicon-trash"></i></a>
+			<a class="item small"><i class="foundicon-error"></i></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<table class="small-12">
+		<tbody>
+			{{#each message in model}}
+				{{message-row message=message.attrs.envelope}}
+			{{/each}}
+		</tbody>
+	</table>
+</div>
+<div class="row">
+	<div class="small-12 column">
+		<ul class="pagination right">
+			<li class="arrow unavailable"><a href="">&laquo;</a></li>
+			<li class="current"><a href="">1</a></li>
+			<li><a href="">2</a></li>
+			<li><a href="">3</a></li>
+			<li><a href="">4</a></li>
+			<li class="unavailable"><a href="">&hellip;</a></li>
+			<li><a href="">12</a></li>
+			<li><a href="">13</a></li>
+			<li class="arrow"><a href="">&raquo;</a></li>
+		</ul>
+	</div>
+</div>

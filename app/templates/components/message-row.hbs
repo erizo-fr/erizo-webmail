@@ -1,0 +1,5 @@
+<td><input type="checkbox"></td>
+<td>{{#each from in message.from}}{{mail-address address=from}}{{/each}}</td>
+<td>{{message.subject}}</td>
+<td><!--PJ--></td>
+<td>{{date-formatter message.date null 'll'}}</td>

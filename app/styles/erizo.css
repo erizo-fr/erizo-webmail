@@ -1,0 +1,21 @@
+.small i { font-size: 1rem; }
+.medium i { font-size: 2rem; }
+.large i { font-size: 3rem; }
+
+.icon-bar * {
+	padding : 0.25rem;
+	width: 100%;
+}
+
+header {
+	margin-bottom : 1.5rem;
+}
+
+.login-box {
+	margin-top : 10%;
+}
+
+img.loading {
+	max-width: 32px;
+	margin: 40px;
+}

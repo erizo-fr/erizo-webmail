@@ -1,0 +1,39 @@
+<header>
+	<nav class="top-bar" data-topbar>
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="#">Erizo Mail</a></h1>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+
+<div class="row login-box">
+	<div class="small-4 small-offset-4">
+		<div class="row">
+			<div class="small-12">
+				{{input action="login" value=username type="text" placeholder="Username"}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-12">
+				{{input action="login" value=password type="password" placeholder="Password"}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 small-offset-3">
+				<a href="#" class="button expand" {{action "login"}}>Login !</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-12">
+				<p class="text-center">{{errorMessage}}</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer>
+</footer>
