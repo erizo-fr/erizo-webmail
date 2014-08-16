@@ -1,9 +1,9 @@
-erizo-mail-client
+Erizo Mail - Client
 =================
 
-In construction
+*In construction*
 
-Developpment setup:
-npm install
-bower install
-grunt serve
+# Developpment setup
+* npm install
+* bower install
+* grunt serve
