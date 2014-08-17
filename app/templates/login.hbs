@@ -10,29 +10,29 @@
 
 
 <div class="row login-box">
-	<div class="small-4 small-offset-4">
+	<div class="small-4 small-offset-4 column">
 		<div class="row">
-			<div class="small-12">
-				{{input action="login" value=username type="text" placeholder="Username"}}
+			<div class="small-12 column">
+				{{input action="login" value=username type="text" placeholder="Username" autofocus=true}}
 			</div>
 		</div>
 		<div class="row">
-			<div class="small-12">
+			<div class="small-12 column">
 				{{input action="login" value=password type="password" placeholder="Password"}}
 			</div>
 		</div>
 		<div class="row">
-			<div class="small-6 small-offset-3">
+			<div class="small-6 small-offset-3 column">
 				<a href="#" class="button expand" {{action "login"}}>Login !</a>
 			</div>
 		</div>
 		<div class="row">
-			<div class="small-12 text-center">
+			<div class="small-12 column text-center">
 				<p id="errorMessage">{{errorMessage}}</p>
 			</div>
 		</div>
 		<div class="row">
-			<div class="small-12 text-center">
+			<div class="small-12 column text-center">
 				{{#if requestRunning}}
 					<img id="loadingAnimation" class="loading" src="images/loading.gif"/>
 				{{/if}}

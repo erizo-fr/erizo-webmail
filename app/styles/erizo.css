@@ -19,3 +19,11 @@ img.loading {
 	max-width: 32px;
 	margin: 40px;
 }
+
+.row {
+	max-width: none;
+}
+
+.full-width {
+	width: 100%;
+}
