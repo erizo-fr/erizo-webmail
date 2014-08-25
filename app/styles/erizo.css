@@ -1,29 +1,41 @@
-.small i { font-size: 1rem; }
-.medium i { font-size: 2rem; }
-.large i { font-size: 3rem; }
-
+.erizo-bar i.small {
+	font-size: 0.5rem;
+}
+.erizo-bar i.medium {
+	font-size: 1rem;
+}
+.erizo-bar i.large {
+	font-size: 2rem;
+}
 .icon-bar * {
-	padding : 0.25rem;
+	padding: 0.25rem;
 	width: 100%;
 }
-
 header {
-	margin-bottom : 1.5rem;
+	margin-bottom: 1.5rem;
 }
-
 .login-box {
-	margin-top : 10%;
+	margin-top: 10%;
 }
-
 img.loading {
 	max-width: 32px;
 	margin: 40px;
 }
-
 .row {
 	max-width: none;
 }
-
 .full-width {
 	width: 100%;
+}
+.new-messages {
+	/*--masqué par défaut--*/
+	width: 500px;
+	display: block;
+	border: 1px solid #ddd;
+	background-color: #ffffff;
+	float: right;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	z-index: 99999;
 }

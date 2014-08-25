@@ -1,0 +1,17 @@
+<div>
+{{#if isTypeAlternative}}
+	{{mime-alternative model=model}}
+{{/if}}
+
+{{#if isTypeMixed}}
+	{{mime-mixed model=model}}
+{{/if}}
+
+{{#if isTypeRelated}}
+	{{mime-related model=model}}
+{{/if}}
+	
+{{#if isTypeTextHtml}}
+	{{mime-text-html model=model}}
+{{/if}}
+</div>

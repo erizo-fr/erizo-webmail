@@ -1,0 +1,33 @@
+<header>
+	<div class="row">
+		<div class="small-11 column">
+			<p>New message</p>
+
+		</div>
+		<div class="small-1 column">
+			<a class="item"><i {{action 'hide'}} class="small foundicon-remove"></i></a>
+		</div>
+	</div>
+
+</header>
+
+<div class="row">
+	<div class="small-12 column">
+		<input type="text" placeholder="To" />
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 column">
+		<textarea placeholder="Type your message here ..." rows="15"></textarea>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 column">
+		<a {{action 'send'}} class="button">Send !</a>
+	</div>
+</div>
+
+<footer>
+</footer>

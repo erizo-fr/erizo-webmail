@@ -13,8 +13,8 @@
 	<div class="small-3 columns">
 		<div class="row">
 			<div class="small-12 columns">
-				<div class="icon-bar one-up">
-					<a class="item small"><i class="foundicon-mail"></i></a>
+				<div class="erizo-bar icon-bar">
+					<a class="item full-width"><i {{action 'showNewMessageBox'}} class="medium foundicon-mail"></i></a>
 				</div>
 			</div>
 		</div>
@@ -22,9 +22,9 @@
 			<div class="small-12 columns">
 				<ul class="side-nav">
 					{{#each box in model}}
-						<li>
-							{{box-item box=box}}
-						</li>
+					<li>
+						{{box-item box=box}}
+					</li>
 					{{/each}}
 				</ul>
 			</div>
@@ -38,3 +38,9 @@
 
 <footer>
 </footer>
+
+{{#if newMessageIsVisible}}
+<div id="newMessages" class="new-messages">
+	{{new-message message=newMessage hideAction="hideNewMessageBox" sendMessageAction="sendNewMessage"}}
+</div>
+{{/if}}

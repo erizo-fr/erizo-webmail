@@ -1,4 +1,4 @@
-Client.MessagesController = Ember.ObjectController.extend({
+Client.MessagesIndexController = Ember.ObjectController.extend({
 	queryParams: ['page'],
 	page: 1,
 

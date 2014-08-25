@@ -69,7 +69,6 @@ Client.BoxesRoute = Ember.Route.extend({
 			return box1.name > box2.name ? 1 : -1;
 		});
 		
-		Ember.Logger.debug(JSON.stringify(sortedBoxes, null, '\t'));
 		return sortedBoxes;
 	}
 });
