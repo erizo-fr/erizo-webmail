@@ -9,7 +9,7 @@ Client.MimeTextHtmlComponent = Ember.Component.extend({
 				Ember.Logger.warn('Mime Text model is a 0 length array !');
 				return null;
 			}
-			return model[0].content;
+			return model[0].decodedContent;
 		}
 	}.property('model'),
 });

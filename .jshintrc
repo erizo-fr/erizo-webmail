@@ -20,6 +20,7 @@
 		"Ember": true,
 		"Handlebars": true,
 		"DS": true,
-		"moment": true
+		"moment": true,
+		"quotedPrintable": true
 	}
 }

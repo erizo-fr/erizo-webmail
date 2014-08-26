@@ -12,12 +12,14 @@ Client.MessageRoute = Ember.Route.extend({
 			type: 'GET',
 			dataType: 'json'
 		}).then(function (result) {
+			//Extract the first message result
 			if (result.length < 1) {
 				Ember.Logger.warn('The server returns no result for message id#' + param.id + ' in box#' + box.name);
 				return null;
 			}
 			return result[0];
 		}).then(function (message) {
+			//Download the parts displayed
 			var neededParts = self.getNeededParts.call(self, message.attrs.struct);
 			Ember.Logger.debug('Needed parts: ' + JSON.stringify(neededParts));
 			return Ember.RSVP.all(neededParts).then(function (results) {
@@ -69,6 +71,7 @@ Client.MessageRoute = Ember.Route.extend({
 		var box = this.modelFor('box');
 		var id = this.get('id');
 
+		var self = this;
 		part.content = null;
 		return Ember.$.ajax({
 			url: Client.REST_SERVER + '/boxes/' + box.name + '/messages?bodies=' + part.partID + '&ids=' + id,
@@ -84,8 +87,25 @@ Client.MessageRoute = Ember.Route.extend({
 				return null;
 			}
 			part.content = result[0].bodies[part.partID];
+			part.decodedContent = self.decodePartContent(part);
+
 			Ember.Logger.debug('Part#' + part.partID + ' message#' + id + ' in box#' + box.name + ' received. Length: ' + part.content.length);
 			return part.content;
 		});
+	},
+
+	decodePartContent: function (part) {
+		var result;
+		//TODO: make an object with methods rather than this ugly pile of functions ;)
+		if (part.encoding === 'quoted-printable') {
+			result = quotedPrintable.decode(part.content);
+		}
+
+		if (part.params.charset === "UTF-8") {
+			//TODO: Handler other charset
+			result = decodeURIComponent(escape(result));
+		}
+
+		return result;
 	}
 });
