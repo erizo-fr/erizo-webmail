@@ -27,16 +27,19 @@ Client.MimeElementComponent = Ember.Component.extend({
 		}
 	}.property('mime'),
 
-	isTypeAlternative: function () {
+	isTypeMultipartAlternative: function () {
 		return this.get('type') === 'alternative';
 	}.property('type'),
-	isTypeMixed: function () {
+	isTypeMultipartMixed: function () {
 		return this.get('type') === 'mixed';
 	}.property('type'),
-	isTypeRelated: function () {
+	isTypeMultipartRelated: function () {
 		return this.get('type') === 'related';
 	}.property('type'),
 	isTypeTextHtml: function () {
 		return this.get('type') === 'text' && this.get('subtype') === 'html';
+	}.property('type', 'subtype'),
+	isTypeTextPlain: function () {
+		return this.get('type') === 'text' && this.get('subtype') === 'plain';
 	}.property('type', 'subtype')
 });

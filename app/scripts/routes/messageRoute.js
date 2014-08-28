@@ -56,6 +56,8 @@ Client.MessageRoute = Ember.Route.extend({
 	isNeededPart: function (part) {
 		if (part.type === 'text' && part.subtype === 'html') {
 			return true;
+		} else if (part.type === 'text' && part.subtype === 'plain') {
+			return true;
 		}
 		return false;
 	},
@@ -104,7 +106,7 @@ Client.MessageRoute = Ember.Route.extend({
             var encoding = part.encoding.toLowerCase();
             if (encoding === 'quoted-printable') {
                 result = quotedPrintable.decode(part.content);
-            } elseif(encoding === 'base64') {
+            } else if(encoding === 'base64') {
                 result = window.atob(part.content);
             }
         }
