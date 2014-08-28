@@ -1,3 +1,3 @@
-Client.MessageRowComponent = Ember.Component.extend({
+Client.MailAddressComponent = Ember.Component.extend({
 	tagName: 'p'
 });

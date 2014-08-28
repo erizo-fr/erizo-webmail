@@ -1,3 +1,6 @@
 <div>
+	From:{{#each from in model.attrs.envelope.from}}{{mail-address address=from}}{{/each}}
+</div>
+<div>
 	{{mime-element model=model.attrs.struct}}
 </div>

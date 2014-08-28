@@ -1,7 +1,15 @@
-<p>Mixed</p>
-{{#each part in parts}}
 <div>
-	Part:
-	{{mime-element model=part}}
+	{{#each part in messageParts}}
+	<div>
+		{{mime-element model=part}}
+	</div>
+	{{/each}}
 </div>
-{{/each}}
+
+<div>
+	<p>
+	{{#each part in attachmentParts}}
+		<img class="th" src="images/mail-attachment.png"/>
+	{{/each}}
+	</p>
+</div>
