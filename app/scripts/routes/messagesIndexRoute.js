@@ -35,7 +35,7 @@ Client.MessagesIndexRoute = Ember.Route.extend({
 		
 		//Request messages
 		return Ember.$.ajax({
-			url: Client.REST_SERVER + '/boxes/' + box.name + '/messages?seqs=' + seqMax + ':' + seqMin + '&fetchEnvelope=true',
+			url: Client.REST_SERVER + '/boxes/' + box.name + '/messages?seqs=' + seqMin + ':' + seqMax + '&fetchEnvelope=true',
 			type: 'GET',
 			dataType: 'json'
 		}).then(function (data) {
