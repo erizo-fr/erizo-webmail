@@ -1,31 +1,23 @@
 Client.MimeElementComponent = Ember.Component.extend({
 	model: null,
-	mime: function () {
-		var model = this.get('model');
-		if (!model || model.length === 0) {
-			return null;
-		} else {
-			return model[0];
-		}
-	}.property('model'),
 
 	type: function () {
-		var mime = this.get('mime');
-		if (!mime) {
+		var part = this.get('model');
+		if (!part) {
 			return null;
 		} else {
-			return mime.type;
+			return part.info.type;
 		}
-	}.property('mime'),
+	}.property('model'),
 	
 	subtype: function () {
-		var mime = this.get('mime');
-		if (!mime) {
+		var part = this.get('model');
+		if (!part) {
 			return null;
 		} else {
-			return mime.subtype;
+			return part.info.subtype;
 		}
-	}.property('mime'),
+	}.property('model'),
 
 	isTypeMultipartAlternative: function () {
 		return this.get('type') === 'alternative';

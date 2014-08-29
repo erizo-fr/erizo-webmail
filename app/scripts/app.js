@@ -8,6 +8,10 @@ Client.Model = {};
 Client.conf = {
 	'alternative': {
 		'typeWeight': {
+			'related' : 1,
+			'mixed' : 1,
+			'alternative' : 1
+			
 		},
 		'subtypeWeight': {
 			'html' : 2,

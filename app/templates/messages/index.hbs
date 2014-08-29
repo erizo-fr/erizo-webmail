@@ -14,7 +14,7 @@
 		<div class="small-12 column">
 			<table class="full-width">
 				<tbody>
-					{{#each message in model.messages}} {{message-row message=message.attrs}} {{/each}}
+					{{#each message in model.messages}} {{message-row model=message}} {{/each}}
 				</tbody>
 			</table>
 		</div>

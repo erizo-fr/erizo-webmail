@@ -1,6 +1,9 @@
 <div>
-	From:{{#each from in model.attrs.envelope.from}}{{mail-address address=from}}{{/each}}
+	<strong>From: </strong>{{#each address in model.envelope.from}}{{mail-address model=address}}{{/each}}
 </div>
 <div>
-	{{mime-element model=model.attrs.struct}}
+	<strong>To: </strong>{{#each address in model.envelope.to}}{{mail-address model=address}}{{/each}}
+</div>
+<div>
+	{{mime-element model=model.part}}
 </div>

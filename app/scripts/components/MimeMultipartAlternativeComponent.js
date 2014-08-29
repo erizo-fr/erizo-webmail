@@ -2,20 +2,20 @@ require('scripts/components/MimeMultipartComponent');
 
 Client.MimeMultipartAlternativeComponent = Client.MimeMultipartComponent.extend({
 	displayedPart: function () {
-		var parts = this.get('parts');
-		if (parts == null) {
+		var part = this.get('model');
+		if (part == null) {
 			return null;
 		}
-		if (parts.length < 1) {
+		if (part.subParts.length < 1) {
 			return null;
 		}
 
 		//Sort by preference and return the first part
-		return parts.sort(function (partA, partB) {
-			var partAType = partA[0].type;
-			var partBType = partB[0].type;
-			var partASubtype = partA[0].subtype;
-			var partBSubtype = partB[0].subtype;
+		return part.subParts.sort(function (partA, partB) {
+			var partAType = partA.info.type;
+			var partBType = partB.info.type;
+			var partASubtype = partA.info.subtype;
+			var partBSubtype = partB.info.subtype;
 			
 			var partATypeWeight = Client.conf.alternative.typeWeight[partAType] || 0;
 			var partBTypeWeight = Client.conf.alternative.typeWeight[partBType] || 0;

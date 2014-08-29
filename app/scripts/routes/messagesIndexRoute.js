@@ -38,13 +38,19 @@ Client.MessagesIndexRoute = Ember.Route.extend({
 			url: Client.REST_SERVER + '/boxes/' + box.name + '/messages?seqs=' + seqMin + ':' + seqMax + '&fetchEnvelope=true',
 			type: 'GET',
 			dataType: 'json'
-		}).then(function (data) {
+		}).then(function(data) {
+			var messages = [];
+			for(var i=0; i<data.length; i++) {
+				messages.push(new Client.Model.Message(data[i]));
+			}
+			return messages;
+		}).then(function (messages) {
 			var totalPages = Math.ceil(totalElements / MESSAGE_PAGE_SIZE);
 			var page = {
 				totalElements: totalElements,
 				totalPages: totalPages,
 				pageNumber: param.page,
-				messages: data.reverse(),
+				messages: messages.reverse(),
 				isFirst: param.page === 1,
 				isLast: param.page >= totalPages
 
