@@ -112,7 +112,11 @@ Client.MessageRoute = Ember.Route.extend({
         }
 
         //Clear special characters
-        result = decodeURIComponent(escape(result));
+		try {
+        	result = decodeURIComponent(escape(result));
+		} catch(err) {
+			Ember.Logger.error('Failed to decode result: ' + err);
+		}
 
 		return result;
 	}
