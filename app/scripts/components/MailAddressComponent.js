@@ -1,3 +1,3 @@
 Client.MailAddressComponent = Ember.Component.extend({
-	tagName: 'p'
+	tagName: 'span'
 });
