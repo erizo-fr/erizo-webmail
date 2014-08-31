@@ -65,7 +65,7 @@ Client.MessageRoute = Ember.Route.extend({
         part.decodedContent = null;
         Ember.Logger.info('Ask the server for part#' + part.info.partID + ' message#' + messageId + ' in box#' + box.name);
 		return Ember.$.ajax({
-			url: Client.REST_SERVER + '/boxes/' + box.name + '/messages?bodies=' + part.info.partID + '&ids=' + messageId,
+			url: Client.REST_SERVER + '/boxes/' + box.name + '/messages?&markSeen=true&bodies=' + part.info.partID + '&ids=' + messageId,
 			type: 'GET',
 			dataType: 'json'
 		}).then(function (result) {
