@@ -1,8 +1,10 @@
 Client.BoxesController = Ember.ObjectController.extend({
 	newMessageIsVisible: false,
 	newMessage: {
+		from: '',
 		to: '',
-		message: ''
+		subject: '',
+		text: ''
 	},
 
 	actions: {
@@ -16,9 +18,22 @@ Client.BoxesController = Ember.ObjectController.extend({
 		hideNewMessageBox: function () {
 			this.set('newMessageIsVisible', false);
 		},
-		sendNewMessage: function() {
+		sendNewMessage: function () {
 			Ember.Logger.debug('Action received: Send new message');
-			this.set('newMessageIsVisible', false);
+			
+			var message = this.get('newMessage');
+			var self = this;
+			Ember.$.ajax({
+				url: Client.REST_SERVER + '/messages',
+				type: 'POST',
+				data: message,
+			}).done(function (data, textStatus, jqXHR) {
+				self.set('newMessageIsVisible', false);
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				Ember.Logger.error('Failed to send the message: ' + textStatus);
+			});
+			
+			
 		}
 	},
 
