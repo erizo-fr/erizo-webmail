@@ -1,9 +1,26 @@
-<div>
-	<strong>From: </strong>{{#each address in model.envelope.from}}{{mail-address model=address}}{{/each}}
-</div>
-<div>
-	<strong>To: </strong>{{#each address in model.envelope.to}}{{mail-address model=address}}{{/each}}
-</div>
-<div>
-	{{mime-element model=model.part}}
+<div>	
+    <div class="row">
+		<div class="small-12 column">
+			<div class="icon-bar erizo-bar five-up">
+				<a class="item"><i class="medium foundicon-refresh"></i></a>
+				<a class="item"><i class="medium foundicon-folder"></i></a>
+				<a class="item"><i class="medium foundicon-flag"></i></a>
+				<a class="item" {{action "deleteMessage"}}><i class="medium foundicon-trash"></i></a>
+				<a class="item"><i class="medium foundicon-error"></i></a>
+			</div>
+		</div>
+	</div>
+
+    <div class="row">
+        <div>
+            <strong>From: </strong>{{#each address in model.envelope.from}}{{mail-address model=address}}{{/each}}
+        </div>
+        <div>
+            <strong>To: </strong>{{#each address in model.envelope.to}}{{mail-address model=address}}{{/each}}
+        </div>
+        <div>
+            {{mime-element model=model.part}}
+        </div>
+    </div>
+
 </div>

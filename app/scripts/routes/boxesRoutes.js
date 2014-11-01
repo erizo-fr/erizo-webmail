@@ -6,24 +6,23 @@ Client.BoxesRoute = Ember.Route.extend({
 			type: 'GET',
 			dataType: 'json'
 		}).then(function(result) {
-			return self.adaptResult(result);
+            Ember.Logger.debug('Raw boxes : ' + JSON.stringify(result));
+			var adaptedResult = self.adaptResult(result);
+            Ember.Logger.debug('Adapted boxes : ' + JSON.stringify(adaptedResult));
+            return adaptedResult;
 		}).then(self.sortResult);
 	},
 	
-	adaptResult : function adaptResult(result, path) {
+	adaptResult : function adaptResult(result) {
 		//Transform object to array
 		var adaptedResult = [];
 		for (var key in result) {
     		if (result.hasOwnProperty(key)) {
 				var box = result[key];
 				box.name = key;
-				if(path) {
-					box.path = path + box.delimiter + box.name;
-				} else {
-					box.path = box.name;
-				}
+
 				if(box.children !== null) {
-					box.children = adaptResult(box.children, box.path);
+					box.children = adaptResult(box.children);
 				} else {
 					delete box.chilren;
 				}
