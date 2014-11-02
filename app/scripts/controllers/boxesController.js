@@ -23,11 +23,8 @@ Client.BoxesController = Ember.ObjectController.extend({
 			
 			var message = this.get('newMessage');
 			var self = this;
-			Ember.$.ajax({
-				url: Client.REST_SERVER + '/messages',
-				type: 'POST',
-				data: message,
-			}).done(function (data, textStatus, jqXHR) {
+			Client.ApiHelper.sendMessage(message)
+            .done(function (data, textStatus, jqXHR) {
 				self.set('newMessageIsVisible', false);
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				Ember.Logger.error('Failed to send the message: ' + textStatus);

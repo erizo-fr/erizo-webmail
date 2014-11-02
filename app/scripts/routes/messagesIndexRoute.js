@@ -9,12 +9,14 @@ Client.MessagesIndexRoute = Ember.Route.extend({
 	},
 
 	model: function (param) {
-		//Get parent model
+		//Get box
 		var box = this.modelFor('box');
+        Ember.Logger.assert(box);
 
-		//Get param
-		Ember.Logger.debug('Messages param: ' + JSON.stringify(param));
-		if (!param.page || param.page < 1) {
+		//Get page
+        var pageNumber = param.page;
+		Ember.Logger.debug('Page param: ' + pageNumber);
+		if (!pageNumber || pageNumber < 1) {
 			Ember.Logger.warn('Bad page value: Redirect to page 1');
 			this.transitionTo({
 				queryParams: {
@@ -25,26 +27,16 @@ Client.MessagesIndexRoute = Ember.Route.extend({
 		}
 
 		//Compute numbers
-		Ember.Logger.debug('Getting messages in box#' + box.name + ' page#' + param.page);
+		Ember.Logger.debug('Getting messages in box#' + box.path + ' page#' + pageNumber);
 		var totalElements = box.messages.total;
 		if (totalElements === 0) {
 			return [];
 		}
-		var seqMax = Math.max(1, totalElements - MESSAGE_PAGE_SIZE * (param.page - 1));
+		var seqMax = Math.max(1, totalElements - MESSAGE_PAGE_SIZE * (pageNumber - 1));
 		var seqMin = Math.max(1, seqMax - MESSAGE_PAGE_SIZE);
 		
 		//Request messages
-		return Ember.$.ajax({
-			url: Client.REST_SERVER + '/boxes/' + box.name + '/messages?seqs=' + seqMin + ':' + seqMax + '&fetchEnvelope=true',
-			type: 'GET',
-			dataType: 'json'
-		}).then(function(data) {
-			var messages = [];
-			for(var i=0; i<data.length; i++) {
-				messages.push(new Client.Model.Message(data[i]));
-			}
-			return messages;
-		}).then(function (messages) {
+		return Client.ApiHelper.getMessages(box.path, seqMin, seqMax).then(function (messages) {
 			var totalPages = Math.ceil(totalElements / MESSAGE_PAGE_SIZE);
 			var page = {
 				totalElements: totalElements,
@@ -56,7 +48,7 @@ Client.MessagesIndexRoute = Ember.Route.extend({
 
 			};
 			Ember.Logger.debug('Returning message page: ' + JSON.stringify(page, function (key, value) {
-				return key === 'messages' ? 'Omitted' : value;
+				return key === 'messages' ? '[' + value.length + ']' : value;
 			}, '\t'));
 			return page;
 		});

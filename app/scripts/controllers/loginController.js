@@ -9,14 +9,8 @@ Client.LoginController = Ember.ObjectController.extend({
 			this.beginRequestEvent();
 
 			var self = this;
-			Ember.$.ajax({
-				url: Client.REST_SERVER + '/login',
-				type: 'POST',
-				data: {
-					username: this.get('username'),
-					password: this.get('password')
-				},
-			}).always(function () {
+            Client.ApiHelper.login(this.get('username'), this.get('password'))
+            .always(function () {
 				self.endRequestEvent();
 			}).done(function (data, textStatus, jqXHR) {
 				self.transitionToRoute('boxes');
