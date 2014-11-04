@@ -6,8 +6,12 @@ Client.BoxesController = Ember.ObjectController.extend({
 		subject: '',
 		text: ''
 	},
+    errorPopupIsVisible: false,
 
 	actions: {
+        /*
+         * New message box
+         */
 		showNewMessageBox: function () {
 			this.set('newMessage', {
 				to: '',
@@ -31,7 +35,17 @@ Client.BoxesController = Ember.ObjectController.extend({
 			});
 			
 			
-		}
+		},
+        
+        /*
+         * Error popup
+         */
+        showErrorPopup: function () {
+			this.set('errorPopupIsVisible', true);
+		},
+		hideErrorPopup: function () {
+			this.set('errorPopupIsVisible', false);
+		},
 	},
 
 });

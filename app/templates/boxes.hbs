@@ -44,3 +44,9 @@
 	{{new-message message=newMessage hideAction="hideNewMessageBox" sendMessageAction="sendNewMessage"}}
 </div>
 {{/if}}
+
+{{#if errorPopupIsVisible}}
+<div id="error-popup-simple" class="popup">
+	{{error-popup-simple}}
+</div>
+{{/if}}
