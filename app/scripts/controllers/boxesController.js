@@ -6,7 +6,8 @@ Client.BoxesController = Ember.ObjectController.extend({
 		subject: '',
 		text: ''
 	},
-    errorPopupIsVisible: false,
+    errorPopupTitle: '',
+    errorPopupMessage: '',
 
 	actions: {
         /*
@@ -40,11 +41,13 @@ Client.BoxesController = Ember.ObjectController.extend({
         /*
          * Error popup
          */
-        showErrorPopup: function () {
-			this.set('errorPopupIsVisible', true);
+        showErrorPopup: function (title, message) {
+            this.set('errorPopupTitle', title);
+            this.set('errorPopupMessage', message);
+            Ember.$('#error-popup-simple').foundation('reveal', 'open');
 		},
 		hideErrorPopup: function () {
-			this.set('errorPopupIsVisible', false);
+			Ember.$('#error-popup-simple').foundation('reveal', 'close');
 		},
 	},
 
