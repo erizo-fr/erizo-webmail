@@ -18,7 +18,7 @@ Client.MessageController = Ember.ObjectController.extend({
 				self.transitionToRoute('box');
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				Ember.Logger.error('Failed to delete the message: ' + textStatus);
-                Ember.Logger.warn('MessageController.deleteMessage failed: TODO');
+                self.send('showPopup', 'Delete error', 'The server failed to delete the message\n' + textStatus);
 			});
         }
 	}

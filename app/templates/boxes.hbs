@@ -1,39 +1,38 @@
 <header>
-	<nav class="top-bar" data-topbar>
-		<ul class="title-area">
-			<li class="name">
-				<h1><a href="#">Erizo Mail</a></h1>
-			</li>
-		</ul>
-	</nav>
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">Erizo Mail</a></h1>
+            </li>
+        </ul>
+    </nav>
 </header>
 
 
 <div class="row">
-	<div class="small-3 columns">
-		<div class="row">
-			<div class="small-12 columns">
-				<div class="erizo-bar icon-bar">
-					<a class="item full-width"><i {{action 'showNewMessageBox'}} class="medium foundicon-mail"></i></a>
-                    <a class="item full-width"><i {{action 'showErrorPopup' 'Title' 'Message'}} class="medium foundicon-error"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 columns">
-				<ul class="side-nav">
-					{{#each box in model}}
-					<li>
-						{{box-item box=box}}
-					</li>
-					{{/each}}
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="small-9 columns">
-		{{outlet}}
-	</div>
+    <div class="small-3 columns">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="erizo-bar icon-bar">
+                    <a class="item full-width"><i {{action 'showNewMessageBox'}} class="medium foundicon-mail"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <ul class="side-nav">
+                    {{#each box in model}}
+                    <li>
+                        {{box-item box=box}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="small-9 columns">
+        {{outlet}}
+    </div>
 </div>
 
 
@@ -42,10 +41,6 @@
 
 {{#if newMessageIsVisible}}
 <div id="newMessages" class="new-messages">
-	{{new-message message=newMessage hideAction="hideNewMessageBox" sendMessageAction="sendNewMessage"}}
+    {{new-message message=newMessage hideAction="hideNewMessageBox" sendMessageAction="sendNewMessage"}}
 </div>
 {{/if}}
-
-<div id="error-popup-simple" class="reveal-modal medium" data-reveal>
-	{{error-popup-simple title=errorPopupTitle message=errorPopupMessage}}
-</div>

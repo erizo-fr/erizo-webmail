@@ -6,8 +6,6 @@ Client.BoxesController = Ember.ObjectController.extend({
 		subject: '',
 		text: ''
 	},
-    errorPopupTitle: '',
-    errorPopupMessage: '',
 
 	actions: {
         /*
@@ -33,22 +31,12 @@ Client.BoxesController = Ember.ObjectController.extend({
 				self.set('newMessageIsVisible', false);
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				Ember.Logger.error('Failed to send the message: ' + textStatus);
+                self.send('showPopup', 'Send error', 'The server failed to send the message\n' + textStatus);
 			});
 			
 			
-		},
+		}
         
-        /*
-         * Error popup
-         */
-        showErrorPopup: function (title, message) {
-            this.set('errorPopupTitle', title);
-            this.set('errorPopupMessage', message);
-            Ember.$('#error-popup-simple').foundation('reveal', 'open');
-		},
-		hideErrorPopup: function () {
-			Ember.$('#error-popup-simple').foundation('reveal', 'close');
-		},
 	},
 
 });
