@@ -2,6 +2,20 @@ Client.ApiHelper = {};
 
 
 //#####################################################
+// Get user data
+// URL: GET /userdata
+//#####################################################
+
+Client.ApiHelper.getUserData = function () {
+    Ember.Logger.debug('getUserData()');
+    return Ember.$.ajax({
+        url: Client.REST_SERVER + '/account/userdata',
+        type: 'GET',
+        dataType: 'json'
+    });
+};
+
+//#####################################################
 // Get boxes
 // URL: GET /boxes
 //#####################################################

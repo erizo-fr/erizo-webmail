@@ -1,0 +1,7 @@
+{{outlet}}
+
+{{#if newMessageIsVisible}}
+<div id="newMessages" class="new-messages">
+    {{new-message message=newMessage hideAction="hideNewMessageBox" sendMessageAction="sendNewMessage" identities=identities}}
+</div>
+{{/if}}

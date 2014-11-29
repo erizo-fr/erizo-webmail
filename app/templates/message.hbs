@@ -1,8 +1,7 @@
 <div>	
     <div class="row">
 		<div class="small-12 column">
-			<div class="icon-bar erizo-bar five-up">
-				<a class="item"><i class="medium foundicon-refresh"></i></a>
+			<div class="icon-bar erizo-bar four-up">
 				<a class="item"><i class="medium foundicon-folder"></i></a>
 				<a class="item"><i class="medium foundicon-flag"></i></a>
 				<a class="item" {{action "deleteMessage"}}><i class="medium foundicon-trash"></i></a>
@@ -17,6 +16,9 @@
         </div>
         <div>
             <strong>To: </strong>{{#each address in model.envelope.to}}{{mail-address model=address}}{{/each}}
+        </div>
+        <div>
+            <strong>Subject: </strong>{{model.envelope.subject}}
         </div>
         <div>
             {{mime-element model=model.part}}

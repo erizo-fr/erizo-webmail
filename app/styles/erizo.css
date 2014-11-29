@@ -39,3 +39,12 @@ img.loading {
     right: 0px;
     z-index: 99999;
 }
+.mail-address-block {
+    background-color: rgba(51, 51, 51, 0.06);
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0.20rem; 
+    margin: 0.20rem;
+    border-color: rgba(0, 0, 0, 0.18);
+    text-align: center;
+}
