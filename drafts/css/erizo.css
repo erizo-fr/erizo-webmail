@@ -1,0 +1,150 @@
+html,
+body {
+	height: 100%;
+}
+.navmenu {
+	padding-top: 70px;
+}
+.navbar {
+	display: block;
+	text-align: center;
+}
+.navbar-brand {
+	display: inline-block;
+	float: none;
+}
+.navbar-toggle {
+	position: absolute;
+	float: left;
+	margin-left: 15px;
+}
+.container {
+	max-width: 100%;
+}
+@media (min-width: 1px) {
+	.navbar-toggle {
+		display: block !important;
+	}
+}
+@media (max-width: 992px) {
+	#page-content {
+		padding: 50px 0 0 0;
+	}
+}
+@media (min-width: 992px) {
+	#page-content {
+		padding: 0 0 0 300px;
+	}
+	.navmenu {
+		padding-top: 10px;
+	}
+	.navbar {
+		display: none !important;
+		/* IE8 fix */
+	}
+}
+.navmenu-default .navmenu-nav>.active>a,
+.navbar-default .navbar-offcanvas .navmenu-nav>.active>a,
+.navmenu-default .navmenu-nav>.active>a:hover,
+.navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover,
+.navmenu-default .navmenu-nav>.active>a:focus,
+.navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
+	color: #f8f8f8;
+	background-color: rgba(0, 149, 135, 1);
+}
+.message-list .message-list-separator {
+	line-height: 1;
+	color: #777;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.message-list .message-list-separator hr {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border-top: 1px solid #D5D5D5
+}
+.message-list .list-group .list-group-separator {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.message-list .list-group .list-group-item .list-group-item-heading {
+	font-size: 15px;
+	line-height: 15px;
+}
+.message-list .list-group .list-group-item .row-content {
+	min-height: 40px;
+}
+.message-list .list-group .list-group-item .row-action-primary i,
+.message-list .list-group .list-group-item .row-picture i {
+	line-height: 45px;
+	background: rgba(0, 149, 135, 1);
+}
+.message-list .list-group .list-group-item .row-action-primary i,
+.message-list .list-group .list-group-item .row-action-primary img,
+.message-list .list-group .list-group-item .row-action-primary label,
+.message-list .list-group .list-group-item .row-picture i,
+.message-list .list-group .list-group-item .row-picture img,
+.message-list .list-group .list-group-item .row-picture label {
+	width: 45px;
+	height: 45px;
+}
+.message-list .list-group-item-text {
+	color: #777;
+}
+.message-list .row-content {
+	cursor: pointer;
+}
+.message-list .list-group .list-group-item .row-content .least-content-bottom {
+	position: absolute;
+	right: 16px;
+	top: 22px;
+	color: rgba(0, 0, 0, .54);
+	font-size: 14px;
+}
+.message-list .list-group .list-group-item .row-action-selector {
+	float: left;
+	display: inline-block;
+	padding-right: 16px;
+}
+.message-list .list-group .list-group-item .row-action-primary {
+	float: left;
+	display: inline-block;
+	padding-right: 16px;
+}
+.message-list .list-group .list-group-item .row-content {
+	width: calc(100% - 184px);
+}
+.message-list .list-group .list-group-separator:before {
+	width: calc(100% - 135px);
+}
+/*Increase checkbox animation speed*/
+
+.checkbox input[type=checkbox]:checked~.check:before {
+	-webkit-animation: checkbox-on .1s linear forwards;
+	animation: checkbox-on .1s linear forwards;
+}
+/*Correct alignement*/
+
+.message-list .checkbox label .check {
+	top: 2px;
+}
+.message-list .checkbox label .ripple {
+	left: -6px;
+	top: -10px;
+	height: 45px;
+	width: 45px;
+}
+/*Sticky elements*/
+
+.sticky {
+	position: relative;
+	z-index: 1;
+}
+.sticky.fixed {
+	position: fixed;
+	top: 0;
+	z-index: 0;
+}
+.sticky.fixed.absolute {
+	position: absolute;
+}
