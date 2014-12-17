@@ -134,17 +134,3 @@ body {
 	height: 45px;
 	width: 45px;
 }
-/*Sticky elements*/
-
-.sticky {
-	position: relative;
-	z-index: 1;
-}
-.sticky.fixed {
-	position: fixed;
-	top: 0;
-	z-index: 0;
-}
-.sticky.fixed.absolute {
-	position: absolute;
-}
