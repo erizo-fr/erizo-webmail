@@ -52,16 +52,19 @@ body {
 	color: #f8f8f8;
 	background-color: rgba(0, 149, 135, 1);
 }
-.message-list .message-list-separator {
+.message-list .list-subgroup {
+	
+}
+.message-list .subgroup-separator {
+	
 	line-height: 1;
 	color: #777;
-	margin-top: 20px;
-	margin-bottom: 10px;
-}
-.message-list .message-list-separator hr {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	border-top: 1px solid #D5D5D5
+	border-bottom: 1px solid #D5D5D5;
+	width: 100%;
+	padding-bottom: 7px;
+	padding-top: 20px;
+	background-color: rgb(238, 238, 238);
+	z-index: 10;
 }
 .message-list .list-group .list-group-separator {
 	margin-top: 5px;
@@ -117,6 +120,12 @@ body {
 .message-list .list-group .list-group-separator:before {
 	width: calc(100% - 135px);
 }
+
+.message-list .list-group .list-group-item {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 /*Increase checkbox animation speed*/
 
 .checkbox input[type=checkbox]:checked~.check:before {
