@@ -3,6 +3,5 @@ temp
 dist
 .sass-cache
 .tmp
-app/bower_components
-test/bower_components
+bower_components
 *.log
