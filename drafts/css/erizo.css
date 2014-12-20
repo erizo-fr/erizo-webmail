@@ -1,47 +1,47 @@
 html,
 body {
-	height: 100%;
+    height: 100%;
 }
 .navmenu {
-	padding-top: 70px;
+    padding-top: 70px;
+}
+.navbar-fixed-bottom {
+    z-index: 100;
 }
 .navbar {
-	display: block;
-	text-align: center;
+    display: block;
+    text-align: center;
 }
 .navbar-brand {
-	display: inline-block;
-	float: none;
+    display: inline-block;
+    float: none;
 }
 .navbar-toggle {
-	position: absolute;
-	float: left;
-	margin-left: 15px;
+    position: absolute;
+    float: left;
+    margin-left: 15px;
 }
 .container {
-	max-width: 100%;
+    max-width: 100%;
 }
 @media (min-width: 1px) {
-	.navbar-toggle {
-		display: block !important;
-	}
+    .navbar-toggle {
+        display: block !important;
+    }
 }
 @media (max-width: 992px) {
-	#page-content {
-		padding: 50px 0 0 0;
-	}
+    #page-content {
+        padding: 50px 0 0 0;
+    }
 }
 @media (min-width: 992px) {
-	#page-content {
-		padding: 0 0 0 300px;
-	}
-	.navmenu {
-		padding-top: 10px;
-	}
-	.navbar {
-		display: none !important;
-		/* IE8 fix */
-	}
+    #page-content,
+    .navbar-fixed-bottom {
+        padding: 0 0 0 300px;
+    }
+    .navmenu {
+        padding-top: 10px;
+    }
 }
 .navmenu-default .navmenu-nav>.active>a,
 .navbar-default .navbar-offcanvas .navmenu-nav>.active>a,
@@ -49,38 +49,34 @@ body {
 .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover,
 .navmenu-default .navmenu-nav>.active>a:focus,
 .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
-	color: #f8f8f8;
-	background-color: rgba(0, 149, 135, 1);
-}
-.message-list .list-subgroup {
-	
+    color: #f8f8f8;
+    background-color: rgba(0, 149, 135, 1);
 }
 .message-list .subgroup-separator {
-	
-	line-height: 1;
-	color: #777;
-	border-bottom: 1px solid #D5D5D5;
-	width: 100%;
-	padding-bottom: 7px;
-	padding-top: 20px;
-	background-color: rgb(238, 238, 238);
-	z-index: 10;
+    line-height: 1;
+    color: #777;
+    border-bottom: 1px solid #D5D5D5;
+    width: 100%;
+    padding-bottom: 7px;
+    padding-top: 20px;
+    background-color: rgb(238, 238, 238);
+    z-index: 10;
 }
 .message-list .list-group .list-group-separator {
-	margin-top: 5px;
-	margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .message-list .list-group .list-group-item .list-group-item-heading {
-	font-size: 15px;
-	line-height: 15px;
+    font-size: 15px;
+    line-height: 15px;
 }
 .message-list .list-group .list-group-item .row-content {
-	min-height: 40px;
+    min-height: 40px;
 }
 .message-list .list-group .list-group-item .row-action-primary i,
 .message-list .list-group .list-group-item .row-picture i {
-	line-height: 45px;
-	background: rgba(0, 149, 135, 1);
+    line-height: 45px;
+    background: rgba(0, 149, 135, 1);
 }
 .message-list .list-group .list-group-item .row-action-primary i,
 .message-list .list-group .list-group-item .row-action-primary img,
@@ -88,58 +84,67 @@ body {
 .message-list .list-group .list-group-item .row-picture i,
 .message-list .list-group .list-group-item .row-picture img,
 .message-list .list-group .list-group-item .row-picture label {
-	width: 45px;
-	height: 45px;
+    width: 45px;
+    height: 45px;
 }
 .message-list .list-group-item-text {
-	color: #777;
+    color: #777;
 }
 .message-list .row-content {
-	cursor: pointer;
+    cursor: pointer;
 }
 .message-list .list-group .list-group-item .row-content .least-content-bottom {
-	position: absolute;
-	right: 16px;
-	top: 22px;
-	color: rgba(0, 0, 0, .54);
-	font-size: 14px;
+    position: absolute;
+    right: 16px;
+    top: 22px;
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
 }
 .message-list .list-group .list-group-item .row-action-selector {
-	float: left;
-	display: inline-block;
-	padding-right: 16px;
+    float: left;
+    display: inline-block;
+    padding-right: 16px;
 }
 .message-list .list-group .list-group-item .row-action-primary {
-	float: left;
-	display: inline-block;
-	padding-right: 16px;
+    float: left;
+    display: inline-block;
+    padding-right: 16px;
 }
 .message-list .list-group .list-group-item .row-content {
-	width: calc(100% - 184px);
+    width: calc(100% - 184px);
 }
 .message-list .list-group .list-group-separator:before {
-	width: calc(100% - 135px);
+    width: calc(100% - 135px);
 }
-
 .message-list .list-group .list-group-item {
-	margin-top: 5px;
-	margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-
 /*Increase checkbox animation speed*/
 
 .checkbox input[type=checkbox]:checked~.check:before {
-	-webkit-animation: checkbox-on .1s linear forwards;
-	animation: checkbox-on .1s linear forwards;
+    -webkit-animation: checkbox-on .1s linear forwards;
+    animation: checkbox-on .1s linear forwards;
 }
 /*Correct alignement*/
 
 .message-list .checkbox label .check {
-	top: 2px;
+    top: 2px;
 }
 .message-list .checkbox label .ripple {
-	left: -6px;
-	top: -10px;
-	height: 45px;
-	width: 45px;
+    left: -6px;
+    top: -10px;
+    height: 45px;
+    width: 45px;
+}
+/* Bottom bar */
+
+.navbar-fixed-bottom button {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+.navbar-fixed-bottom button i {
+    font-size: 25pt;
+    color: rgba(255, 255, 255, .84);
 }

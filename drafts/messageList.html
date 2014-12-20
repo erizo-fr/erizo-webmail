@@ -2,23 +2,23 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Erizo Mail : Inbox</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Erizo Mail : Inbox</title>
 
-	<!-- Bootstrap -->
-	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet">
-	<link href="bower_components/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet">
-	<link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
-	<link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
-	<link href="css/erizo.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+    <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="css/erizo.css" rel="stylesheet">
 
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -26,251 +26,293 @@
 
 <body>
 
-	<div id="page-content">
+    <div id="page-content">
 
-		<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm shadow-z-1">
-			<a class="navmenu-brand visible-md visible-lg" href="#">Erizo webmail</a>
-			<ul class="nav navmenu-nav">
-				<li class="active"><a href="#">Inbox</a>
-				</li>
-				<li><a href="#">Sent</a>
-				</li>
-				<li><a href="#">Trash</a>
-				</li>
-				<li><a href="#">Spam</a>
-				</li>
-				<li><a href="#">Others</a>
-				</li>
-			</ul>
-		</div>
 
-		<div class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg shadow-z-1">
-			<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Erizo webmail</a>
-		</div>
+        <!-- Left panel -->
+        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm shadow-z-1">
+            <a class="navmenu-brand visible-md visible-lg" href="#">Erizo webmail</a>
+            <ul class="nav navmenu-nav">
+                <li class="active"><a href="#">Inbox</a>
+                </li>
+                <li><a href="#">Sent</a>
+                </li>
+                <li><a href="#">Trash</a>
+                </li>
+                <li><a href="#">Spam</a>
+                </li>
+                <li><a href="#">Others</a>
+                </li>
+            </ul>
+        </div>
 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="message-list">
-						<div class="list-group">
-							<div class="list-subgroup">
-								<div class="subgroup-separator sticky">Today</div>
+        <!-- Mobile navbar -->
+        <div class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg shadow-z-1">
+            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Erizo webmail</a>
+        </div>
 
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">18:02</div>
-										<h4 class="list-group-item-heading">Homer Simpson - Lorem ipsum dolor sit amet</h4>
-										<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-									</div>
-								</div>
-								<div class="list-group-separator"></div>
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">14:30</div>
-										<h4 class="list-group-item-heading">Dare Devil - Lorem ipsum dolor sit amet, consectetur</h4>
-										<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-									</div>
-								</div>
-							</div>
+        <!-- Bottom bar -->
+        <nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="display:none">
+            <div class="container-fluid">
+                <button class="btn btn-flat btn-default">
+                    <i class="mdi-action-delete"></i>
+                </button>
+                <button class="btn btn-flat btn-default">
+                    <i class="mdi-content-forward"></i>
+                </button>
+            </div>
+        </nav>
 
-							<div class="list-subgroup">
-								<div class="subgroup-separator sticky">Last week</div>
 
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">10 dec</div>
-										<h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
-										<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-									</div>
-								</div>
-								<div class="list-group-separator"></div>
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">5 dec</div>
-										<div class="least-content-bottom"><i class="mdi-editor-attach-file"></i>
-										</div>
-										<h4 class="list-group-item-heading">John Smith - Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
-										<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-									</div>
-								</div>
-								<div class="list-group-separator"></div>
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">3 dec</div>
-										<h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet</h4>
-										<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-									</div>
-								</div>
 
-								<div class="list-group-separator"></div>
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">3 dec</div>
-										<h4 class="list-group-item-heading">Jackie Chan - Lorem ipsum dolor sit amet</h4>
-										<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-									</div>
-								</div>
-							</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="message-list">
+                        <div class="list-group">
+                            <div class="list-subgroup">
+                                <div class="subgroup-separator sticky">Today</div>
 
-							<div class="list-subgroup">
-								<div class="subgroup-separator sticky">Last month</div>
-								
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">28 nov</div>
-										<h4 class="list-group-item-heading">Chuck Norris - Lorem ipsum dolor sit amet, consectetur</h4>
-										<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-									</div>
-								</div>
-								<div class="list-group-separator"></div>
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">27 nov</div>
-										<h4 class="list-group-item-heading">Homer Simpson - Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
-										<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-									</div>
-								</div>
-								<div class="list-group-separator"></div>
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">25 nov</div>
-										<h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet, consectetur</h4>
-										<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-									</div>
-								</div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">18:02</div>
+                                        <h4 class="list-group-item-heading">Homer Simpson - Lorem ipsum dolor sit amet</h4>
+                                        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">14:30</div>
+                                        <h4 class="list-group-item-heading">Dare Devil - Lorem ipsum dolor sit amet, consectetur</h4>
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
+                            </div>
 
-								<div class="list-group-separator"></div>
-								<div class="list-group-item">
-									<div class="checkbox row-action-selector">
-										<label>
-											<input type="checkbox" />
-										</label>
-									</div>
-									<div class="row-action-primary">
-										<i class="mdi-social-person"></i>
-									</div>
-									<div class="row-content">
-										<div class="least-content">23 nov</div>
-										<h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
-										<p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                            <div class="list-subgroup">
+                                <div class="subgroup-separator sticky">Last week</div>
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="bower_components/PositionSticky/dist/PositionSticky.min.js"></script>
-	<script type="text/javascript" src="bower_components/jQuery.positionSticky/dist/jQuery.positionSticky.min.js"></script>
-	<script type="text/javascript" src="js/erizo.js"></script>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">10 dec</div>
+                                        <h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
+                                        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">5 dec</div>
+                                        <div class="least-content-bottom"><i class="mdi-editor-attach-file"></i>
+                                        </div>
+                                        <h4 class="list-group-item-heading">John Smith - Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">3 dec</div>
+                                        <h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet</h4>
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
 
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/arrive-2.0.0.min.js"></script>
-	<script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
-	<script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
-	<script>
-		$(function () {
-			$.material.init();
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">3 dec</div>
+                                        <h4 class="list-group-item-heading">Jackie Chan - Lorem ipsum dolor sit amet</h4>
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
+                            </div>
 
-			//Sticky
-			jQuery('.sticky').positionSticky();
-		});
-	</script>
+                            <div class="list-subgroup">
+                                <div class="subgroup-separator sticky">Last month</div>
 
-	<script>
-		$(function () {
-			var login_success = false;
-			$(".row-content").click(function () {
-				$('.message-list').addClass('animated bounceOutLeft');
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">28 nov</div>
+                                        <h4 class="list-group-item-heading">Chuck Norris - Lorem ipsum dolor sit amet, consectetur</h4>
+                                        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">27 nov</div>
+                                        <h4 class="list-group-item-heading">Homer Simpson - Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">25 nov</div>
+                                        <h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet, consectetur</h4>
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
 
-				//To the message view
-			});
-		});
-	</script>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="checkbox row-action-selector">
+                                        <label>
+                                            <input type="checkbox" class="message-selector" />
+                                        </label>
+                                    </div>
+                                    <div class="row-action-primary">
+                                        <i class="mdi-social-person"></i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content">23 nov</div>
+                                        <h4 class="list-group-item-heading">Indiana Jones - Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
+                                        <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/PositionSticky/dist/PositionSticky.min.js"></script>
+    <script type="text/javascript" src="bower_components/jQuery.positionSticky/dist/jQuery.positionSticky.min.js"></script>
+    <script type="text/javascript" src="js/erizo.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/arrive-2.0.0.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script>
+        $(function () {
+            $.material.init();
+
+            //Sticky
+            jQuery('.sticky').positionSticky();
+        });
+    </script>
+
+    <script>
+        //Message selection
+        $(function () {
+            var login_success = false;
+            $(".row-content").click(function () {
+                $('.message-list').addClass('animated bounceOutLeft');
+
+                //To the message view
+            });
+        });
+    </script>
+    
+    <script>
+        //Bottom Toolbar
+        $(function () {
+            var isDisplayed = false;
+            $(".message-selector").click(function () {
+                //Count
+                var nbSelectedMessages = $("input.message-selector:checked").length;
+                var shouldBeDisplayed = nbSelectedMessages !== 0;
+                
+                if(shouldBeDisplayed === isDisplayed) {
+                    return;
+                } else {
+                    if(shouldBeDisplayed === true) {
+                        $('#bottom-toolbar').show();
+                        isDisplayed = true;
+                    } else {
+                        $('#bottom-toolbar').hide();
+                        isDisplayed = false;
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
