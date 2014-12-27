@@ -52,6 +52,11 @@ body {
         padding-top: 10px;
     }
 }
+
+#left-panel {
+    overflow: visible;
+}
+
 .navmenu-default .navmenu-nav>.active>a,
 .navbar-default .navbar-offcanvas .navmenu-nav>.active>a,
 .navmenu-default .navmenu-nav>.active>a:hover,
@@ -156,4 +161,15 @@ body {
 .navbar-fixed-bottom button i {
     font-size: 25pt;
     color: rgba(255, 255, 255, .84);
+}
+#btn-write-mail-left {
+    position: absolute;
+    bottom: 65px;
+    right: -20px;
+}
+#btn-write-mail-top {
+    position: absolute;
+    bottom: -20px;
+    right: 40px;
+    background-color: white
 }
