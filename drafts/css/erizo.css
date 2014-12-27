@@ -2,6 +2,10 @@ html,
 body {
     height: 100%;
 }
+/*
+ * Login page
+ */
+
 #login-panel {
     height: 250px;
     position: absolute;
@@ -11,50 +15,25 @@ body {
     right: 0;
     margin: auto;
 }
-.navmenu {
-    padding-top: 70px;
-}
-.navbar-fixed-bottom {
-    z-index: 100;
-}
-.navbar {
-    display: block;
-    text-align: center;
-}
-.navbar-brand {
-    display: inline-block;
-    float: none;
-}
-.navbar-toggle {
-    position: absolute;
-    float: left;
-    margin-left: 15px;
-}
-.container {
-    max-width: 100%;
-}
-@media (min-width: 1px) {
+/*
+ * Nav bar
+ */
+
+@media (min-width: 992px) {
+    #page-content,
+    .nav-erizo {
+        margin-left: 300px;
+    }
     .navbar-toggle {
-        display: block !important;
+        display: none;
     }
 }
 @media (max-width: 992px) {
-    #page-content {
-        padding: 50px 0 0 0;
+    .navbar-toggle {
+        display: inherit;
     }
 }
-@media (min-width: 992px) {
-    #page-content,
-    .navbar-fixed-bottom {
-        padding: 0 0 0 300px;
-    }
-    .navmenu {
-        padding-top: 10px;
-    }
-}
-#left-panel {
-    overflow: visible;
-}
+
 .navmenu-default .navmenu-nav>.active>a,
 .navbar-default .navbar-offcanvas .navmenu-nav>.active>a,
 .navmenu-default .navmenu-nav>.active>a:hover,
@@ -64,6 +43,10 @@ body {
     color: #f8f8f8;
     background-color: rgba(0, 149, 135, 1);
 }
+
+/*
+ * Message list
+ */
 .message-list .subgroup-separator {
     line-height: 1;
     color: #777;
@@ -132,14 +115,8 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
 }
-/*Increase checkbox animation speed*/
 
-.checkbox input[type=checkbox]:checked~.check:before {
-    -webkit-animation: checkbox-on .1s linear forwards;
-    animation: checkbox-on .1s linear forwards;
-}
-/*Correct alignement*/
-
+/* Correct alignement */
 .message-list .checkbox label .check {
     top: 2px;
 }
@@ -149,8 +126,20 @@ body {
     height: 45px;
     width: 45px;
 }
-/* Bottom bar */
 
+/*
+ * Globals 
+ */
+
+/* Increase checkbox animation speed */
+.checkbox input[type=checkbox]:checked~.check:before {
+    -webkit-animation: checkbox-on .1s linear forwards;
+    animation: checkbox-on .1s linear forwards;
+}
+
+/* 
+ * Bottom bar
+ */
 .navbar-fixed-bottom button {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -160,18 +149,34 @@ body {
     font-size: 25pt;
     color: rgba(255, 255, 255, .84);
 }
-#btn-write-mail-left {
-    position: absolute;
-    bottom: 65px;
-    right: -20px;
+
+/*
+ * Top bar
+ */
+#page-content {
+    padding-top: 50px;
 }
-#btn-write-mail-top {
+
+#navbar-top #btn-write-mail-top {
     position: absolute;
     bottom: -20px;
-    right: 40px;
+    right: 100px;
     background-color: white
 }
-.box-list i {
+
+/*
+ * Left bar
+ */
+#left-panel {
+    /* Avoid shadows to lay on the panel */
+    z-index: 1040;
+}
+
+#left-panel .box-list i {
     vertical-align: middle;
     margin-right: 10px;
+}
+
+#left-panel .navmenu-brand {
+    border-bottom: 1px solid #D5D5D5;
 }

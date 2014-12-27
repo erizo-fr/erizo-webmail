@@ -26,43 +26,40 @@
 
 <body>
 
-    <div id="page-content">
+    <!-- Left panel -->
+    <div id="left-panel" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+        <a class="navmenu-brand" href="#">Erizo webmail</a>
+        <ul class="box-list nav navmenu-nav">
+            <li class="active"><a href="#"><i class="mdi-content-inbox"></i>Inbox</a>
+            </li>
+            <li><a href="#"><i class="mdi-content-send"></i>Sent</a>
+            </li>
+            <li><a href="#"><i class="mdi-content-drafts"></i>Draft</a>
+            </li>
+            <li><a href="#"><i class="mdi-action-delete"></i>Trash</a>
+            </li>
+            <li><a href="#"><i class="mdi-content-report"></i>Spam</a>
+            </li>
+            <li><a href="#"><i class="mdi-content-inbox"></i>Others</a>
+            </li>
+        </ul>
+    </div>
 
+    <!-- Top navbar -->
+    <div id="navbar-top" class="navbar navbar-default navbar-fixed-top shadow-z-1 nav-erizo">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <button id="btn-write-mail-top" class="btn btn-fab btn-raised btn-default"><i class="mdi-image-edit"></i>
+        </button>
+    </div>
 
-        <!-- Left panel -->
-        <div id="left-panel" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm shadow-z-1">
-            <a class="navmenu-brand visible-md visible-lg" href="#">Erizo webmail</a>
-            <ul class="box-list nav navmenu-nav">
-                <li class="active"><a href="#"><i class="mdi-content-inbox"></i>Inbox</a>
-                </li>
-                <li><a href="#"><i class="mdi-content-send"></i>Sent</a>
-                </li>
-                <li><a href="#"><i class="mdi-content-drafts"></i>Draft</a>
-                </li>
-                <li><a href="#"><i class="mdi-action-delete"></i>Trash</a>
-                </li>
-                <li><a href="#"><i class="mdi-content-report"></i>Spam</a>
-                </li>
-                <li><a href="#"><i class="mdi-content-inbox"></i>Others</a>
-                </li>
-            </ul>
-            <button id="btn-write-mail-left" class="btn btn-fab btn-raised btn-primary visible-md visible-lg"><i class="mdi-image-edit"></i></button>
-        </div>
-
-        <!-- Mobile navbar -->
-        <div class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg shadow-z-1">
-            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Erizo webmail</a>
-            <button id="btn-write-mail-top" class="btn btn-fab btn-raised btn-default"><i class="mdi-image-edit"></i></button>
-        </div>
-
-        <!-- Bottom bar -->
-        <nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="display:none">
-            <div class="container-fluid">
+    <!-- Bottom bar -->
+    <nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom nav-erizo" role="navigation" style="display:none">
+        <div class="container-fluid">
+            <div class="text-center">
                 <button class="btn btn-flat btn-default">
                     <i class="mdi-action-delete"></i>
                 </button>
@@ -70,10 +67,10 @@
                     <i class="mdi-content-forward"></i>
                 </button>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-
-
+    <div id="page-content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
@@ -264,7 +261,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/PositionSticky/dist/PositionSticky.min.js"></script>
-    <script type="text/javascript" src="bower_components/jQuery.positionSticky/dist/jQuery.positionSticky.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-sticky/jquery.sticky.js"></script>
     <script type="text/javascript" src="js/erizo.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -278,7 +275,12 @@
             $.material.init();
 
             //Sticky
-            jQuery('.sticky').positionSticky();
+            $(document).ready(function () {
+                $(".sticky").sticky({
+                    topSpacing: 50,
+                    responsiveWidth: true
+                });
+            });
         });
     </script>
 
@@ -292,7 +294,7 @@
             });
         });
     </script>
-    
+
     <script>
         //Message selection
         $(function () {
@@ -305,7 +307,7 @@
             });
         });
     </script>
-    
+
     <script>
         //Bottom Toolbar
         $(function () {
@@ -314,11 +316,11 @@
                 //Count
                 var nbSelectedMessages = $("input.message-selector:checked").length;
                 var shouldBeDisplayed = nbSelectedMessages !== 0;
-                
-                if(shouldBeDisplayed === isDisplayed) {
+
+                if (shouldBeDisplayed === isDisplayed) {
                     return;
                 } else {
-                    if(shouldBeDisplayed === true) {
+                    if (shouldBeDisplayed === true) {
                         $('#bottom-toolbar').show();
                         isDisplayed = true;
                     } else {
