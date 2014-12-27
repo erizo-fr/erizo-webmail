@@ -53,10 +53,14 @@ body {
     border-bottom: 1px solid #D5D5D5;
     width: 100%;
     padding-bottom: 7px;
-    padding-top: 20px;
+    padding-top: 15px;
     background-color: rgb(238, 238, 238);
     z-index: 10;
 }
+.message-list .list-subgroup {
+    margin-bottom: 15px;
+}
+
 .message-list .list-group .list-group-separator {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -137,6 +141,17 @@ body {
     animation: checkbox-on .1s linear forwards;
 }
 
+.avatar {
+    line-height: 45px;
+    background: rgba(0, 149, 135, 1);
+    border-radius: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    width: 45px;
+    height: 45px;
+}
+
 /* 
  * Bottom bar
  */
@@ -150,13 +165,19 @@ body {
     color: rgba(255, 255, 255, .84);
 }
 
+#page-content {
+    padding-top: 15px;
+}
+#page-content.no-padding-top {
+    padding-top: 0px;
+}
+
 /*
  * Top bar
  */
 #page-content {
-    padding-top: 50px;
+    margin-top: 50px;
 }
-
 #navbar-top .navbar-form {
     margin-right: 250px;
 }
@@ -183,4 +204,14 @@ body {
 
 #left-panel .navmenu-brand {
     border-bottom: 1px solid #D5D5D5;
+}
+
+/*
+ * Message component
+ */
+.message iframe {
+    width: 100%
+}
+
+.message .row>div {
 }
