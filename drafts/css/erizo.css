@@ -157,6 +157,10 @@ body {
     padding-top: 50px;
 }
 
+#navbar-top .navbar-form {
+    margin-right: 250px;
+}
+
 #navbar-top #btn-write-mail-top {
     position: absolute;
     bottom: -20px;
