@@ -52,11 +52,9 @@ body {
         padding-top: 10px;
     }
 }
-
 #left-panel {
     overflow: visible;
 }
-
 .navmenu-default .navmenu-nav>.active>a,
 .navbar-default .navbar-offcanvas .navmenu-nav>.active>a,
 .navmenu-default .navmenu-nav>.active>a:hover,
@@ -172,4 +170,8 @@ body {
     bottom: -20px;
     right: 40px;
     background-color: white
+}
+.box-list i {
+    vertical-align: middle;
+    margin-right: 10px;
 }

@@ -30,20 +30,23 @@
 
 
         <!-- Left panel -->
-        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm shadow-z-1">
+        <div id="left-panel" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm shadow-z-1">
             <a class="navmenu-brand visible-md visible-lg" href="#">Erizo webmail</a>
-            <ul class="nav navmenu-nav">
-                <li class="active"><a href="#">Inbox</a>
+            <ul class="box-list nav navmenu-nav">
+                <li class="active"><a href="#"><i class="mdi-content-inbox"></i>Inbox</a>
                 </li>
-                <li><a href="#">Sent</a>
+                <li><a href="#"><i class="mdi-content-send"></i>Sent</a>
                 </li>
-                <li><a href="#">Trash</a>
+                <li><a href="#"><i class="mdi-content-drafts"></i>Draft</a>
                 </li>
-                <li><a href="#">Spam</a>
+                <li><a href="#"><i class="mdi-action-delete"></i>Trash</a>
                 </li>
-                <li><a href="#">Others</a>
+                <li><a href="#"><i class="mdi-content-report"></i>Spam</a>
+                </li>
+                <li><a href="#"><i class="mdi-content-inbox"></i>Others</a>
                 </li>
             </ul>
+            <button id="btn-write-mail-left" class="btn btn-fab btn-raised btn-primary visible-md visible-lg"><i class="mdi-image-edit"></i></button>
         </div>
 
         <!-- Mobile navbar -->
@@ -54,6 +57,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Erizo webmail</a>
+            <button id="btn-write-mail-top" class="btn btn-fab btn-raised btn-default"><i class="mdi-image-edit"></i></button>
         </div>
 
         <!-- Bottom bar -->
@@ -133,15 +137,14 @@
             jQuery('.sticky').positionSticky();
         });
     </script>
-
+    
     <script>
         //Message selection
         $(function () {
             var login_success = false;
-            $(".row-content").click(function () {
-                $('.message-list').addClass('animated bounceOutLeft');
-
+            $(".box-list li").click(function () {
                 //To the message view
+                window.location = "messageList.html";
             });
         });
     </script>
