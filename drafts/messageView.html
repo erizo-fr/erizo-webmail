@@ -76,44 +76,52 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
+                    <div class="message-object">
+                        This message is for you
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12">
                     <div class="message">
 
                         <!-- Message header -->
                         <div class="row message-header">
-                            <!-- Icon -->
-                            <div class="col-xs-1">
-                                <div class="avatar">
+                            <div class="col-xs-12">
+                                <!-- Icon -->
+                                <div class="avatar pull-left">
                                     <i class="mdi-social-person"></i>
                                 </div>
-                            </div>
 
-                            <!-- Meta -->
-                            <div class="col-xs-8">
-                                <div class="row">
+                                <!-- Meta -->
+                                <div class="pull-left">
+                                    <div class="row">
 
-                                    <!-- From -->
-                                    <div class="col-xs-12">
-                                        <strong>Someone</strong> contact@someone.com
+                                        <!-- From -->
+                                        <div class="col-xs-12">
+                                            <strong>Someone</strong> contact@someone.com
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- To -->
+                                        <div class="col-xs-12">
+                                            <strong>Me</strong> myadress@localhost
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <!-- To -->
-                                    <div class="col-xs-12">
-                                        <strong>Me</strong> myadress@localhost
-                                    </div>
+
+
+                                <!-- Date -->
+                                <div class="message-header-date pull-right">
+                                    26 dec. (Yesterday)
                                 </div>
-                            </div>
-
-
-                            <!-- Date -->
-                            <div class="col-xs-3">
-                                26 dec. (Yesterday)
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row message-body">
                             <div class="col-xs-12">
-                                <iframe frameBorder="0">
+                                <iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
                                 </iframe>
                             </div>
                         </div>
@@ -156,12 +164,8 @@
     </script>
 
     <script>
-        var iframes;
         $(function () {
-            var content = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et consectetur nulla, a lacinia justo. Nunc posuere nunc tellus, vulputate tristique tellus scelerisque et. Donec purus sapien, ullamcorper in molestie ut, luctus a odio. Curabitur sapien dolor, cursus at tortor id, luctus interdum mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec vitae urna eu nunc mattis cursus. Sed maximus urna ac suscipit facilisis. Mauris vel laoreet orci. Donec tincidunt commodo venenatis. In id tortor tempus, finibus justo vitae, sodales nisi. Sed aliquet tortor eget purus pretium, ut suscipit leo efficitur.</p><p>Vivamus nec ex ex. Nunc gravida ligula auctor, laoreet eros quis, cursus risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus ac tortor vitae mauris ultricies varius eget id arcu. Quisque vehicula interdum lorem in hendrerit. Maecenas porta, diam vel elementum consequat, velit ligula ultricies orci, sagittis vehicula nisi nisl et orci. Donec eu nulla dignissim, fermentum est in, scelerisque turpis. Nullam vestibulum ante leo. Quisque accumsan, tellus auctor cursus posuere, ligula est mattis felis, et viverra ipsum enim a dui. Nullam mollis sed quam ut cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>';
-            iframes = $('.message iframe');
-            iframes.contents().find('body').append(content);
-            iframes.each(function () {
+            $('.message iframe');.each(function () {
                 this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
             });
         });
