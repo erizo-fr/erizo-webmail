@@ -1,4 +1,4 @@
-Erizo Mail - Client
+Erizo Webmail
 =================
 
 
@@ -6,7 +6,7 @@ Erizo Mail - Client
 <a href="https://codeclimate.com/github/erizo-fr/erizo-mail-client"><img src="https://codeclimate.com/github/erizo-fr/erizo-mail-client/badges/gpa.svg" /></a>
 
 
-*In construction*
+*In development*
 
 # Developpment setup
 * npm install
