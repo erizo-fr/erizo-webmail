@@ -8,7 +8,7 @@ Erizo Webmail
 
 *In development*
 
-# Developpment setup
+# Development setup
 * npm install
 * bower install
 * grunt serve
