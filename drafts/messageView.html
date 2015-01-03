@@ -192,14 +192,27 @@
 
                             <!-- Message -->
                             <div class="media-body">
-                                <div class="message-composer well">
+                                <div class="thread-composer">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="To">
-                                        <textarea class="form-control" placeholder="Type your message here ..." rows="10"></textarea>
+                                        <div class="thread-composer-destination btn-group">
+                                            <div class="thread-composer-destination-selector">
+                                                <a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-reply"></i><span class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
+                                                    </li>
+                                                    <li><a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="thread-composer-destination-people">
+                                                <input type="text" placeholder="To">
+                                            </div>
+                                        </div>
+                                        <textarea id="editor" class="form-control" rows="10"></textarea>
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Send</button>
                                     </div>
                                 </div>
                             </div>
@@ -223,12 +236,15 @@
     <script type="text/javascript" src="js/arrive-2.0.0.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script type="text/javascript" src="bower_components/ckeditor/ckeditor.js"></script>
     <script>
         $(function () {
             $.material.init();
 
-            //Sticky
-            jQuery('.sticky').positionSticky();
+            //Editor
+            CKEDITOR.replace('editor', {
+                customConfig: '../../js/thread-editor-config.js'
+            });
         });
     </script>
 
