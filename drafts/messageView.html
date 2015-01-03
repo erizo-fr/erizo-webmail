@@ -74,59 +74,139 @@
 
     <div id="page-content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="message-object">
-                        This message is for you
+            <div class="thread">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="message-object">
+                            This message is for you
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="message">
 
-                        <!-- Message header -->
-                        <div class="row message-header">
-                            <div class="col-xs-12">
-                                <!-- Icon -->
-                                <div class="avatar pull-left">
+                <!-- Message -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="message thread-element media collapsed">
+                            <!-- Icon -->
+                            <div class="media-left">
+                                <div class="avatar">
                                     <i class="mdi-social-person"></i>
                                 </div>
-
-                                <!-- Meta -->
-                                <div class="pull-left">
-                                    <div class="row">
-
-                                        <!-- From -->
-                                        <div class="col-xs-12">
-                                            <strong>Someone</strong> contact@someone.com
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <!-- To -->
-                                        <div class="col-xs-12">
-                                            <strong>Me</strong> myadress@localhost
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Date -->
-                                <div class="message-header-date pull-right">
-                                    26 dec. (Yesterday)
-                                </div>
                             </div>
-                        </div>
 
-                        <div class="row message-body">
-                            <div class="col-xs-12">
-                                <iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
-                                </iframe>
+                            <!-- Message -->
+                            <div class="media-body">
+                                <!-- Header -->
+                                <div class="message-header clearfix">
+                                    <!-- Meta -->
+                                    <div class="message-header-meta pull-left">
+                                        <!-- From -->
+                                        <div class="message-header-meta-from">
+                                            <strong>Someone</strong>  <span class="email text-muted">contact@someone.com</span>
+                                        </div>
+                                        <!-- To -->
+                                        <div class="message-header-meta-to">
+                                            <strong>Me</strong>  <span class="email text-muted">myadress@localhost</span>
+                                        </div>
+                                        <!-- Body preview -->
+                                        <div class="message-header-meta-body-preview text-muted">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla augue, ultrices in consectetur id, sodales et purus. Nam non laoreet sapien.
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Date -->
+                                    <div class="message-header-date pull-right">
+                                        26 dec. (Yesterday)
+                                    </div>
+                                </div>
+
+                                <!-- Body -->
+                                <div class="message-body clearfix">
+                                    <iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Message -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="message thread-element media">
+                            <!-- Icon -->
+                            <div class="media-left">
+                                <div class="avatar">
+                                    <i class="mdi-social-person"></i>
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="media-body">
+                                <!-- Header -->
+                                <div class="message-header clearfix">
+                                    <!-- Meta -->
+                                    <div class="message-header-meta pull-left">
+                                        <!-- From -->
+                                        <div class="message-header-meta-from">
+                                            <strong>Someone</strong>  <span class="email text-muted">contact@someone.com</span>
+                                        </div>
+                                        <!-- To -->
+                                        <div class="message-header-meta-to">
+                                            <strong>Me</strong>  <span class="email text-muted">myadress@localhost</span>
+                                        </div>
+                                        <!-- Body preview -->
+                                        <div class="message-header-meta-body-preview text-muted">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla augue, ultrices in consectetur id, sodales et purus. Nam non laoreet sapien.
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Date -->
+                                    <div class="message-header-date pull-right">
+                                        26 dec. (Yesterday)
+                                    </div>
+                                </div>
+
+                                <!-- Body -->
+                                <div class="message-body clearfix">
+                                    <iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message composer -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="thread-element media">
+                            <!-- Icon -->
+                            <div class="media-left">
+                                <div class="avatar">
+                                    <i class="mdi-social-person"></i>
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="media-body">
+                                <div class="message-composer well">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="To">
+                                        <textarea class="form-control" placeholder="Type your message here ..." rows="10"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -153,6 +233,14 @@
     </script>
 
     <script>
+        $(function () {
+            $('.message-header').click(function () {
+                $(this).parents('.message').toggleClass('collapsed');
+            });
+        });
+    </script>
+
+    <script>
         //Box selection
         $(function () {
             var login_success = false;
@@ -165,32 +253,8 @@
 
     <script>
         $(function () {
-            $('.message iframe');.each(function () {
-                this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
-            });
-        });
-    </script>
-
-    <script>
-        //Bottom Toolbar
-        $(function () {
-            var isDisplayed = false;
-            $(".message-selector").click(function () {
-                //Count
-                var nbSelectedMessages = $("input.message-selector:checked").length;
-                var shouldBeDisplayed = nbSelectedMessages !== 0;
-
-                if (shouldBeDisplayed === isDisplayed) {
-                    return;
-                } else {
-                    if (shouldBeDisplayed === true) {
-                        $('#bottom-toolbar').show();
-                        isDisplayed = true;
-                    } else {
-                        $('#bottom-toolbar').hide();
-                        isDisplayed = false;
-                    }
-                }
+            $('.message iframe').each(function () {
+                //this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
             });
         });
     </script>
