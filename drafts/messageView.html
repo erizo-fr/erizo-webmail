@@ -191,7 +191,10 @@
                                 </div>
                             </div>
 
-                            <div class="media-body">
+                            <div class="thread-composer-parent media-body">
+                                <div class="thread-precomposer">
+                                    <p class="text-muted">Click here to <a id='thread-precomposer-answer'>answer</a> or <a id='thread-precomposer-forward'>forward</a> the message</p>
+                                </div>
                                 <div class="thread-composer">
                                     <div class="form-group">
                                         <div class="thread-composer-destination btn-group">
@@ -257,18 +260,41 @@
     </script>
 
     <script>
-        //Change the destination selector icon on click
+        //Add the composer actions
         $(function () {
-            $('.thread-composer-destination-selector-forward').click(function () {
-                var btnIcon = $(this).parents('.thread-composer-destination-selector').children('a').children('i');
+            function writeForward(parent) {
+                var btnIcon = parent.find('.thread-composer-destination-selector').children('a').children('i');
                 btnIcon.removeClass();
                 btnIcon.addClass('mdi-content-forward');
+                parent.addClass('write-mode');
+                parent.addClass('write-mode-forward');
+            }
+            
+            function writeReply(parent) {
+                var btnIcon = parent.find('.thread-composer-destination-selector').children('a').children('i');
+                btnIcon.removeClass();
+                btnIcon.addClass('mdi-content-reply');
+                parent.addClass('write-mode');
+                parent.addClass('write-mode-reply');
+            }
+            
+            $('#thread-precomposer-answer').click(function () {
+                var parent = $(this).parents('.thread-composer-parent');
+                writeReply(parent);
+            });
+            $('#thread-precomposer-forward').click(function () {
+                var parent = $(this).parents('.thread-composer-parent');
+                writeForward(parent);
+            });
+            
+            $('.thread-composer-destination-selector-forward').click(function () {
+                var parent = $(this).parents('.thread-composer-parent');
+                writeForward(parent);
             });
 
             $('.thread-composer-destination-selector-reply').click(function () {
-                var btnIcon = $(this).parents('.thread-composer-destination-selector').children('a').children('i');
-                btnIcon.removeClass();
-                btnIcon.addClass('mdi-content-reply');
+                var parent = $(this).parents('.thread-composer-parent');
+                writeReply(parent);
             });
         });
     </script>

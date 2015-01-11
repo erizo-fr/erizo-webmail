@@ -333,3 +333,33 @@ body {
 .thread-composer #cke_editor .cke_contents {
     border-radius: 0px;
 }
+
+.thread-composer {
+    display: none;
+}
+.thread-composer-parent.write-mode .thread-composer {
+    display: block;
+}
+
+/*
+ * Thread precomposer
+ */
+.thread-precomposer {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    margin-bottom: 50px;
+    height: 100px;
+    background-color: white;
+}
+
+.thread-precomposer a {
+    cursor: pointer;
+}
+
+.thread-precomposer {
+    display: block;
+}
+.thread-composer-parent.write-mode .thread-precomposer {
+    display: none;
+}
