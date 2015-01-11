@@ -284,39 +284,32 @@ body {
     display: table;
     width: 100%;
     margin: 0px;
-    padding: 0px;
+    padding: 0px 5px;
     border-bottom: 0px;
     border-top: 1px solid #DDD;
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
-    box-shadow: 0 0px 0px rgba(0,0,0,.23),0 0px 0px rgba(0,0,0,.16)
+    box-shadow: 0 0px 0px rgba(0,0,0,.23),0 0px 0px rgba(0,0,0,.16);
+    background-color: white;
+    border-radius: 0px;
 }
 
-.thread-composer .thread-composer-destination * {
-    margin: 0px;
+.thread-composer .thread-composer-destination .thread-composer-destination-people,
+.thread-composer .thread-composer-destination .thread-composer-destination-selector {
+    display: table-cell;
+    padding: 5px 0px;
 }
 
 .thread-composer .thread-composer-destination .thread-composer-destination-selector {
-    display: table-cell;
-    padding: 0px;
     width: 100px;
+}
+
+.thread-composer .thread-composer-destination .thread-composer-destination-people {
+    width: 100%;
 }
 
 .thread-composer .thread-composer-destination .thread-composer-destination-selector>a {
     padding: 6px 12px;
-}
-
-.thread-composer .thread-composer-destination .thread-composer-destination-people {
-    display: table-cell;
-    padding: 0px;
-    width: 100%;
-}
-
-.thread-composer .thread-composer-destination .thread-composer-destination-people * {
-    width: 100%;
-    border: 0px;
-    padding: 10px;
-    
 }
 
 .thread-composer #cke_editor {

@@ -13,6 +13,7 @@
     <link href="bower_components/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet">
     <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
     <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="css/tokenInput.css" rel="stylesheet">
     <link href="css/erizo.css" rel="stylesheet">
 
 
@@ -190,7 +191,6 @@
                                 </div>
                             </div>
 
-                            <!-- Message -->
                             <div class="media-body">
                                 <div class="thread-composer">
                                     <div class="form-group">
@@ -198,14 +198,16 @@
                                             <div class="thread-composer-destination-selector">
                                                 <a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-reply"></i><span class="caret"></span></a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
+                                                    <li class="thread-composer-destination-selector-reply">
+                                                        <a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
                                                     </li>
-                                                    <li><a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
+                                                    <li class="thread-composer-destination-selector-forward">
+                                                        <a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="thread-composer-destination-people">
-                                                <input type="text" placeholder="To">
+                                                <input id="to-people" style="width: 100%"></input>
                                             </div>
                                         </div>
                                         <textarea id="editor" class="form-control" rows="10"></textarea>
@@ -234,6 +236,7 @@
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
     <script type="text/javascript" src="js/arrive-2.0.0.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-tokeninput/build/jquery.tokeninput.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
     <script type="text/javascript" src="bower_components/ckeditor/ckeditor.js"></script>
@@ -245,10 +248,33 @@
             CKEDITOR.replace('editor', {
                 customConfig: '../../js/thread-editor-config.js'
             });
+            
+            //Add select with autocomplete box
+            $("#to-people").tokenInput("http://jquery-tokeninput-demo.herokuapp.com/", {
+                hintText: 'Type to search a contact ...'
+            });
         });
     </script>
 
     <script>
+        //Change the destination selector icon on click
+        $(function () {
+            $('.thread-composer-destination-selector-forward').click(function () {
+                var btnIcon = $(this).parents('.thread-composer-destination-selector').children('a').children('i');
+                btnIcon.removeClass();
+                btnIcon.addClass('mdi-content-forward');
+            });
+
+            $('.thread-composer-destination-selector-reply').click(function () {
+                var btnIcon = $(this).parents('.thread-composer-destination-selector').children('a').children('i');
+                btnIcon.removeClass();
+                btnIcon.addClass('mdi-content-reply');
+            });
+        });
+    </script>
+
+    <script>
+        //Add collapsed action
         $(function () {
             $('.message-header').click(function () {
                 $(this).parents('.message').toggleClass('collapsed');
@@ -269,6 +295,7 @@
 
     <script>
         $(function () {
+            //Resize messages
             $('.message iframe').each(function () {
                 //this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
             });
