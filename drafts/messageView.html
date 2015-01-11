@@ -193,7 +193,7 @@
 
                             <div class="thread-composer-parent media-body">
                                 <div class="thread-precomposer">
-                                    <p class="text-muted">Click here to <a id='thread-precomposer-answer'>answer</a> or <a id='thread-precomposer-forward'>forward</a> the message</p>
+                                    <p class="text-muted">Click here to <a class='thread-precomposer-answer'>answer</a> or <a class='thread-precomposer-forward'>forward</a> the message</p>
                                 </div>
                                 <div class="thread-composer">
                                     <div class="form-group">
@@ -278,11 +278,11 @@
                 parent.addClass('write-mode-reply');
             }
             
-            $('#thread-precomposer-answer').click(function () {
+            $('.thread-precomposer-answer').click(function () {
                 var parent = $(this).parents('.thread-composer-parent');
                 writeReply(parent);
             });
-            $('#thread-precomposer-forward').click(function () {
+            $('.thread-precomposer-forward').click(function () {
                 var parent = $(this).parents('.thread-composer-parent');
                 writeForward(parent);
             });
