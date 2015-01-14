@@ -1,0 +1,18 @@
+.ms-ctn {
+	border: 0px;
+}
+.ms-sel-ctn>.ms-sel-item {
+	padding: 5px;
+	margin: 5px;
+	display: inline;
+	background-color: #FAFAFA;
+	border: 1px solid #DDD;
+}
+.ms-sel-ctn>.ms-sel-item .ms-close-btn {
+	/*TODO*/
+}
+.ms-sel-ctn>input {
+	border: 0px;
+}
+.ms-res-ctn {
+}

@@ -17,6 +17,7 @@
     "jquery-sticky": "~1.0.1",
     "ckeditor": "~4.4.6",
     "bootstrapck4-skin": "~1.0.0",
-    "jquery-tokeninput": "~1.7.0"
+    "jquery-tokeninput": "~1.7.0",
+    "magicsuggest": "~2.1.4"
   }
 }
