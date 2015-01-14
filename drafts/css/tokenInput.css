@@ -41,7 +41,6 @@ div.token-input-dropdown {
     overflow: hidden;
     background-color: white;
     border: 1px solid #DDD;
-    max-height: 150px;
     /* Fix position */
     margin-left: 1px;
     margin-top: 5px;

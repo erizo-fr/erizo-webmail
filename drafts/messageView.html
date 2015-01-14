@@ -2,331 +2,516 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Erizo Mail : Lorem Ipsum</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Erizo Mail : Lorem Ipsum</title>
 
-    <!-- Bootstrap -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet">
-    <link href="css/material-erizo.css" rel="stylesheet">
-    <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
-    <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
-    <link href="css/tokenInput.css" rel="stylesheet">
-    <link href="css/erizo.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet">
+	<link href="css/material-erizo.css" rel="stylesheet">
+	<link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+	<link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
+	<link href="css/tokenInput.css" rel="stylesheet">
+	<link href="css/erizo.css" rel="stylesheet">
 
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
-    <!-- Left panel -->
-    <div id="left-panel" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
-        <a class="navmenu-brand" href="#">Erizo webmail</a>
-        <ul class="box-list nav navmenu-nav">
-            <li class="active"><a href="#"><i class="mdi-content-inbox"></i>Inbox</a>
-            </li>
-            <li><a href="#"><i class="mdi-content-send"></i>Sent</a>
-            </li>
-            <li><a href="#"><i class="mdi-content-drafts"></i>Draft</a>
-            </li>
-            <li><a href="#"><i class="mdi-action-delete"></i>Trash</a>
-            </li>
-            <li><a href="#"><i class="mdi-content-report"></i>Spam</a>
-            </li>
-            <li><a href="#"><i class="mdi-content-inbox"></i>Others</a>
-            </li>
-        </ul>
-    </div>
 
-    <!-- Top navbar -->
-    <div id="navbar-top" class="navbar navbar-default navbar-fixed-top shadow-z-1 nav-erizo">
-        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+	<!-- Left panel -->
+	<div id="left-panel" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+		<a class="navmenu-brand" href="#">Erizo webmail</a>
+		<ul class="box-list nav navmenu-nav">
+			<li class="active"><a href="#"><i class="mdi-content-inbox"></i>Inbox</a>
+			</li>
+			<li><a href="#"><i class="mdi-content-send"></i>Sent</a>
+			</li>
+			<li><a href="#"><i class="mdi-content-drafts"></i>Draft</a>
+			</li>
+			<li><a href="#"><i class="mdi-action-delete"></i>Trash</a>
+			</li>
+			<li><a href="#"><i class="mdi-content-report"></i>Spam</a>
+			</li>
+			<li><a href="#"><i class="mdi-content-inbox"></i>Others</a>
+			</li>
+		</ul>
+	</div>
 
-        <!-- Write mail -->
-        <button id="btn-write-mail-top" class="btn btn-fab btn-raised btn-default"><i class="mdi-image-edit"></i>
-        </button>
-    </div>
+	<!-- Top navbar -->
+	<div id="navbar-top" class="navbar navbar-default navbar-fixed-top shadow-z-1 nav-erizo">
+		<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
 
-
-    <!-- Bottom bar -->
-    <nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom nav-erizo" role="navigation" style="display:none">
-        <div class="container-fluid">
-            <div class="text-center">
-                <button class="btn btn-flat btn-default">
-                    <i class="mdi-action-delete"></i>
-                </button>
-                <button class="btn btn-flat btn-default">
-                    <i class="mdi-content-forward"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <div id="page-content">
-        <div class="container-fluid">
-            <div class="thread">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="message-object">
-                            This message is for you
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Message -->
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="message thread-element media collapsed">
-                            <!-- Icon -->
-                            <div class="media-left">
-                                <div class="avatar">
-                                    <i class="mdi-social-person"></i>
-                                </div>
-                            </div>
-
-                            <!-- Message -->
-                            <div class="media-body">
-                                <!-- Header -->
-                                <div class="message-header clearfix">
-                                    <!-- Meta -->
-                                    <div class="message-header-meta pull-left">
-                                        <!-- From -->
-                                        <div class="message-header-meta-from">
-                                            <strong>Someone</strong>  <span class="email text-muted">contact@someone.com</span>
-                                        </div>
-                                        <!-- To -->
-                                        <div class="message-header-meta-to">
-                                            <strong>Me</strong>  <span class="email text-muted">myadress@localhost</span>
-                                        </div>
-                                        <!-- Body preview -->
-                                        <div class="message-header-meta-body-preview text-muted">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla augue, ultrices in consectetur id, sodales et purus. Nam non laoreet sapien.
-                                        </div>
-                                    </div>
+		<!-- Write mail -->
+		<button id="btn-write-mail-top" class="btn btn-fab btn-raised btn-default"><i class="mdi-image-edit"></i>
+		</button>
+	</div>
 
 
-                                    <!-- Date -->
-                                    <div class="message-header-date pull-right">
-                                        26 dec. (Yesterday)
-                                    </div>
-                                </div>
+	<!-- Bottom bar -->
+	<nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom nav-erizo" role="navigation" style="display:none">
+		<div class="container-fluid">
+			<div class="text-center">
+				<button class="btn btn-flat btn-default">
+					<i class="mdi-action-delete"></i>
+				</button>
+				<button class="btn btn-flat btn-default">
+					<i class="mdi-content-forward"></i>
+				</button>
+			</div>
+		</div>
+	</nav>
 
-                                <!-- Body -->
-                                <div class="message-body clearfix">
-                                    <iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
-                                    </iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	<div id="page-content">
+		<div class="container-fluid">
+			<div class="thread">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="message-object">
+							This message is for you
+						</div>
+					</div>
+				</div>
 
-                <!-- Message -->
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="message thread-element media">
-                            <!-- Icon -->
-                            <div class="media-left">
-                                <div class="avatar">
-                                    <i class="mdi-social-person"></i>
-                                </div>
-                            </div>
+				<!-- Message -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="message thread-element media collapsed">
+							<!-- Icon -->
+							<div class="media-left">
+								<div class="avatar">
+									<i class="mdi-social-person"></i>
+								</div>
+							</div>
 
-                            <!-- Message -->
-                            <div class="media-body">
-                                <!-- Header -->
-                                <div class="message-header clearfix">
-                                    <!-- Meta -->
-                                    <div class="message-header-meta pull-left">
-                                        <!-- From -->
-                                        <div class="message-header-meta-from">
-                                            <strong>Someone</strong>  <span class="email text-muted">contact@someone.com</span>
-                                        </div>
-                                        <!-- To -->
-                                        <div class="message-header-meta-to">
-                                            <strong>Me</strong>  <span class="email text-muted">myadress@localhost</span>
-                                        </div>
-                                        <!-- Body preview -->
-                                        <div class="message-header-meta-body-preview text-muted">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla augue, ultrices in consectetur id, sodales et purus. Nam non laoreet sapien.
-                                        </div>
-                                    </div>
+							<!-- Message -->
+							<div class="media-body">
+								<!-- Header -->
+								<div class="message-header clearfix">
+									<!-- Meta -->
+									<div class="message-header-meta pull-left">
+										<!-- From -->
+										<div class="message-header-meta-from">
+											<strong>Someone</strong>  <span class="email text-muted">contact@someone.com</span>
+										</div>
+										<!-- To -->
+										<div class="message-header-meta-to">
+											<strong>Me</strong>  <span class="email text-muted">myadress@localhost</span>
+										</div>
+										<!-- Body preview -->
+										<div class="message-header-meta-body-preview text-muted">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla augue, ultrices in consectetur id, sodales et purus. Nam non laoreet sapien.
+										</div>
+									</div>
 
 
-                                    <!-- Date -->
-                                    <div class="message-header-date pull-right">
-                                        26 dec. (Yesterday)
-                                    </div>
-                                </div>
+									<!-- Date -->
+									<div class="message-header-date pull-right">
+										26 dec. (Yesterday)
+									</div>
+								</div>
 
-                                <!-- Body -->
-                                <div class="message-body clearfix">
-                                    <iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
-                                    </iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+								<!-- Body -->
+								<div class="message-body clearfix">
+									<iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
+									</iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                <!-- Message composer -->
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="thread-element media">
-                            <!-- Icon -->
-                            <div class="media-left">
-                                <div class="avatar">
-                                    <i class="mdi-social-person"></i>
-                                </div>
-                            </div>
+				<!-- Message -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="message thread-element media">
+							<!-- Icon -->
+							<div class="media-left">
+								<div class="avatar">
+									<i class="mdi-social-person"></i>
+								</div>
+							</div>
 
-                            <div class="thread-composer-parent media-body">
-                                <div class="thread-precomposer">
-                                    <p class="text-muted">Click here to <a class='thread-precomposer-answer'>answer</a> or <a class='thread-precomposer-forward'>forward</a> the message</p>
-                                </div>
-                                <div class="thread-composer">
-                                    <div class="form-group">
-                                        <div class="thread-composer-destination btn-group">
-                                            <div class="thread-composer-destination-selector">
-                                                <a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-reply"></i><span class="caret"></span></a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="thread-composer-destination-selector-reply">
-                                                        <a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
-                                                    </li>
-                                                    <li class="thread-composer-destination-selector-forward">
-                                                        <a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="thread-composer-destination-people">
-                                                <input id="to-people" style="width: 100%"></input>
-                                            </div>
-                                        </div>
-                                        <textarea id="editor" class="form-control" rows="10"></textarea>
-                                    </div>
+							<!-- Message -->
+							<div class="media-body">
+								<!-- Header -->
+								<div class="message-header clearfix">
+									<!-- Meta -->
+									<div class="message-header-meta pull-left">
+										<!-- From -->
+										<div class="message-header-meta-from">
+											<strong>Someone</strong>  <span class="email text-muted">contact@someone.com</span>
+										</div>
+										<!-- To -->
+										<div class="message-header-meta-to">
+											<strong>Me</strong>  <span class="email text-muted">myadress@localhost</span>
+										</div>
+										<!-- Body preview -->
+										<div class="message-header-meta-body-preview text-muted">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla augue, ultrices in consectetur id, sodales et purus. Nam non laoreet sapien.
+										</div>
+									</div>
 
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Send</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </div>
+									<!-- Date -->
+									<div class="message-header-date pull-right">
+										26 dec. (Yesterday)
+									</div>
+								</div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="bower_components/PositionSticky/dist/PositionSticky.min.js"></script>
-    <script type="text/javascript" src="bower_components/jQuery.positionSticky/dist/jQuery.positionSticky.min.js"></script>
-    <script type="text/javascript" src="js/erizo.js"></script>
+								<!-- Body -->
+								<div class="message-body clearfix">
+									<iframe seamless sandbox="allow-same-origin" frameBorder="0" src="message-body.html">
+									</iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/arrive-2.0.0.min.js"></script>
-    <script type="text/javascript" src="bower_components/jquery-tokeninput/build/jquery.tokeninput.min.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
-    <script type="text/javascript" src="bower_components/ckeditor/ckeditor.js"></script>
-    <script>
-        $(function () {
-            $.material.init();
+				<!-- Message composer -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="thread-element media">
+							<!-- Icon -->
+							<div class="media-left">
+								<div class="avatar">
+									<i class="mdi-social-person"></i>
+								</div>
+							</div>
 
-            //Editor
-            CKEDITOR.replace('editor', {
-                customConfig: '../../js/thread-editor-config.js'
-            });
-            
-            //Add select with autocomplete box
-            $("#to-people").tokenInput("http://jquery-tokeninput-demo.herokuapp.com/", {
-                hintText: 'Type to search a contact ...'
-            });
-        });
-    </script>
+							<div class="thread-composer-parent media-body">
+								<div class="thread-precomposer">
+									<p class="text-muted">Click here to <a class='thread-precomposer-answer'>answer</a> or <a class='thread-precomposer-forward'>forward</a> the message</p>
+								</div>
+								<div class="thread-composer">
+									<div class="form-group">
+										<div class="thread-composer-destination btn-group">
+											<div class="thread-composer-destination-selector">
+												<a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-reply"></i><span class="caret"></span></a>
+												<ul class="dropdown-menu">
+													<li class="thread-composer-destination-selector-reply">
+														<a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
+													</li>
+													<li class="thread-composer-destination-selector-forward">
+														<a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
+													</li>
+												</ul>
+											</div>
+											<div class="thread-composer-destination-people">
+												<input id="to-people" style="width: 100%"></input>
+											</div>
+										</div>
+										<textarea id="editor" class="form-control" rows="10"></textarea>
+									</div>
 
-    <script>
-        //Add the composer actions
-        $(function () {
-            function writeForward(parent) {
-                var btnIcon = parent.find('.thread-composer-destination-selector').children('a').children('i');
-                btnIcon.removeClass();
-                btnIcon.addClass('mdi-content-forward');
-                parent.addClass('write-mode');
-                parent.addClass('write-mode-forward');
-            }
-            
-            function writeReply(parent) {
-                var btnIcon = parent.find('.thread-composer-destination-selector').children('a').children('i');
-                btnIcon.removeClass();
-                btnIcon.addClass('mdi-content-reply');
-                parent.addClass('write-mode');
-                parent.addClass('write-mode-reply');
-            }
-            
-            $('.thread-precomposer-answer').click(function () {
-                var parent = $(this).parents('.thread-composer-parent');
-                writeReply(parent);
-            });
-            $('.thread-precomposer-forward').click(function () {
-                var parent = $(this).parents('.thread-composer-parent');
-                writeForward(parent);
-            });
-            
-            $('.thread-composer-destination-selector-forward').click(function () {
-                var parent = $(this).parents('.thread-composer-parent');
-                writeForward(parent);
-            });
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">Send</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            $('.thread-composer-destination-selector-reply').click(function () {
-                var parent = $(this).parents('.thread-composer-parent');
-                writeReply(parent);
-            });
-        });
-    </script>
+			</div>
+		</div>
+	</div>
 
-    <script>
-        //Add collapsed action
-        $(function () {
-            $('.message-header').click(function () {
-                $(this).parents('.message').toggleClass('collapsed');
-            });
-        });
-    </script>
 
-    <script>
-        //Box selection
-        $(function () {
-            var login_success = false;
-            $(".box-list li").click(function () {
-                //To the message view
-                window.location = "messageList.html";
-            });
-        });
-    </script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/PositionSticky/dist/PositionSticky.min.js"></script>
+	<script type="text/javascript" src="bower_components/jQuery.positionSticky/dist/jQuery.positionSticky.min.js"></script>
+	<script type="text/javascript" src="js/erizo.js"></script>
 
-    <script>
-        $(function () {
-            //Resize messages
-            $('.message iframe').each(function () {
-                //this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
-            });
-        });
-    </script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/arrive-2.0.0.min.js"></script>
+	<script type="text/javascript" src="bower_components/jquery-tokeninput/build/jquery.tokeninput.min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+	<script type="text/javascript" src="bower_components/ckeditor/ckeditor.js"></script>
+	<script>
+		$(function () {
+			$.material.init();
+
+			//Editor
+			CKEDITOR.replace('editor', {
+				customConfig: '../../js/thread-editor-config.js'
+			});
+
+			//Add select with autocomplete box
+			$("#to-people").tokenInput([{
+					"first_name": "Arthur",
+					"last_name": "Godfrey",
+					"email": "arthur_godfrey@nccu.edu",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Adam",
+					"last_name": "Johnson",
+					"email": "wravo@yahoo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Jeff",
+					"last_name": "Johnson",
+					"email": "bballnine@hotmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Adriana",
+					"last_name": "Jameson",
+					"email": "adriana.jameson@gmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Adriano",
+					"last_name": "Pooley",
+					"email": "adrianolpooley@lautau.com.br",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alcir",
+					"last_name": "Reis",
+					"email": "alcirreis@yahoo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Jack",
+					"last_name": "Cunningham",
+					"email": "jcunningham@hotmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alejandro",
+					"last_name": "Forbes",
+					"email": "alejandforbes@gmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alessandra",
+					"last_name": "Mineiro",
+					"email": "alc_mineiro@aol.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alex",
+					"last_name": "Frazo",
+					"email": "alex.frazo@yahoo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alexandre",
+					"last_name": "Crawford",
+					"email": "xandycrawford@gmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alexandre",
+					"last_name": "Lalwani",
+					"email": "alexandrelalwani@globo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alexandre",
+					"last_name": "Jokos",
+					"email": "alex.jokos@gmail.com.br",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alexandre",
+					"last_name": "Paro",
+					"email": "alexandre.paro@uol.com.br",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Niemeyer",
+					"email": "a.niemeyer@globo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Alyssa",
+					"last_name": "Fortes",
+					"email": "afort287@yahoo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Amit",
+					"last_name": "Alvarenga",
+					"email": "amit.alva@gmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Ana Bia",
+					"last_name": "Borges",
+					"email": "abborges@gmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Ana",
+					"last_name": "Akamine",
+					"email": "ana.akamine@uol.com.br",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Anderson",
+					"last_name": "Tovoros",
+					"email": "alvarenga.tovoros@gmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Borges",
+					"email": "andreborges@hotmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Wexler",
+					"email": "andre.wexler@aol.com.br",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Williams",
+					"email": "awilly@yahoo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Sanford",
+					"email": "andre.sanford@gmail.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Wayne",
+					"email": "andrewayne@uol.com.br",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Jackson",
+					"email": "andre.jackson@yahoo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Jolly",
+					"email": "andre.jolly@uol.com.br",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			},
+				{
+					"first_name": "Andre",
+					"last_name": "Henderson",
+					"email": "andre.henderson@globo.com",
+					"url": "https://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+			}
+			], {
+				hintText: 'Type to search a contact ...',
+				resultsLimit: 5,
+				propertyToSearch: "email",
+				resultsFormatter: function (item) {
+					return "<li>" + '<div class="media"><div class="media-left"><div class="avatar"><i class="mdi-social-person"></i></div></div><div class="media-body">' + "<div><div>" + item.first_name + " " + item.last_name + "</div><div>" + item.email + "</div></div>" + '</div></div>' + "</li>"
+				},
+				tokenFormatter: function (item) {
+					return "<li><p>" + item.first_name + " " + item.last_name + "</p></li>"
+				},
+				onResult: function (results) {
+					var currentSearch = {
+						
+					};
+					results.splice(0, 0, currentSearch)
+					return results;
+				}
+			});
+		});
+	</script>
+
+	<script>
+		//Add the composer actions
+		$(function () {
+			function writeForward(parent) {
+				var btnIcon = parent.find('.thread-composer-destination-selector').children('a').children('i');
+				btnIcon.removeClass();
+				btnIcon.addClass('mdi-content-forward');
+				parent.addClass('write-mode');
+				parent.addClass('write-mode-forward');
+			}
+
+			function writeReply(parent) {
+				var btnIcon = parent.find('.thread-composer-destination-selector').children('a').children('i');
+				btnIcon.removeClass();
+				btnIcon.addClass('mdi-content-reply');
+				parent.addClass('write-mode');
+				parent.addClass('write-mode-reply');
+			}
+
+			$('.thread-precomposer-answer').click(function () {
+				var parent = $(this).parents('.thread-composer-parent');
+				writeReply(parent);
+			});
+			$('.thread-precomposer-forward').click(function () {
+				var parent = $(this).parents('.thread-composer-parent');
+				writeForward(parent);
+			});
+
+			$('.thread-composer-destination-selector-forward').click(function () {
+				var parent = $(this).parents('.thread-composer-parent');
+				writeForward(parent);
+			});
+
+			$('.thread-composer-destination-selector-reply').click(function () {
+				var parent = $(this).parents('.thread-composer-parent');
+				writeReply(parent);
+			});
+		});
+	</script>
+
+	<script>
+		//Add collapsed action
+		$(function () {
+			$('.message-header').click(function () {
+				$(this).parents('.message').toggleClass('collapsed');
+			});
+		});
+	</script>
+
+	<script>
+		//Box selection
+		$(function () {
+			var login_success = false;
+			$(".box-list li").click(function () {
+				//To the message view
+				window.location = "messageList.html";
+			});
+		});
+	</script>
+
+	<script>
+		$(function () {
+			//Resize messages
+			$('.message iframe').each(function () {
+				//this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
+			});
+		});
+	</script>
 </body>
 
 </html>
