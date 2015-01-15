@@ -16,3 +16,18 @@
 }
 .ms-res-ctn {
 }
+
+.ms-ctn .dropdown-menu {
+	box-shadow: none;
+	border: 1px solid #DDD;
+	border-radius: 0px;
+	width: calc(100% - 45px);
+	left: 0;
+	margin-top: 0px;
+	margin-left: 46px;
+	padding: 5px;
+}
+
+.ms-ctn .ms-helper {
+	display: none !important;
+}
