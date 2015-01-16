@@ -45,6 +45,8 @@ body {
     background-color: rgba(121, 85, 72, 1);
 }
 
+
+
 /*
  * Message list
  */
@@ -125,7 +127,7 @@ body {
 }
 
 /*
- * Globals 
+ * Globals
  */
 
 /* Increase checkbox animation speed */
@@ -145,7 +147,7 @@ body {
     height: 40px;
 }
 
-/* 
+/*
  * Bottom bar
  */
 .navbar-fixed-bottom button {
@@ -159,7 +161,7 @@ body {
 }
 
 
-/* 
+/*
  * Page content
  */
 
@@ -203,16 +205,30 @@ body {
     margin-right: 10px;
 }
 
-#left-panel .navmenu-brand {
+#left-panel .top {
+    font-size: 18px;
+    line-height: 20px;
     border-bottom: 1px solid #D5D5D5;
-}
-
-#left-panel .navmenu-brand {
     padding: 15px;
     margin-top: 0px;
     margin-bottom: 30px;
     margin-left: 0px;
     margin-right: 0px;
+}
+
+#left-panel .top a {
+    text-decoration: none;
+}
+
+#left-panel .top .parameter-button {
+    float: right;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#left-panel .bottom {
+    position: absolute;
+    bottom: 0px;
 }
 
 
@@ -348,7 +364,6 @@ body {
     width: 100%;
     padding: 10px;
     border: 1px solid #DDD;
-    margin-bottom: 50px;
     height: 100px;
     background-color: white;
 }
