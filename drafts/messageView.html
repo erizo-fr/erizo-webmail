@@ -13,7 +13,7 @@
 	<link href="css/material-erizo.css" rel="stylesheet">
 	<link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
 	<link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
-<!--	<link href="bower_components/magicsuggest/magicsuggest-min.css" rel="stylesheet">-->
+	<!--	<link href="bower_components/magicsuggest/magicsuggest-min.css" rel="stylesheet">-->
 	<link href="css/magicsuggest.css" rel="stylesheet">
 	<link href="css/erizo.css" rel="stylesheet">
 
@@ -257,8 +257,25 @@
 
 			$('#to-people').magicSuggest({
 				data: ['Paris', 'New York', 'London', 'Roma'],
+				selectFirst: true,
 				allowFreeEntries: true,
-				allowDuplicates: false
+				allowDuplicates: false,
+				minChars: 1,
+				maxSuggestions: 5,
+				placeholder: 'To',
+				renderer: function (data) {
+					var result = '<div class="media"> \
+									<div class="media-left"> \
+										<div class="avatar"> \
+											<i class="mdi-social-person"></i> \
+										</div> \
+									</div> \
+									<div class="media-body"> \
+										<p>' + data.name + '</p> \
+									</div> \
+								</div> '
+					return result;
+				}
 			});
 		});
 	</script>
