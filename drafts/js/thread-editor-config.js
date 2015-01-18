@@ -3,7 +3,8 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
-CKEDITOR.editorConfig = function (config) {
+CKEDITOR.editorConfig = function(config)
+{
     // Define changes to default configuration here.
     // For complete reference see:
     // http://docs.ckeditor.com/#!/api/CKEDITOR.config
@@ -45,7 +46,7 @@ CKEDITOR.editorConfig = function (config) {
         {
             name: 'others'
         }
- ];
+    ];
 
     // The default plugins included in the basic setup define some buttons that
     // are not needed in a basic editor. They are removed here.
@@ -57,6 +58,5 @@ CKEDITOR.editorConfig = function (config) {
     config.skin = 'bootstrapck,../../bower_components/bootstrapck4-skin/skins/bootstrapck/';
 
     config.toolbarLocation = 'bottom';
-    
     config.removePlugins = 'elementspath';
 };

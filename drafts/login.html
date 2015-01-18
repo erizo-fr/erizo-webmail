@@ -54,24 +54,32 @@
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
     <script>
-        $(function () {
+        $(function()
+        {
             $.material.init();
         });
     </script>
 
     <script>
-        $(function () {
+        $(function()
+        {
             var login_success = false;
-            $("#login-button").click(function () {
+            $("#login-button").click(function()
+            {
                 //TODO: Send login request
 
-                setTimeout(function () {
-                    if (login_success) {
-                        $("#login-panel").slideUp('fast', function () {
+                setTimeout(function()
+                {
+                    if (login_success)
+                    {
+                        $("#login-panel").slideUp('fast', function()
+                        {
                             //TODO: go to the main page
                             window.location = "messageList.html";
                         });
-                    } else {
+                    }
+                    else
+                    {
                         $('#login-button').addClass('animated shake');
                         login_success = true;
                     }

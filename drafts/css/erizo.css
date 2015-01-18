@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
     height: 100%;
     background-color: #FAFAFA;
 }
@@ -21,8 +20,7 @@ body {
  */
 
 @media (min-width: 992px) {
-    #page-content,
-    .nav-erizo {
+    #page-content, .nav-erizo {
         margin-left: 300px;
     }
     .navbar-toggle {
@@ -34,22 +32,14 @@ body {
         display: inherit;
     }
 }
-
-.navmenu-default .navmenu-nav>.active>a,
-.navbar-default .navbar-offcanvas .navmenu-nav>.active>a,
-.navmenu-default .navmenu-nav>.active>a:hover,
-.navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover,
-.navmenu-default .navmenu-nav>.active>a:focus,
-.navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
+.navmenu-default .navmenu-nav>.active>a, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a, .navmenu-default .navmenu-nav>.active>a:hover, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover, .navmenu-default .navmenu-nav>.active>a:focus, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
     color: #f8f8f8;
     background-color: rgba(121, 85, 72, 1);
 }
-
-
-
 /*
  * Message list
  */
+
 .message-list .subgroup-separator {
     color: #777;
     width: 100%;
@@ -59,7 +49,6 @@ body {
 .message-list .list-subgroup {
     margin-bottom: 20px;
 }
-
 .message-list .list-group .list-group-item .list-group-item-heading {
     font-size: 15px;
     line-height: 15px;
@@ -67,17 +56,11 @@ body {
 .message-list .list-group .list-group-item .row-content {
     min-height: 40px;
 }
-.message-list .list-group .list-group-item .row-action-primary i,
-.message-list .list-group .list-group-item .row-picture i {
+.message-list .list-group .list-group-item .row-action-primary i, .message-list .list-group .list-group-item .row-picture i {
     line-height: 45px;
     background: rgba(121, 85, 72, 1);
 }
-.message-list .list-group .list-group-item .row-action-primary i,
-.message-list .list-group .list-group-item .row-action-primary img,
-.message-list .list-group .list-group-item .row-action-primary label,
-.message-list .list-group .list-group-item .row-picture i,
-.message-list .list-group .list-group-item .row-picture img,
-.message-list .list-group .list-group-item .row-picture label {
+.message-list .list-group .list-group-item .row-action-primary i, .message-list .list-group .list-group-item .row-action-primary img, .message-list .list-group .list-group-item .row-action-primary label, .message-list .list-group .list-group-item .row-picture i, .message-list .list-group .list-group-item .row-picture img, .message-list .list-group .list-group-item .row-picture label {
     width: 45px;
     height: 45px;
 }
@@ -95,12 +78,10 @@ body {
     font-size: 14px;
 }
 .message-list .list-group .list-group-item .row-action-selector {
-    float: left;
     display: inline-block;
     padding-right: 16px;
 }
 .message-list .list-group .list-group-item .row-action-primary {
-    float: left;
     display: inline-block;
     padding-right: 16px;
 }
@@ -114,8 +95,8 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
 /* Correct alignement */
+
 .message-list .checkbox label .check {
     top: 2px;
 }
@@ -125,17 +106,14 @@ body {
     height: 45px;
     width: 45px;
 }
-
 /*
  * Globals
  */
-
 /* Increase checkbox animation speed */
+
 .checkbox input[type=checkbox]:checked~.check:before {
-    -webkit-animation: checkbox-on .1s linear forwards;
     animation: checkbox-on .1s linear forwards;
 }
-
 .avatar {
     line-height: 40px;
     background: rgba(121, 85, 72, 1);
@@ -146,10 +124,10 @@ body {
     width: 40px;
     height: 40px;
 }
-
 /*
  * Bottom bar
  */
+
 .navbar-fixed-bottom button {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -159,8 +137,6 @@ body {
     font-size: 25pt;
     color: rgba(255, 255, 255, .84);
 }
-
-
 /*
  * Page content
  */
@@ -171,79 +147,69 @@ body {
 #page-content.no-padding-top {
     padding-top: 50px;
 }
-
-
 /*
  * Top bar
  */
+
 #navbar-top .navbar-form {
     margin-right: 300px;
 }
-
 #navbar-top #btn-write-mail-top {
     position: absolute;
     bottom: -20px;
     right: 200px;
     background-color: white
 }
-
 .navbar .navbar-form {
     margin-top: 8px;
 }
-
 /*
  * Left bar
  */
+
 #left-panel {
     /* Avoid shadows to lay on the panel */
+
     z-index: 1040;
     background-color: #FFF;
 }
-
 #left-panel .box-list i {
     vertical-align: middle;
     margin-right: 10px;
 }
-
 #left-panel .top {
     font-size: 18px;
     line-height: 20px;
     border-bottom: 1px solid #D5D5D5;
     padding: 15px;
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 30px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
 }
-
 #left-panel .top a {
     text-decoration: none;
 }
-
 #left-panel .top .parameter-button {
     float: right;
     cursor: pointer;
     vertical-align: middle;
 }
-
 #left-panel .bottom {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
 }
-
-
 /*
  * Thread element
  */
+
 .thread-element {
     padding-top: 7px;
     padding-bottom: 7px;
 }
-
 .thread-element .media-body {
     width: 100%;
 }
-
 /*
  * Message component
  */
@@ -251,30 +217,24 @@ body {
 .message {
     border-bottom: 1px solid #D5D5D5;
 }
-
 .message iframe {
     width: 100%;
 }
-
 .message .message-body {
     overflow-x: hidden;
     overflow-y: auto;
 }
-
 .message .message-header {
     margin-bottom: 15px;
 }
-
 .message-object {
     border-bottom: 1px solid #D5D5D5;
     padding-bottom: 15px;
     font-size: 18px;
 }
-
 .message.collapsed .message-header {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
-
 .message.collapsed .message-body {
     display: none;
 }
@@ -284,14 +244,12 @@ body {
 .message.collapsed .message-header-meta-from .email {
     display: none;
 }
-
 .message .message-header-meta-body-preview {
     display: none;
 }
 .message.collapsed .message-header-meta-body-preview {
     display: block;
 }
-
 /*
  * Thread composer
  */
@@ -299,67 +257,56 @@ body {
 .thread-composer .thread-composer-destination {
     display: table;
     width: 100%;
-    margin: 0px;
-    padding: 0px;
-    border-bottom: 0px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
     border-top: 1px solid #DDD;
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
-    box-shadow: 0 0px 0px rgba(0,0,0,.23),0 0px 0px rgba(0,0,0,.16);
+    box-shadow: 0 0 0 rgba(0, 0, 0, .23), 0 0 0 rgba(0, 0, 0, .16);
     background-color: white;
-    border-radius: 0px;
+    border-radius: 0;
 }
-
-.thread-composer .thread-composer-destination .thread-composer-destination-people,
-.thread-composer .thread-composer-destination .thread-composer-destination-selector {
+.thread-composer .thread-composer-destination .thread-composer-destination-people, .thread-composer .thread-composer-destination .thread-composer-destination-selector {
     display: table-cell;
-    padding: 5px 0px;
+    padding: 5px 0;
 }
-
 .thread-composer .thread-composer-destination .thread-composer-destination-selector {
     width: 100px;
 }
-
 .thread-composer .thread-composer-destination .thread-composer-destination-people {
     width: 100%;
 }
-
 .thread-composer .thread-composer-destination .thread-composer-destination-selector>a {
     padding: 6px 12px;
 }
-
 .thread-composer #cke_editor {
     background-color: transparent;
-    border: 0px;
-    padding: 0px;
+    border: 0;
+    padding: 0;
 }
-
-.thread-composer #cke_editor .cke_bottom,
-.thread-composer #cke_editor .cke_top {
+.thread-composer #cke_editor .cke_bottom, .thread-composer #cke_editor .cke_top {
     background-color: transparent;
 }
-
 .thread-composer .thread-composer-to {
     padding: 5px;
     width: 100%;
     border: 1px solid #ddd;
-    border-bottom: 0px;
+    border-bottom: 0;
 }
-
 .thread-composer #cke_editor .cke_contents {
-    border-radius: 0px;
+    border-radius: 0;
 }
-
 .thread-composer {
     display: none;
 }
 .thread-composer-parent.write-mode .thread-composer {
     display: block;
 }
-
 /*
  * Thread precomposer
  */
+
 .thread-precomposer {
     width: 100%;
     padding: 10px;
@@ -367,11 +314,9 @@ body {
     height: 100px;
     background-color: white;
 }
-
 .thread-precomposer a {
     cursor: pointer;
 }
-
 .thread-precomposer {
     display: block;
 }

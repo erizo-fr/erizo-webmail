@@ -13,7 +13,7 @@
     <link href="css/material-erizo.css" rel="stylesheet">
     <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
     <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
-	<link href="css/tokenInput.css" rel="stylesheet">
+    <link href="css/tokenInput.css" rel="stylesheet">
     <link href="css/erizo.css" rel="stylesheet">
 
 
@@ -31,7 +31,8 @@
     <div id="left-panel" class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
         <div class="top">
             <a href="#">Erizo webmail</a>
-            <div class="parameter-button"><i class="mdi-action-settings"></i></div>
+            <div class="parameter-button"><i class="mdi-action-settings"></i>
+            </div>
         </div>
         <ul class="box-list nav navmenu-nav">
             <li class="active"><a href="#"><i class="mdi-content-inbox"></i>Inbox</a>
@@ -291,12 +292,15 @@
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
     <script>
-        $(function () {
+        $(function()
+        {
             $.material.init();
 
             //Sticky
-            $(document).ready(function () {
-                $(".sticky").sticky({
+            $(document).ready(function()
+            {
+                $(".sticky").sticky(
+                {
                     topSpacing: 50,
                     responsiveWidth: true
                 });
@@ -306,9 +310,11 @@
 
     <script>
         //Box selection
-        $(function () {
+        $(function()
+        {
             var login_success = false;
-            $(".box-list li").click(function () {
+            $(".box-list li").click(function()
+            {
                 //To the message view
                 window.location = "messageList.html";
             });
@@ -317,9 +323,11 @@
 
     <script>
         //Message selection
-        $(function () {
+        $(function()
+        {
             var login_success = false;
-            $(".row-content").click(function () {
+            $(".row-content").click(function()
+            {
                 $('.message-list').addClass('animated bounceOutLeft');
 
                 //To the message view
@@ -330,20 +338,28 @@
 
     <script>
         //Bottom Toolbar
-        $(function () {
+        $(function()
+        {
             var isDisplayed = false;
-            $(".message-selector").click(function () {
+            $(".message-selector").click(function()
+            {
                 //Count
                 var nbSelectedMessages = $("input.message-selector:checked").length;
                 var shouldBeDisplayed = nbSelectedMessages !== 0;
 
-                if (shouldBeDisplayed === isDisplayed) {
+                if (shouldBeDisplayed === isDisplayed)
+                {
                     return;
-                } else {
-                    if (shouldBeDisplayed === true) {
+                }
+                else
+                {
+                    if (shouldBeDisplayed === true)
+                    {
                         $('#bottom-toolbar').show();
                         isDisplayed = true;
-                    } else {
+                    }
+                    else
+                    {
                         $('#bottom-toolbar').hide();
                         isDisplayed = false;
                     }
