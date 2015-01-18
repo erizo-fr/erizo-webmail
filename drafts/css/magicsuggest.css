@@ -29,7 +29,7 @@
 .ms-sel-ctn>input {
     border: 0;
 }
-.ms-res-ctn .ms-ctn .dropdown-menu {
+.ms-res-ctn.dropdown-menu {
     box-shadow: none;
     border: 1px solid #DDD;
     border-radius: 0;

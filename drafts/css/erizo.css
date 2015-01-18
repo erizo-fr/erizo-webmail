@@ -254,55 +254,113 @@ html, body {
  * Thread composer
  */
 
-.thread-composer .thread-composer-destination {
-    display: table;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border-bottom: 0;
-    border-top: 1px solid #DDD;
-    border-left: 1px solid #DDD;
-    border-right: 1px solid #DDD;
-    box-shadow: 0 0 0 rgba(0, 0, 0, .23), 0 0 0 rgba(0, 0, 0, .16);
-    background-color: white;
-    border-radius: 0;
-}
-.thread-composer .thread-composer-destination .thread-composer-destination-people, .thread-composer .thread-composer-destination .thread-composer-destination-selector {
-    display: table-cell;
-    padding: 5px 0;
-}
-.thread-composer .thread-composer-destination .thread-composer-destination-selector {
-    width: 100px;
-}
-.thread-composer .thread-composer-destination .thread-composer-destination-people {
-    width: 100%;
-}
-.thread-composer .thread-composer-destination .thread-composer-destination-selector>a {
-    padding: 6px 12px;
-}
-.thread-composer #cke_editor {
-    background-color: transparent;
-    border: 0;
-    padding: 0;
-}
-.thread-composer #cke_editor .cke_bottom, .thread-composer #cke_editor .cke_top {
-    background-color: transparent;
-}
-.thread-composer .thread-composer-to {
-    padding: 5px;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-bottom: 0;
-}
-.thread-composer #cke_editor .cke_contents {
-    border-radius: 0;
-}
-.thread-composer {
-    display: none;
-}
-.thread-composer-parent.write-mode .thread-composer {
-    display: block;
-}
+/*Show thread composer only if write-mode class is active*/
+ .thread-composer {
+     display: none;
+ }
+ .thread-composer-parent.write-mode .thread-composer {
+     display: block;
+ }
+
+ .thread-composer-row {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+     border-top: 1px solid #DDD;
+     border-left: 1px solid #DDD;
+     border-right: 1px solid #DDD;
+     background-color: white;
+ }
+
+ .thread-composer-row.no-border {
+     border-left: 0;
+     border-right: 0;
+     border-top: 0;
+ }
+
+ .thread-composer-row.no-background {
+     background-color: transparent;
+ }
+
+ .thread-composer-row .thread-composer-row-left {
+     width: 50px;
+     display: inline-block;
+ }
+
+ .thread-composer-row .thread-composer-row-middle {
+     width: calc(100% - 106px);
+     display: inline-block;
+ }
+
+ .thread-composer-row .thread-composer-row-right {
+     width: 50px;
+     display: inline-block;
+ }
+
+ .thread-composer-row input {
+     width: 100%;
+     border: 0;
+     padding: 10px;
+ }
+
+ .thread-composer .btn-group, .btn-group-vertical {
+     border-radius: 0;
+     margin: 0;
+     box-shadow: 0 0 0 rgba(0, 0, 0, 0.23), 0 0 0 rgba(0, 0, 0, 0.16);
+ }
+
+ .thread-composer .thread-composer-destination-selector {
+     padding: 8px 0;
+     width: 100%;
+     vertical-align: central;
+ }
+
+ .thread-composer .cke_editor_editor {
+     background-color: transparent;
+     border: 0;
+     padding: 0;
+ }
+ .thread-composer .cke_editor_editor .cke_bottom, .thread-composer .cke_editor_editor .cke_top {
+     background-color: transparent;
+ }
+
+ .thread-composer .cke_editor_editor .cke_contents {
+     border-radius: 0;
+ }
+
+ /* Show cc if class */
+
+ .thread-composer-parent .thread-composer-row-cc {
+     display: none;
+ }
+ .thread-composer-parent.show-cc .thread-composer-row-cc {
+     display: block;
+ }
+ .thread-composer-parent.show-cc .cc-link {
+     display: none;
+ }
+
+ /* Show bcc if class */
+
+ .thread-composer-parent .thread-composer-row-bcc {
+     display: none;
+ }
+ .thread-composer-parent.show-bcc .thread-composer-row-bcc {
+     display: block;
+ }
+ .thread-composer-parent.show-bcc .bcc-link {
+     display: none;
+ }
+
+ /* Show subject if class */
+
+ .thread-composer-parent .thread-composer-row-subject {
+     display: none;
+ }
+ .thread-composer-parent.show-subject .thread-composer-row-subject {
+     display: block;
+ }
+
 /*
  * Thread precomposer
  */

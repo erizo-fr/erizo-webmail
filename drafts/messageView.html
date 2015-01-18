@@ -214,30 +214,57 @@
                                 <div class="thread-precomposer">
                                     <p class="text-muted">Click here to <a class='thread-precomposer-answer'>answer</a> or <a class='thread-precomposer-forward'>forward</a> the message</p>
                                 </div>
-                                <div class="thread-composer">
-                                    <div class="form-group">
-                                        <div class="thread-composer-destination btn-group">
-                                            <div class="thread-composer-destination-selector">
-                                                <a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-reply"></i><span class="caret"></span></a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="thread-composer-destination-selector-reply">
-                                                        <a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
-                                                    </li>
-                                                    <li class="thread-composer-destination-selector-forward">
-                                                        <a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="thread-composer-destination-people">
-                                                <input id="to-people" style="width: 100%"></input>
-                                            </div>
-                                        </div>
-                                        <textarea id="editor" class="form-control" rows="10"></textarea>
+                                <div class="thread-composer form-group">
+
+                                    <div class="thread-composer-row thread-composer-row-subject">
+                                        <!-- Subject -->
+                                        <input type="text" placeholder="Subject" class="thread-composer-subject"></input>
                                     </div>
 
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    <div class="thread-composer-row btn-group">
+                                        <!-- Reply / Forward selector-->
+                                        <div class="thread-composer-row-left">
+                                            <a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-reply"></i><span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="thread-composer-destination-selector-reply">
+                                                    <a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
+                                                </li>
+                                                <li class="thread-composer-destination-selector-forward">
+                                                    <a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- To -->
+                                        <div class="thread-composer-row-middle">
+                                            <input class="to-people"></input>
+                                        </div>
+
+                                        <!-- Cc/Bcc link -->
+                                        <div class="thread-composer-row-right">
+                                            <a class="cc-link" href="#">Cc</a>
+                                            <a class="bcc-link" href="#">Bcc</a>
+                                        </div>
                                     </div>
+
+                                    <div class="thread-composer-row thread-composer-row-cc">
+                                        <!-- Cc -->
+                                        <input class="cc-people"></input>
+                                    </div>
+
+                                    <div class="thread-composer-row thread-composer-row-bcc">
+                                        <!-- Bcc -->
+                                        <input class="bcc-people"></input>
+                                    </div>
+
+                                    <div class="thread-composer-row no-border no-background">
+                                        <!-- Text editor -->
+                                        <textarea id="editor" class="form-control" rows="10"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Send</button>
                                 </div>
                             </div>
                         </div>
@@ -274,7 +301,7 @@
                 customConfig: '../../js/thread-editor-config.js'
             });
 
-            $('#to-people').magicSuggest(
+            $('.to-people').magicSuggest(
             {
                 data: ['Paris', 'New York', 'London', 'Roma'],
                 selectFirst: true,
@@ -287,16 +314,68 @@
                 {
                     var result =
                         '<div class="media"> \
-									<div class="media-left"> \
-										<div class="avatar"> \
-											<i class="mdi-social-person"></i> \
-										</div> \
-									</div> \
-									<div class="media-body"> \
-										<p>' +
+                <div class="media-left"> \
+                <div class="avatar"> \
+                <i class="mdi-social-person"></i> \
+                </div> \
+                </div> \
+                <div class="media-body"> \
+                <p>' +
                         data.name + '</p> \
-									</div> \
-								</div> '
+                </div> \
+                </div>';
+                    return result;
+                }
+            });
+            $('.cc-people').magicSuggest(
+            {
+                data: ['Paris', 'New York', 'London', 'Roma'],
+                selectFirst: true,
+                allowFreeEntries: true,
+                allowDuplicates: false,
+                minChars: 1,
+                maxSuggestions: 5,
+                placeholder: 'Cc',
+                renderer: function(data)
+                {
+                    var result =
+                        '<div class="media"> \
+                <div class="media-left"> \
+                <div class="avatar"> \
+                <i class="mdi-social-person"></i> \
+                </div> \
+                </div> \
+                <div class="media-body"> \
+                <p>' +
+                        data.name + '</p> \
+                </div> \
+                </div>';
+                    return result;
+                }
+            });
+            $('.bcc-people').magicSuggest(
+            {
+                data: ['Paris', 'New York', 'London', 'Roma'],
+                selectFirst: true,
+                allowFreeEntries: true,
+                allowDuplicates: false,
+                minChars: 1,
+                maxSuggestions: 5,
+                placeholder: 'Bcc',
+                renderer: function(data)
+                {
+                    var result =
+                        '<div class="media"> \
+                <div class="media-left"> \
+                <div class="avatar"> \
+                <i class="mdi-social-person"></i> \
+                </div> \
+                </div> \
+                <div class="media-body"> \
+                <p>' +
+                        data.name + '</p> \
+                </div> \
+                </div>';
                     return result;
                 }
             });
@@ -346,6 +425,24 @@
             {
                 var parent = $(this).parents('.thread-composer-parent');
                 writeReply(parent);
+            });
+        });
+    </script>
+
+    <script>
+        //Add the cc and bcc link listeners
+        $(function()
+        {
+            $('.cc-link').click(function()
+            {
+                var parent = $(this).parents('.thread-composer-parent');
+                parent.addClass('show-cc');
+            });
+
+            $('.bcc-link').click(function()
+            {
+                var parent = $(this).parents('.thread-composer-parent');
+                parent.addClass('show-bcc');
             });
         });
     </script>
