@@ -147,6 +147,19 @@ html, body {
 #page-content.no-padding-top {
     padding-top: 50px;
 }
+
+/*
+ * Drop down menu
+ */
+.dropdown-menu {
+	border-radius: 0;
+}
+
+.dropdown-menu hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 /*
  * Top bar
  */
@@ -288,7 +301,7 @@ html, body {
  }
 
  .thread-composer-row .thread-composer-row-middle {
-     width: calc(100% - 106px);
+     width: calc(100% - 110px);
      display: inline-block;
  }
 
@@ -296,6 +309,11 @@ html, body {
      width: 50px;
      display: inline-block;
  }
+
+.thread-composer-row .thread-composer-row-centered {
+     margin-left: 52px;
+     width: calc(100% - 52px);
+}
 
  .thread-composer-row input {
      width: 100%;
