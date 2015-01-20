@@ -1,50 +1,401 @@
-.erizo-bar i.small {
-    font-size: 0.5rem;
+html, body {
+    height: 100%;
+    background-color: #FAFAFA;
 }
-.erizo-bar i.medium {
-    font-size: 1rem;
+/*
+ * Login page
+ */
+
+#login-panel {
+    height: 250px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
-.erizo-bar i.large {
-    font-size: 2rem;
+/*
+ * Nav bar
+ */
+
+@media (min-width: 992px) {
+    #page-content, .nav-erizo {
+        margin-left: 300px;
+    }
+    .navbar-toggle {
+        display: none;
+    }
 }
-.icon-bar * {
-    padding: 0.25rem;
+@media (max-width: 992px) {
+    .navbar-toggle {
+        display: inherit;
+    }
+}
+.navmenu-default .navmenu-nav>.active>a, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a, .navmenu-default .navmenu-nav>.active>a:hover, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover, .navmenu-default .navmenu-nav>.active>a:focus, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
+    color: #f8f8f8;
+    background-color: rgba(121, 85, 72, 1);
+}
+/*
+ * Message list
+ */
+
+.message-list .subgroup-separator {
+    color: #777;
     width: 100%;
+    background-color: #FAFAFA;
+    z-index: 10;
 }
-header {
-    margin-bottom: 1.5rem;
+.message-list .list-subgroup {
+    margin-bottom: 20px;
 }
-.login-box {
-    margin-top: 10%;
+.message-list .list-group .list-group-item .list-group-item-heading {
+    font-size: 15px;
+    line-height: 15px;
 }
-img.loading {
-    max-width: 32px;
-    margin: 40px;
+.message-list .list-group .list-group-item .row-content {
+    min-height: 40px;
 }
-.row {
-    max-width: none;
+.message-list .list-group .list-group-item .row-action-primary i, .message-list .list-group .list-group-item .row-picture i {
+    line-height: 45px;
+    background: rgba(121, 85, 72, 1);
 }
-.full-width {
-    width: 100%;
+.message-list .list-group .list-group-item .row-action-primary i, .message-list .list-group .list-group-item .row-action-primary img, .message-list .list-group .list-group-item .row-action-primary label, .message-list .list-group .list-group-item .row-picture i, .message-list .list-group .list-group-item .row-picture img, .message-list .list-group .list-group-item .row-picture label {
+    width: 45px;
+    height: 45px;
 }
-.new-messages {
-    /*--masqué par défaut--*/
-    width: 500px;
-    display: block;
-    border: 1px solid #ddd;
-    background-color: #ffffff;
-    float: right;
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    z-index: 99999;
+.message-list .list-group-item-text {
+    color: #777;
 }
-.mail-address-block {
-    background-color: rgba(51, 51, 51, 0.06);
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 0.20rem; 
-    margin: 0.20rem;
-    border-color: rgba(0, 0, 0, 0.18);
+.message-list .row-content {
+    cursor: pointer;
+}
+.message-list .list-group .list-group-item .row-content .least-content-bottom {
+    position: absolute;
+    right: 16px;
+    top: 22px;
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+}
+.message-list .list-group .list-group-item .row-action-selector {
+    display: inline-block;
+    padding-right: 16px;
+}
+.message-list .list-group .list-group-item .row-action-primary {
+    display: inline-block;
+    padding-right: 16px;
+}
+.message-list .list-group .list-group-item .row-content {
+    width: calc(100% - 184px);
+}
+.message-list .list-group .list-group-separator:before {
+    width: calc(100% - 135px);
+}
+.message-list .list-group .list-group-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+/* Correct alignement */
+
+.message-list .checkbox label .check {
+    top: 2px;
+}
+.message-list .checkbox label .ripple {
+    left: -6px;
+    top: -10px;
+    height: 45px;
+    width: 45px;
+}
+/*
+ * Globals
+ */
+/* Increase checkbox animation speed */
+
+.checkbox input[type=checkbox]:checked~.check:before {
+    animation: checkbox-on .1s linear forwards;
+}
+.avatar {
+    line-height: 40px;
+    background: rgba(121, 85, 72, 1);
+    border-radius: 100%;
     text-align: center;
+    font-size: 20px;
+    color: white;
+    width: 40px;
+    height: 40px;
+}
+/*
+ * Bottom bar
+ */
+
+.navbar-fixed-bottom button {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+.navbar-fixed-bottom button i {
+    font-size: 25pt;
+    color: rgba(255, 255, 255, .84);
+}
+/*
+ * Page content
+ */
+
+#page-content {
+    padding-top: 65px;
+}
+#page-content.no-padding-top {
+    padding-top: 50px;
+}
+
+/*
+ * Drop down menu
+ */
+.dropdown-menu {
+	border-radius: 0;
+}
+
+.dropdown-menu hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*
+ * Top bar
+ */
+
+#navbar-top .navbar-form {
+    margin-right: 300px;
+}
+#navbar-top #btn-write-mail-top {
+    position: absolute;
+    bottom: -20px;
+    right: 200px;
+    background-color: white
+}
+.navbar .navbar-form {
+    margin-top: 8px;
+}
+/*
+ * Left bar
+ */
+
+#left-panel {
+    /* Avoid shadows to lay on the panel */
+
+    z-index: 1040;
+    background-color: #FFF;
+}
+#left-panel .box-list i {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+#left-panel .top {
+    font-size: 18px;
+    line-height: 20px;
+    border-bottom: 1px solid #D5D5D5;
+    padding: 15px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    margin-left: 0;
+    margin-right: 0;
+}
+#left-panel .top a {
+    text-decoration: none;
+}
+#left-panel .top .parameter-button {
+    float: right;
+    cursor: pointer;
+    vertical-align: middle;
+}
+#left-panel .bottom {
+    position: absolute;
+    bottom: 0;
+}
+/*
+ * Thread element
+ */
+
+.thread-element {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.thread-element .media-body {
+    width: 100%;
+}
+/*
+ * Message component
+ */
+
+.message {
+    border-bottom: 1px solid #D5D5D5;
+}
+.message iframe {
+    width: 100%;
+}
+.message .message-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.message .message-header {
+    margin-bottom: 15px;
+}
+.message-object {
+    border-bottom: 1px solid #D5D5D5;
+    padding-bottom: 15px;
+    font-size: 18px;
+}
+.message.collapsed .message-header {
+    margin-bottom: 0;
+}
+.message.collapsed .message-body {
+    display: none;
+}
+.message.collapsed .message-header-meta-to {
+    display: none;
+}
+.message.collapsed .message-header-meta-from .email {
+    display: none;
+}
+.message .message-header-meta-body-preview {
+    display: none;
+}
+.message.collapsed .message-header-meta-body-preview {
+    display: block;
+}
+/*
+ * Thread composer
+ */
+
+/*Show thread composer only if write-mode class is active*/
+ .thread-composer {
+     display: none;
+ }
+ .thread-composer-parent.write-mode .thread-composer {
+     display: block;
+ }
+
+ .thread-composer-row {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+     border-top: 1px solid #DDD;
+     border-left: 1px solid #DDD;
+     border-right: 1px solid #DDD;
+     background-color: white;
+ }
+
+ .thread-composer-row.no-border {
+     border-left: 0;
+     border-right: 0;
+     border-top: 0;
+ }
+
+ .thread-composer-row.no-background {
+     background-color: transparent;
+ }
+
+ .thread-composer-row .thread-composer-row-left {
+     width: 50px;
+     display: inline-block;
+ }
+
+ .thread-composer-row .thread-composer-row-middle {
+     width: calc(100% - 110px);
+     display: inline-block;
+ }
+
+ .thread-composer-row .thread-composer-row-right {
+     width: 50px;
+     display: inline-block;
+ }
+
+.thread-composer-row .thread-composer-row-centered {
+     margin-left: 52px;
+     width: calc(100% - 52px);
+}
+
+ .thread-composer-row input {
+     width: 100%;
+     border: 0;
+     padding: 10px;
+ }
+
+ .thread-composer .btn-group, .btn-group-vertical {
+     border-radius: 0;
+     margin: 0;
+     box-shadow: 0 0 0 rgba(0, 0, 0, 0.23), 0 0 0 rgba(0, 0, 0, 0.16);
+ }
+
+ .thread-composer .thread-composer-destination-selector {
+     padding: 8px 0;
+     width: 100%;
+     vertical-align: central;
+ }
+
+ .thread-composer .cke_editor_editor {
+     background-color: transparent;
+     border: 0;
+     padding: 0;
+ }
+ .thread-composer .cke_editor_editor .cke_bottom, .thread-composer .cke_editor_editor .cke_top {
+     background-color: transparent;
+ }
+
+ .thread-composer .cke_editor_editor .cke_contents {
+     border-radius: 0;
+ }
+
+ /* Show cc if class */
+
+ .thread-composer-parent .thread-composer-row-cc {
+     display: none;
+ }
+ .thread-composer-parent.show-cc .thread-composer-row-cc {
+     display: block;
+ }
+ .thread-composer-parent.show-cc .cc-link {
+     display: none;
+ }
+
+ /* Show bcc if class */
+
+ .thread-composer-parent .thread-composer-row-bcc {
+     display: none;
+ }
+ .thread-composer-parent.show-bcc .thread-composer-row-bcc {
+     display: block;
+ }
+ .thread-composer-parent.show-bcc .bcc-link {
+     display: none;
+ }
+
+ /* Show subject if class */
+
+ .thread-composer-parent .thread-composer-row-subject {
+     display: none;
+ }
+ .thread-composer-parent.show-subject .thread-composer-row-subject {
+     display: block;
+ }
+
+/*
+ * Thread precomposer
+ */
+
+.thread-precomposer {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    height: 100px;
+    background-color: white;
+}
+.thread-precomposer a {
+    cursor: pointer;
+}
+.thread-precomposer {
+    display: block;
+}
+.thread-composer-parent.write-mode .thread-precomposer {
+    display: none;
 }

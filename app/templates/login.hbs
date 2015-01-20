@@ -1,46 +1,17 @@
-<header>
-	<nav class="top-bar" data-topbar>
-		<ul class="title-area">
-			<li class="name">
-				<h1><a href="#">Erizo Mail</a></h1>
-			</li>
-		</ul>
-	</nav>
-</header>
-
-
-<div class="row login-box">
-	<div class="small-4 small-offset-4 column">
-		<div class="row">
-			<div class="small-12 column">
-				{{input action="login" value=username type="text" placeholder="Username" autofocus=true}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 column">
-				{{input action="login" value=password type="password" placeholder="Password"}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-6 small-offset-3 column">
-				<a href="#" class="button expand" {{action "login"}}>Login !</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 column text-center">
-				<p id="errorMessage">{{errorMessage}}</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 column text-center">
-				{{#if requestRunning}}
-					<img id="loadingAnimation" class="loading" src="images/loading.gif"/>
-				{{/if}}
+<div id="login-panel" class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+			<div class="well well-lg">
+				<form role="form" class="clearfix" action="#">
+					<div class="form-group">
+						{{input action="login" value=username type="text" placeholder="Username" class="form-control floating-label" autofocus=true}}
+					</div>
+					<div class="form-group">
+						{{input action="login" value=password type="password" class="form-control floating-label" placeholder="Password"}}
+					</div>
+					<a href="#" class="btn btn-primary pull-right" {{action "login"}}>Login !</a>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-<footer>
-</footer>
