@@ -1,29 +1,10 @@
-{{#link-to 'messages' box.path}} 
-	<i class="mdi-content-inbox"></i> {{box.name}}
+{{#link-to 'messages' box.path}}
+	<i {{bind-attr class="boxIcon"}}></i> {{box.name}}
 {{/link-to}}
-
-<!-- TODO: add the active state -->
-<!-- TODO: add the right icon -->
-
-<!--
-<div class="row">
-	<div class="small-12 column">
-		{{#link-to 'messages' box.path}}
-			{{box.name}}
-		{{/link-to}}
-	</div>
-</div>
 {{#if box.children}}
-	<div class="row">
-		<div class="small-11 small-offset-1 column">
-			<ul class="side-nav">
-				{{#each child in box.children}}
-					<li>
-						{{box-item box=child}}
-					</li>
-				{{/each}}
-			</ul>
-		</div>
-	</div>
+<ul class="nav navmenu-nav">
+	{{#each child in box.children}}
+		{{box-item box=child}}
+	{{/each}}
+</ul>
 {{/if}}
--->

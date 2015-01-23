@@ -1,35 +1,49 @@
-<div>
-	<div class="row">
-		<div class="small-12 column">
-			<div class="icon-bar erizo-bar five-up">
-				<a class="item"><i class="medium foundicon-refresh"></i></a>
-				<a class="item"><i class="medium foundicon-folder"></i></a>
-				<a class="item"><i class="medium foundicon-flag"></i></a>
-				<a class="item" {{action "deleteSelectedMessages"}}><i class="medium foundicon-trash"></i></a>
-				<a class="item"><i class="medium foundicon-error"></i></a>
+<!-- Top navbar -->
+<div id="navbar-top" class="navbar navbar-default navbar-fixed-top shadow-z-1 nav-erizo">
+	<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+
+	<!-- Search form -->
+	<form class="navbar-form navbar-right hidden-xs">
+		<input type="text" class="form-control" placeholder="Search">
+	</form>
+
+	<!-- Write mail -->
+	<button id="btn-write-mail-top" class="btn btn-fab btn-raised btn-default"><i class="mdi-image-edit"></i>
+	</button>
+</div>
+
+<!-- Bottom bar -->
+<nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom nav-erizo" role="navigation" style="display:none">
+	<div class="container-fluid">
+		<div class="text-center">
+			<button {{action "deleteSelectedMessages"}} class="btn btn-flat btn-default">
+				<i class="mdi-action-delete"></i>
+			</button>
+		</div>
+	</div>
+</nav>
+
+<div id="page-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="message-list">
+					<div class="list-group">
+						<div class="list-subgroup">
+							<div class="subgroup-separator">Today</div>
+
+							{{#each message in model.messages}}
+								{{message-row model=message}}
+								<div class="list-group-separator"></div>
+							{{/each}}
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="small-12 column">
-			<table class="full-width">
-				<tbody>
-					{{#each message in model.messages}} {{message-row model=message}} {{/each}}
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="row">
-		<div class="small-12 column">
-			<ul class="pagination right">
-				{{#unless model.isFirst}}
-				<li class="arrow"><a {{action "gotoPreviousPage"}}>&laquo;</a>
-				</li>
-				{{/unless}} {{#unless model.isLast}}
-				<li class="arrow"><a {{action "gotoNextPage"}}>&raquo;</a>
-				</li>
-				{{/unless}}
-			</ul>
 		</div>
 	</div>
 </div>

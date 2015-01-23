@@ -74,7 +74,7 @@ module.exports = function (grunt) {
 				{
 					context: '/api',
 					host: 'localhost',
-					port: 8080,
+					port: 8081,
 					changeOrigin: true,
 					rewrite: {
 		               '/api' : ''

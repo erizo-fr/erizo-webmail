@@ -32,7 +32,7 @@ html, body {
         display: inherit;
     }
 }
-.navmenu-default .navmenu-nav>.active>a, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a, .navmenu-default .navmenu-nav>.active>a:hover, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover, .navmenu-default .navmenu-nav>.active>a:focus, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
+.navmenu-default .navmenu-nav .active, .navmenu-default .navmenu-nav>.active>a, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a, .navmenu-default .navmenu-nav>.active>a:hover, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover, .navmenu-default .navmenu-nav>.active>a:focus, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
     color: #f8f8f8;
     background-color: rgba(121, 85, 72, 1);
 }
@@ -90,6 +90,9 @@ html, body {
 }
 .message-list .list-group .list-group-separator:before {
     width: calc(100% - 135px);
+}
+.message-list .list-group .list-group-separator:last-of-type {
+    display: none;
 }
 .message-list .list-group .list-group-item {
     margin-top: 5px;
@@ -212,6 +215,11 @@ html, body {
     position: absolute;
     bottom: 0;
 }
+
+#left-panel li>ul {
+    padding-left: 15px;
+}
+
 /*
  * Thread element
  */

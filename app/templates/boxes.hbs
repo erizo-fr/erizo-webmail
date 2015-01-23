@@ -7,25 +7,13 @@
 		</div>
 	</div>
 	<ul class="box-list nav navmenu-nav">
-		{{#each box in model}} {{box-item box=box}} {{/each}}
-		<!--
-		Remove is when the icon and active todo are done
-		<li class="active"><a href="#"><i class="mdi-content-inbox"></i>Inbox</a>
-		</li>
-		<li><a href="#"><i class="mdi-content-send"></i>Sent</a>
-		</li>
-		<li><a href="#"><i class="mdi-action-delete"></i>Trash</a>
-		</li>
-		<li><a href="#"><i class="mdi-content-report"></i>Spam</a>
-		</li>
-		<li><a href="#"><i class="mdi-content-inbox"></i>Others</a>
-		</li>
--->
+		{{#each box in model}}
+			{{box-item box=box}}
+		{{/each}}
 	</ul>
 
-	<div class="bottom">
+	<!-- <div class="bottom">
 		<ul class="box-list nav navmenu-nav">
-			<!-- TODO-->
 			<li><a href="#"><i class="mdi-content-drafts"></i>Drafts</a>
 			</li>
 			<li><a href="#"><i class="mdi-content-inbox"></i>Mail to someone</a>
@@ -33,52 +21,9 @@
 			<li><a href="#"><i class="mdi-content-inbox"></i>Something to someone else</a>
 			</li>
 		</ul>
-	</div>
+	</div> -->
 </div>
 
 <div>
 	{{outlet}}
 </div>
-
-
-<!--
-<header>
-	<nav class="top-bar" data-topbar>
-		<ul class="title-area">
-			<li class="name">
-				<h1><a href="#">Erizo Mail</a></h1>
-			</li>
-		</ul>
-	</nav>
-</header>
-
-
-<div class="row">
-	<div class="small-3 columns">
-		<div class="row">
-			<div class="small-12 columns">
-				<div class="erizo-bar icon-bar">
-					<a class="item full-width"><i {{action 'showNewMessageBox'}} class="medium foundicon-mail"></i></a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 columns">
-				<ul class="side-nav">
-					{{#each box in model}}
-					<li>
-						{{box-item box=box}}
-					</li>
-					{{/each}}
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="small-9 columns">
-		{{outlet}}
-	</div>
-</div>
-
-
-<footer>
-</footer>-->

@@ -32,7 +32,7 @@ html, body {
         display: inherit;
     }
 }
-.navmenu-default .navmenu-nav>.active>a, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a, .navmenu-default .navmenu-nav>.active>a:hover, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover, .navmenu-default .navmenu-nav>.active>a:focus, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
+.navmenu-default .navmenu-nav .active, .navmenu-default .navmenu-nav>.active>a, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a, .navmenu-default .navmenu-nav>.active>a:hover, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover, .navmenu-default .navmenu-nav>.active>a:focus, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
     color: #f8f8f8;
     background-color: rgba(121, 85, 72, 1);
 }

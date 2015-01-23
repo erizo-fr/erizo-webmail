@@ -1,14 +1,17 @@
-{{#if isSeen}}
-	<td width="1"><input type="checkbox"></td>	
-	<td>{{#each from in model.envelope.from}}{{mail-address model=from}}{{/each}}</td>
-	<td>{{#link-to 'message' model.uid}}{{model.envelope.subject}}{{/link-to}}</td>
-	<td><!--PJ--></td>
-	<td>{{date-formatter model.envelope.date null 'll'}}</td>
-{{else}}
-	<td width="1"><input type="checkbox"></td>	
-	<td><strong>{{#each from in model.envelope.from}}{{mail-address model=from}}{{/each}}</strong></td>
-	<td><strong>{{#link-to 'message' model.uid}}{{model.envelope.subject}}{{/link-to}}</strong></td>
-	<td><!--PJ--></td>
-	<td><strong>{{date-formatter model.envelope.date null 'll'}}</strong></td>
-{{/if}}
-
+<div class="list-group-item">
+	<div class="checkbox row-action-selector">
+		<label>
+			<input type="checkbox" class="message-selector" />
+		</label>
+	</div>
+	<div class="row-action-primary">
+		<i class="mdi-social-person"></i>
+	</div>
+	{{#link-to 'message' model.uid}}
+	<div class="row-content">
+		<div class="least-content">{{date-formatter model.envelope.date null 'll'}}</div>
+		<h4 class="list-group-item-heading">{{#each from in model.envelope.from}}{{mail-address model=from}}{{/each}} - {{model.envelope.subject}}</h4>
+		<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+	</div>
+	{{/link-to}}
+</div>
