@@ -132,6 +132,10 @@ Client.ApiHelper.getMessages = function (boxPath, seqMin, seqMax) {
     Ember.Logger.assert(seqMin);
     Ember.Logger.assert(seqMax);
 
+    if(seqMin > seqMax) {
+        return [];
+    }
+
     return Ember.$.ajax({
             url: Client.REST_SERVER + '/boxes/' + boxPath + '/messages?seqs=' + seqMin + ':' + seqMax + '&fetchEnvelope=true',
             type: 'GET',

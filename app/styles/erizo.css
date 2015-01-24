@@ -15,6 +15,7 @@ html, body {
     right: 0;
     margin: auto;
 }
+
 /*
  * Nav bar
  */
@@ -109,9 +110,37 @@ html, body {
     height: 45px;
     width: 45px;
 }
+
+.loading-messages {
+    height: 30px;
+    width: 30px;
+    margin: 0 auto;
+    -webkit-animation: spin-reverse 1s linear infinite;
+    -moz-animation: spin-reverse 1s linear infinite;
+    animation: spin-reverse 1s linear infinite;
+}
+
+.loading-messages i {
+    font-size: 30px;
+}
+
+.load-more-messages button {
+    width: 100%;
+}
+
 /*
  * Globals
  */
+
+ @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+ @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+ @keyframes spin { 100% { transform:rotate(360deg); } }
+
+ @-moz-keyframes spin-reverse { 100% { -moz-transform: rotate(-360deg); } }
+ @-webkit-keyframes spin-reverse { 100% { -webkit-transform: rotate(-360deg); } }
+ @keyframes spin-reverse { 100% { transform:rotate(-360deg); } }
+
+
 /* Increase checkbox animation speed */
 
 .checkbox input[type=checkbox]:checked~.check:before {

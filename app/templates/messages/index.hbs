@@ -36,11 +36,29 @@
 						<div class="list-subgroup">
 							<div class="subgroup-separator">Today</div>
 
-							{{#each message in model.messages}}
+							{{#each message in model}}
 								{{message-row model=message}}
 								<div class="list-group-separator"></div>
 							{{/each}}
+
+
 						</div>
+
+						{{#if isMessagesLoading}}
+							<div>
+								<div class="loading-messages">
+									<i class="mdi-notification-sync"></i>
+								</div>
+							</div>
+						{{else}}
+							{{#if hasMorePages}}
+							<div class="load-more-messages">
+								<button {{action "loadMoreMessages"}} class="btn btn-flat btn-default">
+									More
+								</button>
+							</div>
+							{{/if}}
+						{{/if}}
 					</div>
 				</div>
 			</div>
