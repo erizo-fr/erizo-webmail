@@ -30,10 +30,10 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 		var currentPage = this.get('currentPage');
 		var nextPage = currentPage + 1;
 		var totalElements = box.messages.total;
-		var totalPages = Math.ceil(totalElements / pageSize);
+		var lastPage = Math.ceil(totalElements / pageSize) -1;
 
-		if(currentPage >= totalPages) {
-			Ember.Logger.info('Try to load more message (page#' + nextPage + ') but no more pages are available (totalPages: ' + totalPages + ')');
+		if(currentPage >= lastPage) {
+			Ember.Logger.info('Try to load more message (page#' + nextPage + ') but no more pages are available (lastPage: ' + lastPage + ')');
 			this.set('hasMorePages', false);
 			this.set('isMessagesLoading', false);
 			return;
@@ -51,7 +51,7 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 			self.set('model', messages.concat(newMessagesReversed));
 
 			//Update var
-			self.set('hasMorePages', nextPage < totalPages);
+			self.set('hasMorePages', nextPage < lastPage);
 			self.set('currentPage', nextPage);
 			self.set('isMessagesLoading', false);
 		});

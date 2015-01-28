@@ -7,6 +7,7 @@ Client.MessagesIndexRoute = Ember.Route.extend({
 		controller.set('model', model);
 		controller.set('currentPage', -1);
 		controller.set('hasMorePages', true);
+		controller.set('isMessagesLoading', false);
 		controller.loadMoreMessages();
-	},
+	}
 });
