@@ -33,16 +33,18 @@
 			<div class="col-xs-12">
 				<div class="message-list">
 					<div class="list-group">
-						<div class="list-subgroup">
-							<div class="subgroup-separator">Today</div>
+						{{#each messageCategory in model}}
+							<div class="list-subgroup">
+								<div class="subgroup-separator">{{messageCategory.label}}</div>
 
-							{{#each message in model}}
-								{{message-row model=message}}
-								<div class="list-group-separator"></div>
-							{{/each}}
+								{{#each message in messageCategory.messages}}
+									{{message-row model=message}}
+									<div class="list-group-separator"></div>
+								{{/each}}
 
 
-						</div>
+							</div>
+						{{/each}}
 
 						{{#if isMessagesLoading}}
 							<div>

@@ -45,12 +45,78 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 		var seqMin = Math.max(1, seqMax - pageSize + 1);
 		var self = this;
 		Client.ApiHelper.getMessages(box.path, seqMin, seqMax).then(function (newMessages) {
-			//Concat the messages
-			var messages = self.get('model');
-			var newMessagesReversed = newMessages.reverse();
-			self.set('model', messages.concat(newMessagesReversed));
+			var messageCategories = self.get('model');
+			
+			var getCategory = function (categoryKey) {
+				var i;
+				for(i = 0; i < messageCategories.length; i++) {
+					if(messageCategories[i].key === categoryKey) {
+						return messageCategories[i];
+					}
+				}
+				
+				//Create category
+				var category = {
+					key: categoryKey,
+					messages : []
+				};
+				if(categoryKey === 'TODAY') {
+					category.label = 'Today';
+				} else if(categoryKey === 'LAST_DAY') {
+					category.label = 'Yesterday';
+				} else if(categoryKey === 'WEEK') {
+					category.label = 'This week';
+				} else if(categoryKey === 'LAST_WEEK') {
+					category.label = 'Last week';
+				} else if(categoryKey === 'MONTH') {
+					category.label = 'This month';
+				} else if(categoryKey === 'LAST_MONTH') {
+					category.label = 'Last month';
+				} else {
+					category.label = categoryKey;
+				}
 
+				messageCategories.push(category);
+				return category;
+			};
+			
+			var getMessageDateCategory = function (message) {
+				var messageDate = moment(message.envelope.date);
+				var now = moment();
+				var lastDay = moment().day(-1);
+				var lastWeek = moment().day(-7);
+				var lastMonth = moment().month(-1);
+				
+				if(messageDate.isSame(now, 'day')) {
+				   return 'TODAY';
+			   	} else if(messageDate.isSame(lastDay, 'day')) {
+				   return 'LAST_DAY';
+				} else if(messageDate.isSame(now, 'week')) {
+				   return 'WEEK';
+				} else if(messageDate.isSame(lastWeek, 'week')) {
+				   return 'LAST_WEEK';
+				} else if(messageDate.isSame(now, 'month')) {
+				   return 'MONTH';
+			   	} else if(messageDate.isSame(lastMonth, 'month')) {
+				   return 'LAST_MONTH';
+			   	} else {
+					return messageDate.format('YYYY MMM');
+				}
+			};
+				   
+			var insertMessage = function(message) {
+				var messageDateCategory = getMessageDateCategory(message);
+				var messageCategory = getCategory(messageDateCategory);
+				messageCategory.messages.push(message);
+			};
+			
+			//Insert the messages
+			Ember.$.each(newMessages, function( index, value ) {
+				insertMessage(value);
+			});
+			
 			//Update var
+			self.set('model', messageCategories);
 			self.set('hasMorePages', nextPage < lastPage);
 			self.set('currentPage', nextPage);
 			self.set('isMessagesLoading', false);
