@@ -46,7 +46,7 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 		var self = this;
 		Client.ApiHelper.getMessages(box.path, seqMin, seqMax).then(function (newMessages) {
 			var messageCategories = self.get('model');
-			
+
 			var getCategory = function (categoryKey) {
 				var i;
 				for(i = 0; i < messageCategories.length; i++) {
@@ -54,7 +54,7 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 						return messageCategories[i];
 					}
 				}
-				
+
 				//Create category
 				var category = {
 					key: categoryKey,
@@ -76,17 +76,17 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 					category.label = categoryKey;
 				}
 
-				messageCategories.push(category);
+				messageCategories.pushObject(category);
 				return category;
 			};
-			
+
 			var getMessageDateCategory = function (message) {
 				var messageDate = moment(message.envelope.date);
 				var now = moment();
-				var lastDay = moment().day(-1);
-				var lastWeek = moment().day(-7);
-				var lastMonth = moment().month(-1);
-				
+				var lastDay = moment().subtract(1, 'day');
+				var lastWeek = moment().subtract(7, 'day');
+				var lastMonth = moment().subtract(1, 'month');
+
 				if(messageDate.isSame(now, 'day')) {
 				   return 'TODAY';
 			   	} else if(messageDate.isSame(lastDay, 'day')) {
@@ -100,21 +100,22 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 			   	} else if(messageDate.isSame(lastMonth, 'month')) {
 				   return 'LAST_MONTH';
 			   	} else {
-					return messageDate.format('YYYY MMM');
+					return messageDate.format('MMM YYYY');
 				}
 			};
-				   
+
 			var insertMessage = function(message) {
 				var messageDateCategory = getMessageDateCategory(message);
 				var messageCategory = getCategory(messageDateCategory);
 				messageCategory.messages.push(message);
 			};
-			
+
 			//Insert the messages
-			Ember.$.each(newMessages, function( index, value ) {
+			var newMessagesReversed = newMessages.reverse();
+			Ember.$.each(newMessagesReversed, function( index, value ) {
 				insertMessage(value);
 			});
-			
+
 			//Update var
 			self.set('model', messageCategories);
 			self.set('hasMorePages', nextPage < lastPage);
