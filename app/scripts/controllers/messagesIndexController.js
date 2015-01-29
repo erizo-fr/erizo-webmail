@@ -81,7 +81,7 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 			};
 
 			var getMessageDateCategory = function (message) {
-				var messageDate = moment(message.envelope.date);
+				var messageDate = moment(message.date);
 				var now = moment();
 				var lastDay = moment().subtract(1, 'day');
 				var lastWeek = moment().subtract(7, 'day');

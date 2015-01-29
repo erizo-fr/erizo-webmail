@@ -9,7 +9,7 @@
 	</div>
 	{{#link-to 'message' model.uid}}
 	<div class="row-content">
-		<div class="least-content">{{date-formatter model.envelope.date null 'll'}}</div>
+		<div class="least-content">{{date-formatter model.date null 'll'}}</div>
 		<h4 class="list-group-item-heading">{{#each from in model.envelope.from}}{{mail-address model=from}}{{/each}} - {{model.envelope.subject}}</h4>
 		<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
 	</div>

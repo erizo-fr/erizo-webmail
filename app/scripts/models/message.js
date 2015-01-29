@@ -3,22 +3,27 @@ Client.Model.Message = function(json) {
 	if(json.attrs && json.attrs.struct) {
 		this.part = new Client.Model.Part(json.attrs.struct);
 	}
-	
+
 	this.envelope = null;
 	if(json.attrs && json.attrs.envelope) {
 		this.envelope = json.attrs.envelope;
 	}
-	
+
+	this.date = null;
+	if(json.attrs && json.attrs.date) {
+		this.date = json.attrs.date;
+	}
+
 	this.uid = null;
 	if(json.attrs && json.attrs.uid) {
 		this.uid = json.attrs.uid;
 	}
-	
+
 	this.seq = null;
 	if(json.attrs && json.attrs.modseq) {
 		this.seq = json.attrs.modseq;
 	}
-	
+
 	this.flags = null;
 	if(json.attrs && json.attrs.flags) {
 		this.flags = json.attrs.flags;
