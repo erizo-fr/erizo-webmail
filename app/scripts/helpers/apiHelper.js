@@ -137,7 +137,7 @@ Client.ApiHelper.getMessages = function (boxPath, seqMin, seqMax) {
     }
 
     return Ember.$.ajax({
-            url: Client.REST_SERVER + '/boxes/' + boxPath + '/messages?seqs=' + seqMin + ':' + seqMax + '&fetchEnvelope=true',
+            url: Client.REST_SERVER + '/boxes/' + boxPath + '/messages?seqs=' + seqMin + ':' + seqMax + '&fetchStruct=true&fetchEnvelope=true',
             type: 'GET',
             dataType: 'json'
         }).then(Client.ApiHelper.getMessagesAdapter)
@@ -175,50 +175,85 @@ Client.ApiHelper.getMessage = function (boxPath, messageId) {
     }).then(function (result) {
         //Download the parts displayed
         var message = new Client.Model.Message(result);
-        return Client.ApiHelper.downloadNeededParts(boxPath, messageId, message.part).then(function (result) {
+        return Client.ApiHelper.downloadNeededParts(boxPath, message, message.part).then(function (result) {
             return message;
         });
     });
 };
 
-Client.ApiHelper.downloadPartContent = function (boxPath, messageId, part) {
-    var partId = part.info.partID;
+Client.ApiHelper.downloadBodyPartContent = function (boxPath, message, bodyPart) {
+    var partId = bodyPart.get('partID');
     Ember.Logger.assert(partId);
 
     //Ask the server for the part content
-    part.content = null;
-    part.decodedContent = null;
-    Ember.Logger.info('Ask the server for part#' + partId + ' of message#' + messageId + ' in box#' + boxPath);
+    Ember.Logger.info('Ask the server for part#' + partId + ' of message#' + message.seq + ' in box#' + boxPath);
     return Ember.$.ajax({
-        url: Client.REST_SERVER + '/boxes/' + boxPath + '/messages/' + messageId + '?&markSeen=true&bodies=' + partId,
+        url: Client.REST_SERVER + '/boxes/' + boxPath + '/messages/' + message.uid + '?&markSeen=true&bodies=' + partId,
         type: 'GET',
         dataType: 'json'
     }).then(function (result) {
         Ember.Logger.assert(result.bodies[partId]);
-
-        part.content = result.bodies[partId];
-        Ember.Logger.debug('Part#' + partId + ' of message#' + messageId + ' in box#' + boxPath + ' received. Length: ' + part.content.length);
-        return part.content;
+        bodyPart.set('content', result.bodies[partId]);
+        Ember.Logger.debug('Part#' + partId + ' of message#' + message.seq + ' in box#' + boxPath + ' received. Length: ' + bodyPart.get('content').length);
     });
 };
 
-Client.ApiHelper.downloadNeededParts = function (boxPath, messageId, part) {
+Client.ApiHelper.downloadPartsContent = function(boxPath, message, parts) {
     Ember.Logger.assert(boxPath);
-    Ember.Logger.assert(messageId);
-    Ember.Logger.assert(part);
+    Ember.Logger.assert(message);
+    Ember.Logger.assert(parts);
 
-    var neededParts = [];
-    if (part.isNeeded()) {
-        var downloadPromise = Client.ApiHelper.downloadPartContent(boxPath, messageId, part);
-        neededParts.push(downloadPromise);
+    var promises = [];
+    for (var i = 0; i < parts.length; i++) {
+        var promise = Client.ApiHelper.downloadBodyPartContent(boxPath, message, parts[i]);
+        promises.push(promise);
     }
 
-    for (var i = 0; i < part.subParts.length; i++) {
-        var neededSubparts = Client.ApiHelper.downloadNeededParts(boxPath, messageId, part.subParts[i]);
-        neededParts = neededParts.concat(neededSubparts);
+    return Ember.RSVP.all(promises);
+};
+
+Client.ApiHelper.downloadMessagesPreview = function (boxPath, messages) {
+    Ember.Logger.assert(boxPath);
+    Ember.Logger.assert(messages);
+
+    var promises = [];
+    for (var i = 0; i < messages.length; i++) {
+        var promise = Client.ApiHelper.downloadMessagePreview(boxPath, messages[i]);
+        promises.push(promise);
     }
 
-    return Ember.RSVP.all(neededParts);
+    return Ember.RSVP.all(promises);
+};
+
+Client.ApiHelper.downloadMessagePreview = function (boxPath, message) {
+    Ember.Logger.assert(boxPath);
+    Ember.Logger.assert(message);
+    Ember.Logger.assert(message.part);
+
+    var parts = message.part.get('previewParts');
+    return Client.ApiHelper.downloadPartsContent(boxPath, message, parts);
+};
+
+Client.ApiHelper.downloadMessageDisplayContent = function (boxPath, message) {
+    Ember.Logger.assert(boxPath);
+    Ember.Logger.assert(message);
+    Ember.Logger.assert(message.part);
+
+    var parts = message.part.get('displayParts');
+    return Client.ApiHelper.downloadPartsContent(boxPath, message, parts);
+};
+
+Client.ApiHelper.downloadMessagesDisplayContent = function (boxPath, messages) {
+    Ember.Logger.assert(boxPath);
+    Ember.Logger.assert(messages);
+
+    var promises = [];
+    for (var i = 0; i < messages.length; i++) {
+        var promise = Client.ApiHelper.downloadMessageDisplayContent(boxPath, messages[i]);
+        promises.push(promise);
+    }
+
+    return Ember.RSVP.all(promises);
 };
 
 
