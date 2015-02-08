@@ -33,5 +33,9 @@ Client.Model.TextPart = Client.Model.BodyPart.extend({
         }
 
         return result;
-    }.property('encoding', 'content')
+    }.property('encoding', 'content'),
+	
+	displayParts: function() {
+        return [this];
+    }.property('content'),
 });

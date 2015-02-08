@@ -307,9 +307,16 @@ html, body {
 .message .message-header-meta-body-preview {
     display: none;
 }
+.message .message-header-meta-body-preview p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+}
 .message.collapsed .message-header-meta-body-preview {
     display: block;
 }
+
 /*
  * Thread composer
  */

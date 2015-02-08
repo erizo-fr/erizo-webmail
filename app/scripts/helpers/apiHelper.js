@@ -173,11 +173,7 @@ Client.ApiHelper.getMessage = function (boxPath, messageId) {
         type: 'GET',
         dataType: 'json'
     }).then(function (result) {
-        //Download the parts displayed
-        var message = new Client.Model.Message(result);
-        return Client.ApiHelper.downloadNeededParts(boxPath, message, message.part).then(function (result) {
-            return message;
-        });
+        return new Client.Model.Message(result);
     });
 };
 
@@ -186,7 +182,7 @@ Client.ApiHelper.downloadBodyPartContent = function (boxPath, message, bodyPart)
     Ember.Logger.assert(partId);
 
     //Ask the server for the part content
-    Ember.Logger.info('Ask the server for part#' + partId + ' of message#' + message.seq + ' in box#' + boxPath);
+    Ember.Logger.debug('Ask the server for part#' + partId + ' of message#' + message.seq + ' in box#' + boxPath);
     return Ember.$.ajax({
         url: Client.REST_SERVER + '/boxes/' + boxPath + '/messages/' + message.uid + '?&markSeen=true&bodies=' + partId,
         type: 'GET',
@@ -230,6 +226,7 @@ Client.ApiHelper.downloadMessagePreview = function (boxPath, message) {
     Ember.Logger.assert(message);
     Ember.Logger.assert(message.part);
 
+	Ember.Logger.debug('Ask the server for preview parts of message#' + message.seq + ' in box#' + boxPath);
     var parts = message.part.get('previewParts');
     return Client.ApiHelper.downloadPartsContent(boxPath, message, parts);
 };
@@ -239,6 +236,7 @@ Client.ApiHelper.downloadMessageDisplayContent = function (boxPath, message) {
     Ember.Logger.assert(message);
     Ember.Logger.assert(message.part);
 
+	Ember.Logger.debug('Ask the server for displayable parts of message#' + message.seq + ' in box#' + boxPath);
     var parts = message.part.get('displayParts');
     return Client.ApiHelper.downloadPartsContent(boxPath, message, parts);
 };

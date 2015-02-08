@@ -5,6 +5,10 @@ Client.MessageRoute = Ember.Route.extend({
 		var messageId = param.id;
         Ember.Logger.assert(messageId);
         
-        return Client.ApiHelper.getMessage(box.path, messageId);
+        return Client.ApiHelper.getMessage(box.path, messageId).then(function (message) {
+            return Client.ApiHelper.downloadMessageDisplayContent(box.path, message).then(function () {
+				return message;
+			});
+        });
 	}
 });

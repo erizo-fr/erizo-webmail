@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div {{bind-attr class=":message :thread-element :media collapsed"}}>
+			<!-- Icon -->
+			<div class="media-left">
+				<div class="avatar">
+					<i class="mdi-social-person"></i>
+				</div>
+			</div>
+
+			<!-- Message -->
+			<div class="media-body">
+				<!-- Header -->
+				<div class="message-header clearfix" {{action 'toggleCollapse'}}>
+
+					<!-- Meta -->
+					<div class="message-header-meta pull-left">
+						<!-- From -->
+						{{#each address in model.envelope.from}}
+							<div class="message-header-meta-from">
+								<strong>{{address.name}}</strong>
+								<span class="email text-muted">{{address.mailbox}}@{{address.host}}</span>
+							</div>
+						{{/each}}
+
+						<!-- To -->
+						{{#each address in model.envelope.to}}
+							<div class="message-header-meta-to">
+								<strong>{{address.name}}</strong>
+								<span class="email text-muted">{{address.mailbox}}@{{address.host}}</span>
+							</div>
+						{{/each}}
+
+						<!-- Body preview -->
+						<div class="message-header-meta-body-preview text-muted">
+							<p>{{model.part.previewMessage}}</p>
+						</div>
+					</div>
+
+
+					<!-- Date -->
+					<div class="message-header-date pull-right">
+						{{date-formatter model.date null 'll'}}
+					</div>
+				</div>
+
+				<!-- Body -->
+				<div class="message-body clearfix">
+					{{{model.part.htmlMessage}}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
