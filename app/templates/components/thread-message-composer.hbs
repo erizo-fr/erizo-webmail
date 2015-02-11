@@ -9,9 +9,9 @@
 				</div>
 			</div>
 
-			<div class="thread-composer-parent media-body">
+			<div {{bind-attr class=":thread-composer-parent :media-body isWriteMode:write-mode isWriteModeReply:write-mode-reply isWriteModeForward:write-mode-forward"}}>
 				<div class="thread-precomposer">
-					<p class="text-muted">Click here to <a class='thread-precomposer-answer'>answer</a> or <a class='thread-precomposer-forward'>forward</a> the message</p>
+					<p class="text-muted">Click here to <a {{action 'goToWriteModeReply'}} class='thread-precomposer-answer'>answer</a> or <a {{action 'goToWriteModeForward'}} class='thread-precomposer-forward'>forward</a> the message</p>
 				</div>
 				<div class="thread-composer form-group">
 
@@ -23,7 +23,7 @@
 					<div class="thread-composer-row thread-composer-row-to btn-group">
 						<!-- Reply / Forward selector-->
 						<div class="thread-composer-row-left">
-							<a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-reply"></i><span class="caret"></span></a>
+							<a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward"}}></i><span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li class="thread-composer-destination-selector-reply">
 									<a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
