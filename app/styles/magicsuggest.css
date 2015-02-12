@@ -41,6 +41,7 @@
 }
 .ms-res-item {
     padding: 5px;
+    cursor: pointer;
 }
 .ms-res-item em {
     font-style: normal;

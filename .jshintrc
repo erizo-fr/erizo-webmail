@@ -10,10 +10,13 @@
 	"latedef": true,
 	"newcap": true,
 	"noarg": true,
+    "quotmark": 'single',
 	"undef": true,
+    "globalstrict": true,
 	"strict": false,
 	"trailing": false,
 	"smarttabs": true,
+    "multistr": true,
 	"globals": {
 		"$": true,
 		"CKEDITOR": true,
