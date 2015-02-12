@@ -9,7 +9,7 @@
 				</div>
 			</div>
 
-			<div {{bind-attr class=":thread-composer-parent :media-body isWriteMode:write-mode isWriteModeReply:write-mode-reply isWriteModeForward:write-mode-forward"}}>
+			<div {{bind-attr class=":thread-composer-parent :media-body isWriteMode:write-mode isWriteModeReply:write-mode-reply isWriteModeForward:write-mode-forward isSubjectVisible:show-subject isCcVisible:show-cc isBccVisible:show-bcc"}}>
 				<div class="thread-precomposer">
 					<p class="text-muted">Click here to <a {{action 'goToWriteModeReply'}} class='thread-precomposer-answer'>answer</a> or <a {{action 'goToWriteModeForward'}} class='thread-precomposer-forward'>forward</a> the message</p>
 				</div>
@@ -17,7 +17,7 @@
 
 					<div class="thread-composer-row thread-composer-row-subject">
 						<!-- Subject -->
-						<input type="text" placeholder="Subject" class="thread-composer-subject"></input>
+						{{input type="text" placeholder="Subject" value=subject classBinding=":thread-composer-subject"}}
 					</div>
 
 					<div class="thread-composer-row thread-composer-row-to btn-group">
@@ -25,15 +25,15 @@
 						<div class="thread-composer-row-left">
 							<a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward"}}></i><span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li class="thread-composer-destination-selector-reply">
-									<a href="javascript:void(0)"><i class="mdi-content-reply"></i> Reply</a>
+								<li>
+									<a href="javascript:void(0)" {{action 'goToWriteModeReply'}}><i class="mdi-content-reply"></i> Reply</a>
 								</li>
-								<li class="thread-composer-destination-selector-forward">
-									<a href="javascript:void(0)"><i class="mdi-content-forward"></i> Forward</a>
+								<li>
+									<a href="javascript:void(0)" {{action 'goToWriteModeForward'}}><i class="mdi-content-forward"></i> Forward</a>
 								</li>
 								<hr/>
 								<li>
-									<a class="change-subject-link" href="javascript:void(0)">Change subject</a>
+									<a href="javascript:void(0)" {{action 'showSubject'}}>Change subject</a>
 								</li>
 							</ul>
 						</div>
@@ -45,8 +45,8 @@
 
 						<!-- Cc/Bcc link -->
 						<div class="thread-composer-row-right">
-							<a class="cc-link" href="javascript:void(0)">Cc</a>
-							<a class="bcc-link" href="javascript:void(0)">Bcc</a>
+							<a class="cc-link" href="javascript:void(0)" {{action 'showCc'}}>Cc</a>
+							<a class="bcc-link" href="javascript:void(0)" {{action 'showBcc'}}>Bcc</a>
 						</div>
 					</div>
 
@@ -65,8 +65,7 @@
 					</div>
 
 					<div class="thread-composer-row no-border no-background">
-						<!-- Text editor -->
-						<textarea id="editor" class="form-control" rows="10"></textarea>
+						{{html-editor}}
 					</div>
 				</div>
 

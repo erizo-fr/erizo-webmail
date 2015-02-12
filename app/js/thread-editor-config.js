@@ -18,7 +18,7 @@ CKEDITOR.editorConfig = function(config)
 
         {
             name: 'editing',
-            groups: ['find', 'selection', 'spellchecker']
+            groups: ['find', 'selection']
         },
         {
             name: 'forms'

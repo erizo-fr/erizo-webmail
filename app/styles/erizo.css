@@ -387,16 +387,16 @@ html, body {
      vertical-align: central;
  }
 
- .thread-composer .cke_editor_editor {
+ .thread-composer .cke {
      background-color: transparent;
      border: 0;
      padding: 0;
  }
- .thread-composer .cke_editor_editor .cke_bottom, .thread-composer .cke_editor_editor .cke_top {
+ .thread-composer .cke .cke_bottom, .thread-composer .cke .cke_top {
      background-color: transparent;
  }
 
- .thread-composer .cke_editor_editor .cke_contents {
+ .thread-composer .cke .cke_contents {
      border-radius: 0;
  }
 
