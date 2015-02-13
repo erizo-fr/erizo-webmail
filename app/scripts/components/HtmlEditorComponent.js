@@ -11,7 +11,7 @@ Client.HtmlEditorComponent = Ember.Component.extend({
 
 		//Update the value when CKEditor content change
 		var self = this;
-		instance.on('blur', function () {
+		instance.on('change', function () {
 			var data = instance.getData();
 			Ember.Logger.debug('CKEditor onBlur event fired: ' + data);
 			self.set('value', data);
