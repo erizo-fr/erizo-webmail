@@ -8,6 +8,8 @@ Client.ThreadMessageComposerAddressesComponent = Ember.Component.extend({
         var addresses = this.get('addresses');
         Ember.Logger.debug('Addresses property changed: ' + JSON.stringify(addresses));
         var instance = this.get('magicSuggestInstance');
+        instance.clear(true);
+        instance.empty();
         instance.setSelection(addresses);
     }.observes('addresses'),
 
