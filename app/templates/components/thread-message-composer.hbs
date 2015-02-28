@@ -17,7 +17,7 @@
 
                     <div class="thread-composer-row thread-composer-row-subject">
                         <!-- Subject -->
-                        {{input type="text" placeholder="Subject" value=subject classBinding=":thread-composer-subject"}}
+                        {{input type="text" placeholder="Subject" value=newMessage.subject classBinding=":thread-composer-subject"}}
                     </div>
 
                     <div class="thread-composer-row thread-composer-row-to btn-group">
@@ -65,12 +65,8 @@
                     </div>
 
                     <div class="thread-composer-row no-border no-background">
-                        {{html-editor value=body}}
+                        {{html-editor value=newMessage.body}}
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary" {{action 'sendMessage'}}>Send</button>
                 </div>
             </div>
         </div>

@@ -26,6 +26,10 @@ Client.MessageController = Ember.ObjectController.extend({
                     Ember.Logger.error('Failed to delete the message: ' + textStatus);
                     self.send('showPopup', 'Delete error', 'The server failed to delete the message\n' + textStatus);
                 });
+        },
+        sendMessage: function () {
+            Ember.Logger.debug('Action received: Send new message');
+            Client.ApiHelper.sendMessage(this.get('newMessage'));
         }
     }
 });

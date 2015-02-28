@@ -37,17 +37,6 @@ Client.ThreadMessageComposerComponent = Ember.Component.extend({
         },
         showBcc: function () {
             this.set('isBccVisible', true);
-        },
-        sendMessage: function () {
-            var to = this.get('to');
-            var cc = this.get('cc');
-            var bcc = this.get('bcc');
-            var subject = this.get('subject');
-            var body = this.get('body');
-            var attachments = this.get('attachments');
-
-            Ember.Logger.info('Sending message: to=' + to + '\nsubject=' + subject + '\nbody=' + body);
-            alert('Not implemented yet !');
         }
     }
 });

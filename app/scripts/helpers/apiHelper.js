@@ -132,7 +132,7 @@ Client.ApiHelper.getMessages = function (boxPath, seqMin, seqMax) {
     Ember.Logger.assert(seqMin);
     Ember.Logger.assert(seqMax);
 
-    if(seqMin > seqMax) {
+    if (seqMin > seqMax) {
         return [];
     }
 
@@ -194,7 +194,7 @@ Client.ApiHelper.downloadBodyPartContent = function (boxPath, message, bodyPart)
     });
 };
 
-Client.ApiHelper.downloadPartsContent = function(boxPath, message, parts) {
+Client.ApiHelper.downloadPartsContent = function (boxPath, message, parts) {
     Ember.Logger.assert(boxPath);
     Ember.Logger.assert(message);
     Ember.Logger.assert(parts);
@@ -226,7 +226,7 @@ Client.ApiHelper.downloadMessagePreview = function (boxPath, message) {
     Ember.Logger.assert(message);
     Ember.Logger.assert(message.part);
 
-	Ember.Logger.debug('Ask the server for preview parts of message#' + message.seq + ' in box#' + boxPath);
+    Ember.Logger.debug('Ask the server for preview parts of message#' + message.seq + ' in box#' + boxPath);
     var parts = message.part.get('previewParts');
     return Client.ApiHelper.downloadPartsContent(boxPath, message, parts);
 };
@@ -236,7 +236,7 @@ Client.ApiHelper.downloadMessageDisplayContent = function (boxPath, message) {
     Ember.Logger.assert(message);
     Ember.Logger.assert(message.part);
 
-	Ember.Logger.debug('Ask the server for displayable parts of message#' + message.seq + ' in box#' + boxPath);
+    Ember.Logger.debug('Ask the server for displayable parts of message#' + message.seq + ' in box#' + boxPath);
     var parts = message.part.get('displayParts');
     return Client.ApiHelper.downloadPartsContent(boxPath, message, parts);
 };
@@ -283,12 +283,46 @@ Client.ApiHelper.login = function (username, password) {
 Client.ApiHelper.sendMessage = function (message) {
     Ember.Logger.debug('sendMessage(' + message + ')');
     Ember.Logger.assert(message);
+    alert('Not implemented yet');
+
+    var data = {
+        from: Client.ApiHelper.sendMessageEmailFormatter(message.get('from')),
+        to: Client.ApiHelper.sendMessageEmailFormatter(message.get('to')),
+        cc: Client.ApiHelper.sendMessageEmailFormatter(message.get('cc')),
+        bcc: Client.ApiHelper.sendMessageEmailFormatter(message.get('bcc')),
+        subject: message.get('subject'),
+        html: message.get('body'),
+    };
+    Ember.Logger.debug('API Message : ' + JSON.stringify(data) + '');
 
     return Ember.$.ajax({
         url: Client.REST_SERVER + '/messages',
         type: 'POST',
-        data: message,
+        data: data,
     });
+};
+
+Client.ApiHelper.sendMessageEmailFormatter = function (emails) {
+    if (emails instanceof Array) {
+        var result = [];
+        emails.forEach(function (email) {
+            result.push(Client.ApiHelper.sendMessageEmailFormatter(email));
+        });
+        return result;
+    } else {
+        if (!emails) {
+            return;
+        }
+
+        var result = {};
+        if (emails.get('name')) {
+            result.name = emails.get('name');
+        }
+        if (emails.get('address')) {
+            result.address = emails.get('address');
+        }
+        return result;
+    }
 };
 
 //#####################################################
