@@ -1,18 +1,20 @@
- <div id="page-content">
-	<div class="container-fluid">
-		<div class="thread">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="message-object">
-						{{model.envelope.subject}}
-					</div>
-				</div>
-			</div>
+<div id="page-content">
+    <div class="container-fluid">
+        <div class="thread">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="message-object">
+                        {{model.envelope.subject}}
+                    </div>
+                </div>
+            </div>
 
-			{{thread-message model=model}}
+            <!-- Message -->
+            {{thread-message model=model}}
 
-			{{thread-message-composer lastMessage=model}}
+            <!-- Message composer -->
+            {{thread-message-composer newMessage=newMessage lastMessage=model}}
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>

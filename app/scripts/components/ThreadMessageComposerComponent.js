@@ -8,26 +8,23 @@ Client.ThreadMessageComposerComponent = Ember.Component.extend({
 
     lastMessage: null,
 
-    to: [],
-    cc: [],
-    bcc: [],
-    subject: '',
-    body: '',
-    attachments: [],
+    newMessage: null,
 
     actions: {
         goToWriteModeReply: function () {
             var lastMessage = this.get('lastMessage');
-            this.set('subject', 'RE: ' + lastMessage.envelope.subject);
-            this.set('to', lastMessage.envelope.from);
+            var newMessage = this.get('newMessage');
+            newMessage.set('subject', 'RE: ' + lastMessage.envelope.subject);
+            newMessage.set('to', Client.Model.Email.createEmailArray(lastMessage.envelope.from));
             this.set('isWriteMode', true);
             this.set('isWriteModeReply', true);
             this.set('isWriteModeForward', false);
         },
         goToWriteModeForward: function () {
             var lastMessage = this.get('lastMessage');
-            this.set('subject', 'FWD: ' + lastMessage.envelope.subject);
-            this.set('to', []);
+            var newMessage = this.get('newMessage');
+            newMessage.set('subject', 'FWD: ' + lastMessage.envelope.subject);
+            newMessage.set('to', []);
             this.set('isWriteMode', true);
             this.set('isWriteModeReply', false);
             this.set('isWriteModeForward', true);
