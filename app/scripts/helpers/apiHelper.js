@@ -12,6 +12,8 @@ Client.ApiHelper.getUserData = function () {
         url: Client.REST_SERVER + '/account/userdata',
         type: 'GET',
         dataType: 'json'
+    }).then(function (result) {
+        return Client.Model.UserData.createUserData(result);
     });
 };
 
