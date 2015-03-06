@@ -25,6 +25,7 @@ require('scripts/helpers/*');
 require('scripts/components/*');
 require('scripts/controllers/*');
 require('scripts/models/*');
+require('scripts/models/factories/*');
 require('scripts/routes/*');
 require('scripts/components/*');
 require('scripts/views/*');
