@@ -9,7 +9,7 @@ Client.ApiHelper = {};
 Client.ApiHelper.getUserData = function () {
     Ember.Logger.debug('getUserData()');
     return Ember.$.ajax({
-        url: Client.REST_SERVER + '/account/userdata',
+        url: Client.REST_SERVER + '/account/data',
         type: 'GET',
         dataType: 'json'
     }).then(function (result) {
@@ -285,7 +285,6 @@ Client.ApiHelper.login = function (username, password) {
 Client.ApiHelper.sendMessage = function (message) {
     Ember.Logger.debug('sendMessage(' + message + ')');
     Ember.Logger.assert(message);
-    alert('Not implemented yet');
 
     var data = {
         from: Client.ApiHelper.sendMessageEmailFormatter(message.get('from')),
@@ -295,12 +294,14 @@ Client.ApiHelper.sendMessage = function (message) {
         subject: message.get('subject'),
         html: message.get('body'),
     };
-    Ember.Logger.debug('API Message : ' + JSON.stringify(data) + '');
+    var stringData = JSON.stringify(data);
+    Ember.Logger.debug('API Message : ' + stringData + '');
 
     return Ember.$.ajax({
         url: Client.REST_SERVER + '/messages',
         type: 'POST',
-        data: data,
+        contentType: 'application/json',
+        data: stringData,
     });
 };
 

@@ -1,10 +1,13 @@
 Client.MessageController = Ember.ObjectController.extend({
-    needs: "box",
+    needs: ['box', 'account'],
 
     newMessage: null,
 
     init: function () {
-        this.set('newMessage', Client.Model.NewMessage.create());
+        var newMessage = Client.Model.NewMessage.create();
+        newMessage.from =  Client.Model.Email.createEmailArray(this.get('controllers.account.model.defaultIdentity'));
+        
+        this.set('newMessage', newMessage);
     },
 
     actions: {
