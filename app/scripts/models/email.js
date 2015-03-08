@@ -16,7 +16,7 @@ Client.Model.Email = Ember.Object.extend({
 
     displayName: function () {
         var name = this.get('name');
-        if (name) {
+        if (name && name !== '') {
             return name;
         } else {
             return this.get('address');
@@ -31,5 +31,26 @@ Client.Model.Email = Ember.Object.extend({
             address: this.get('address'),
             displayName: this.get('displayName')
         };
-    }
+    },
+
+    
+    //Validities 
+    mailboxValidity: function() {
+        var field = this.get('mailbox');
+        return field && field !== '';
+    }.property('mailbox'),
+    
+    hostValidity: function() {
+        var field = this.get('host');
+        return field && field !== '';
+    }.property('host'),
+    
+    addressValidity: function () {
+        var field = this.get('address');
+        return field && field !== '';
+    }.property('address'),
+
+    isValid: function () {
+        return this.get('addressValidity');
+    }.property('addressValidity'),
 });
