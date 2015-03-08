@@ -11,9 +11,9 @@ Client.Router.map(function () {
                     });
                 });
             });
-        });
-		this.resource('settings', {path: '/settings'}, function() {
+            this.resource('settings', {path: '/settings'}, function() {
             
+            });
         });
     });
 });
