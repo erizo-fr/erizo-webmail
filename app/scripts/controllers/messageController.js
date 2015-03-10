@@ -33,6 +33,11 @@ Client.MessageController = Ember.ObjectController.extend({
         sendMessage: function () {
             Ember.Logger.debug('Action received: Send new message');
             Client.ApiHelper.sendMessage(this.get('newMessage'));
+			
+			//TODO: Handle errors
+			
+			//Go the the boxes route
+			this.transitionToRoute('boxes');
         }
     }
 });
