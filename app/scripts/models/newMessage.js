@@ -4,5 +4,6 @@ Client.Model.NewMessage = Ember.Object.extend({
     cc: [],
     bcc: [],
     subject: null,
-    body: null
+    htmlBody: null,
+    textBody: null
 });

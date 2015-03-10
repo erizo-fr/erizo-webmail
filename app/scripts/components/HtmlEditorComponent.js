@@ -1,5 +1,6 @@
 Client.HtmlEditorComponent = Ember.Component.extend({
-	value: '',
+	htmlValue: '',
+	textValue: '',
 
 	didInsertElement: function () {
 		//Init CKEditor
@@ -7,14 +8,16 @@ Client.HtmlEditorComponent = Ember.Component.extend({
 		var instance = CKEDITOR.replace(editor, {
 			customConfig: '../../js/thread-editor-config.js'
 		});
-		instance.setData(this.get('value'));
+		instance.setData(this.get('htmlValue'));
 
 		//Update the value when CKEditor content change
 		var self = this;
 		instance.on('change', function () {
-			var data = instance.getData();
-			Ember.Logger.debug('CKEditor onBlur event fired: ' + data);
-			self.set('value', data);
+			var htmlValue = instance.getData();
+			var textValue = ''; //TODO: Convert HTML content to formatted text
+			Ember.Logger.debug('CKEditor onBlur event fired: ' + htmlValue);
+			self.set('htmlValue', htmlValue);
+			self.set('textValue', textValue);
 		});
 	}
 });

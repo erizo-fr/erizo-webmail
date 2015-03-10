@@ -292,7 +292,8 @@ Client.ApiHelper.sendMessage = function (message) {
         cc: Client.ApiHelper.sendMessageEmailFormatter(message.get('cc')),
         bcc: Client.ApiHelper.sendMessageEmailFormatter(message.get('bcc')),
         subject: message.get('subject'),
-        html: message.get('body'),
+        html: message.get('htmlBody'),
+        text: message.get('textBody'),
     };
     var stringData = JSON.stringify(data);
     Ember.Logger.debug('API Message : ' + stringData + '');
