@@ -108,7 +108,7 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 				var insertMessage = function(message) {
 					var messageDateCategory = getMessageDateCategory(message);
 					var messageCategory = getCategory(messageDateCategory);
-					messageCategory.messages.push(message);
+					messageCategory.messages.pushObject(message);
 				};
 
 				//Insert the messages
