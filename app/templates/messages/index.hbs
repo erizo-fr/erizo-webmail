@@ -14,14 +14,14 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="message-list">
-					<div class="list-group">
+					<div class="message-list">
 						{{#each messageCategory in model}}
-							<div class="list-subgroup">
-								<div class="subgroup-separator">{{messageCategory.label}}</div>
+							<div class="message-list-group">
+								<div class="message-list-group-separator">{{messageCategory.label}}</div>
 
 								{{#each message in messageCategory.messages}}
 									{{message-row model=message}}
-									<div class="list-group-separator"></div>
+									<div class="message-list-separator"></div>
 								{{/each}}
 
 
