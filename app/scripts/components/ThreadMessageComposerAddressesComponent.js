@@ -25,10 +25,10 @@ Client.ThreadMessageComposerAddressesComponent = Ember.Component.extend({
 
         //Init auto complete addresses
         var instance = this.$('input').magicSuggest({
-            data: [],
             selectFirst: true,
             allowFreeEntries: true,
             allowDuplicates: false,
+			hideTrigger: true,
             minChars: 1,
             maxSuggestions: 5,
             placeholder: placeholder,
@@ -50,6 +50,8 @@ Client.ThreadMessageComposerAddressesComponent = Ember.Component.extend({
                 return result;
             }
         });
+		instance.empty();
+		instance.clear(true);
         instance.setSelection(addresses);
 
         //Update the value when addresses field change
