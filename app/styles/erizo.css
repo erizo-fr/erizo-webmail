@@ -50,6 +50,7 @@ html, body {
 
 .message-list .message-row {
 	width: 100%;
+    margin: 5px 0;
 }
 
 .message-list .message-row .message-date {
@@ -59,15 +60,16 @@ html, body {
 
 .message-list .message-row .message-column {
 	display: inline-block;
+    margin: 0 5px;
 }
 
 .message-list .message-row .message-row-icon i {
     background: rgba(121, 85, 72, 1);
 	border-radius: 100%;
   	text-align: center;
-  	font-size: 20px;
+  	font-size: 15px;
   	color: white;
-	padding: 10px;
+	padding: 5px;
 }
 
 .message-list .message-row p {
@@ -78,15 +80,27 @@ html, body {
 }
 
 .message-list .message-row .message-row-from {
-	width: 100px;
+	width: 150px;
 }
 
 .message-list .message-row .message-row-content {
-	width: calc(100% - 280px);
+	width: calc(100% - 355px);
 }
 
 .message-list .message-row .message-row-preview {
 	color: #777;
+}
+
+.message-list .message-row .message-row-subject {
+    color: #2A2A2A;
+}
+
+.message-list-group {
+    margin-bottom: 15px;
+}
+
+.message-list-group-title {
+    margin: 0;
 }
 
 

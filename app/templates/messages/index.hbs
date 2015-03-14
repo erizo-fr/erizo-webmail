@@ -17,7 +17,7 @@
 					<div class="message-list">
 						{{#each messageCategory in model}}
 							<div class="message-list-group">
-								<div class="message-list-group-separator">{{messageCategory.label}}</div>
+								<p class="message-list-group-title">{{messageCategory.label}}</p>
 
 								{{#each message in messageCategory.messages}}
 									{{message-row model=message}}
