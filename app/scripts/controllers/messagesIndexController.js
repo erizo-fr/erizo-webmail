@@ -5,6 +5,14 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 	pageSize: 10,
 	isMessagesLoading: false,
 	hasMorePages: false,
+    
+    init: function() {
+        var windowHeight = $(window).height();
+        Ember.Logger.debug('Windows height: ' + windowHeight);
+        var pageSize = Math.floor((windowHeight - 150) / 35);
+        Ember.Logger.debug('pageSize: ' + pageSize);
+        this.set('pageSize', pageSize);
+    },
 
 	actions: {
 		loadMoreMessages: function() {
