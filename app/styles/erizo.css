@@ -316,7 +316,7 @@ html, body {
      display: block;
  }
 
- .thread-composer-row {
+.thread-composer-row {
      width: 100%;
      margin: 0;
      padding: 0;
@@ -326,35 +326,58 @@ html, body {
      background-color: white;
  }
 
- .thread-composer-row.no-border {
+.thread-composer-row.no-border {
      border-left: 0;
      border-right: 0;
      border-top: 0;
  }
 
- .thread-composer-row.no-background {
+.thread-composer-row.no-background {
      background-color: transparent;
  }
 
- .thread-composer-row .thread-composer-row-left {
+
+/* Row 2 columns */
+.thread-composer-row .thread-composer-row-left {
+     display: none
+}
+
+.thread-composer-row .thread-composer-row-middle {
+     width: calc(100% - 60px);
+     display: inline-block;
+}
+
+.thread-composer-row .thread-composer-row-right {
      width: 50px;
      display: inline-block;
- }
-
- .thread-composer-row .thread-composer-row-middle {
-     width: calc(100% - 110px);
-     display: inline-block;
- }
-
- .thread-composer-row .thread-composer-row-right {
-     width: 50px;
-     display: inline-block;
- }
+}
 
 .thread-composer-row .thread-composer-row-centered {
+     width: 100%;
+}
+
+
+/* Row 3 columns */
+.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-left {
+    width: 50px;
+    display: inline-block;
+}
+
+.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-middle {
+     width: calc(100% - 110px);
+     display: inline-block;
+}
+
+.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-right {
+     width: 50px;
+     display: inline-block;
+}
+
+.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-centered {
      margin-left: 52px;
      width: calc(100% - 52px);
 }
+
 
  .thread-composer-row input {
      width: 100%;
@@ -439,4 +462,53 @@ html, body {
 }
 .thread-composer-parent.write-mode .thread-precomposer {
     display: none;
+}
+
+
+/*
+ * New message floating area
+ */
+
+.bottom-floating-area {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.new-message-floating {
+    display: inline-block;
+    width: 500px;
+    vertical-align: bottom;
+    margin: 0 5px;
+}
+
+.new-message-floating .cke_bottom {
+    margin: 0 5px; 
+}
+
+/*
+ * New message
+ */
+
+.new-message {
+    background: white;
+}
+
+.new-message .new-message-title-bar {
+    background: #795548;
+    padding: 10px;
+}
+
+.new-message .new-message-title-bar,
+.new-message .new-message-title-bar a {
+    color: #f8f8f8;
+    text-decoration: none;
+}
+
+.new-message .new-message-title-bar a {
+    cursor: pointer;
+}
+
+.new-message .new-message-send {
+    margin-left: 5px;
 }

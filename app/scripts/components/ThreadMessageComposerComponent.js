@@ -1,5 +1,6 @@
 Client.ThreadMessageComposerComponent = Ember.Component.extend({
-    isWriteMode: false,
+    classNames: ['media-body'],
+    
     isWriteModeReply: false,
     isWriteModeForward: false,
     isSubjectVisible: false,
@@ -7,8 +8,19 @@ Client.ThreadMessageComposerComponent = Ember.Component.extend({
     isBccVisible: false,
 
     lastMessage: null,
-
     newMessage: null,
+
+    isWriteMode: function() {
+        if(this.get('isNewMessage')) {
+            return true;
+        } else {
+            return this.get('isWriteModeReply') || this.get('isWriteModeForward');
+        }
+    }.property('isWriteModeReply', 'isWriteModeForward', 'isNewMessage'),
+    
+    isNewMessage: function () {
+        return !this.get('lastMessage');
+    }.property('lastMessage'),
 
     actions: {
         goToWriteModeReply: function () {
@@ -16,7 +28,6 @@ Client.ThreadMessageComposerComponent = Ember.Component.extend({
             var newMessage = this.get('newMessage');
             newMessage.set('subject', 'RE: ' + lastMessage.envelope.subject);
             newMessage.set('to', Client.Model.Email.createEmailArray(lastMessage.envelope.from));
-            this.set('isWriteMode', true);
             this.set('isWriteModeReply', true);
             this.set('isWriteModeForward', false);
         },
@@ -25,7 +36,6 @@ Client.ThreadMessageComposerComponent = Ember.Component.extend({
             var newMessage = this.get('newMessage');
             newMessage.set('subject', 'FWD: ' + lastMessage.envelope.subject);
             newMessage.set('to', []);
-            this.set('isWriteMode', true);
             this.set('isWriteModeReply', false);
             this.set('isWriteModeForward', true);
         },

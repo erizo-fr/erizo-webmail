@@ -1,74 +1,66 @@
 <!-- Message composer -->
-<div class="row">
-    <div class="col-xs-12">
-        <div class="thread-element media">
-            <!-- Icon -->
-            <div class="media-left">
-                <div class="avatar">
-                    <i class="mdi-social-person"></i>
-                </div>
+<div {{bind-attr class=":thread-composer-parent isWriteMode:write-mode isWriteModeReply:write-mode-reply isWriteModeForward:write-mode-forward isSubjectVisible:show-subject isCcVisible:show-cc isBccVisible:show-bcc" }}>
+    
+    <!-- Thread precomposer -->
+    <div class="thread-precomposer">
+        <p class="text-muted">Click here to <a {{action 'goToWriteModeReply'}} class='thread-precomposer-answer'>answer</a> or <a {{action 'goToWriteModeForward'}} class='thread-precomposer-forward'>forward</a> the message</p>
+    </div>
+    
+    <!-- Thread composer -->
+    <div class="thread-composer form-group">
+
+        <div class="thread-composer-row thread-composer-row-subject">
+            <!-- Subject -->
+            {{input type="text" placeholder="Subject" value=newMessage.subject classBinding=":thread-composer-subject"}}
+        </div>
+
+        <div {{bind-attr class="isNewMessage::thread-composer-row-tree-columns :thread-composer-row :thread-composer-row-to :btn-group"}}>
+            <!-- Reply / Forward selector-->
+            <div class="thread-composer-row-left">
+                <a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward"}}></i><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="javascript:void(0)" {{action 'goToWriteModeReply'}}><i class="mdi-content-reply"></i> Reply</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" {{action 'goToWriteModeForward'}}><i class="mdi-content-forward"></i> Forward</a>
+                    </li>
+                    <hr/>
+                    <li>
+                        <a href="javascript:void(0)" {{action 'showSubject'}}>Change subject</a>
+                    </li>
+                </ul>
             </div>
 
-            <div {{bind-attr class=":thread-composer-parent :media-body isWriteMode:write-mode isWriteModeReply:write-mode-reply isWriteModeForward:write-mode-forward isSubjectVisible:show-subject isCcVisible:show-cc isBccVisible:show-bcc" }}>
-                <div class="thread-precomposer">
-                    <p class="text-muted">Click here to <a {{action 'goToWriteModeReply'}} class='thread-precomposer-answer'>answer</a> or <a {{action 'goToWriteModeForward'}} class='thread-precomposer-forward'>forward</a> the message</p>
-                </div>
-                <div class="thread-composer form-group">
+            <!-- To -->
+            <div class="thread-composer-row-middle">
+                {{thread-message-composer-addresses addresses=newMessage.to placeholder='To'}}
+            </div>
 
-                    <div class="thread-composer-row thread-composer-row-subject">
-                        <!-- Subject -->
-                        {{input type="text" placeholder="Subject" value=newMessage.subject classBinding=":thread-composer-subject"}}
-                    </div>
-
-                    <div class="thread-composer-row thread-composer-row-to btn-group">
-                        <!-- Reply / Forward selector-->
-                        <div class="thread-composer-row-left">
-                            <a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward"}}></i><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="javascript:void(0)" {{action 'goToWriteModeReply'}}><i class="mdi-content-reply"></i> Reply</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" {{action 'goToWriteModeForward'}}><i class="mdi-content-forward"></i> Forward</a>
-                                </li>
-                                <hr/>
-                                <li>
-                                    <a href="javascript:void(0)" {{action 'showSubject'}}>Change subject</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- To -->
-                        <div class="thread-composer-row-middle">
-                            {{thread-message-composer-addresses addresses=newMessage.to placeholder='To'}}
-                        </div>
-
-                        <!-- Cc/Bcc link -->
-                        <div class="thread-composer-row-right">
-                            <a class="cc-link" href="javascript:void(0)" {{action 'showCc'}}>Cc</a>
-                            <a class="bcc-link" href="javascript:void(0)" {{action 'showBcc'}}>Bcc</a>
-                        </div>
-                    </div>
-
-                    <div class="thread-composer-row thread-composer-row-cc btn-group">
-                        <!-- Cc -->
-                        <div class="thread-composer-row-centered">
-                            {{thread-message-composer-addresses addresses=newMessage.cc placeholder='Cc'}}
-                        </div>
-                    </div>
-
-                    <div class="thread-composer-row thread-composer-row-bcc btn-group">
-                        <!-- Bcc -->
-                        <div class="thread-composer-row-centered">
-                            {{thread-message-composer-addresses addresses=newMessage.bcc placeholder='Bcc'}}
-                        </div>
-                    </div>
-
-                    <div class="thread-composer-row no-border no-background">
-                        {{html-editor htmlValue=newMessage.htmlBody textValue=newMessage.textBody}}
-                    </div>
-                </div>
+            <!-- Cc/Bcc link -->
+            <div class="thread-composer-row-right">
+                <a class="cc-link" href="javascript:void(0)" {{action 'showCc'}}>Cc</a>
+                <a class="bcc-link" href="javascript:void(0)" {{action 'showBcc'}}>Bcc</a>
             </div>
         </div>
+
+        <div class="thread-composer-row thread-composer-row-cc btn-group">
+            <!-- Cc -->
+            <div class="thread-composer-row-centered">
+                {{thread-message-composer-addresses addresses=newMessage.cc placeholder='Cc'}}
+            </div>
+        </div>
+
+        <div class="thread-composer-row thread-composer-row-bcc btn-group">
+            <!-- Bcc -->
+            <div class="thread-composer-row-centered">
+                {{thread-message-composer-addresses addresses=newMessage.bcc placeholder='Bcc'}}
+            </div>
+        </div>
+
+        <div class="thread-composer-row no-border no-background">
+            {{html-editor htmlValue=newMessage.htmlBody textValue=newMessage.textBody}}
+        </div>
     </div>
+    
 </div>

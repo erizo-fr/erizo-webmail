@@ -13,8 +13,21 @@
             {{thread-message model=model}}
 
             <!-- Message composer -->
-            {{thread-message-composer newMessage=newMessage lastMessage=model}}
-
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="thread-element media">
+                        <!-- Icon -->
+                        <div class="media-left">
+                            <div class="avatar">
+                                <i class="mdi-social-person"></i>
+                            </div>
+                        </div>
+                        {{thread-message-composer newMessage=newMessage lastMessage=model}}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Send button -->
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" {{action 'sendMessage'}}>Send</button>
             </div>

@@ -1,44 +1,28 @@
-<header>
-	<div class="row">
-		<div class="small-11 column">
-			<p>New message</p>
+<div class="new-message">
+    <!-- Title bar -->
+    <div class="new-message-title-bar clearfix">
+        {{#if isOpen}}
+            {{title}}
+        {{else}}
+            <a {{action 'toggleHide'}}>{{title}}</a>
+        {{/if}}
+        
+        <div class="pull-right">
+            <a {{action 'toggleHide'}}><i class="mdi-content-remove"></i></a>
+            <a {{action 'close'}}><i class="mdi-content-clear"></i></a>
+        </div>
+    </div>
 
-		</div>
-		<div class="small-1 column">
-			<a class="item"><i {{action 'hide'}} class="small foundicon-remove"></i></a>
-		</div>
-	</div>
 
-</header>
+    {{#if isOpen}}
+    <div class="new-message-body">
 
-<div class="row">
-	<div class="small-12 column">
-		{{input type="text" placeholder="From" value=message.from}}
-	</div>
+        <!-- Message composer -->
+        {{thread-message-composer newMessage=newMessage isSubjectVisible='true'}}
+
+        
+        <button type="submit" class="btn btn-primary new-message-send" {{action 'sendMessage'}}>Send</button>
+        
+    </div>
+    {{/if}}
 </div>
-<div class="row">
-	<div class="small-12 column">
-		{{input type="text" placeholder="To" value=message.to}}
-	</div>
-</div>
-
-<div class="row">
-	<div class="small-12 column">
-		{{input type="text" placeholder="Subject" value=message.subject}}
-	</div>
-</div>
-
-<div class="row">
-	<div class="small-12 column">
-		{{textarea type="text" rows="15" placeholder="Type your message here ..." value=message.text}}
-	</div>
-</div>
-
-<div class="row">
-	<div class="small-12 column">
-		<a {{action 'send'}} class="button">Send !</a>
-	</div>
-</div>
-
-<footer>
-</footer>
