@@ -1,5 +1,16 @@
 Client.Model.Part = Ember.Object.extend({
 	data: null,
+	htmlMessage: null,
+	textMessage: null,
+	previewMessage: null,
+	previewParts: null,
+	displayParts: null,
+	
+	init: function() {
+		this._super();
+		this.set('previewParts', []);
+		this.set('displayParts', []);
+	},
 
 	type: function() {
 		var data = this.get('data');
@@ -35,16 +46,6 @@ Client.Model.Part = Ember.Object.extend({
 		var disposition = this.get('disposition');
 		return disposition && disposition.type === 'attachment';
 	}.property('disposition'),
-
-	htmlMessage: null,
-
-	textMessage: null,
-
-	previewMessage: null,
-
-	previewParts: [],
-
-	displayParts: [],
 
 	attachmentParts: function() {
 		var isAttachment = this.get('isAttachment');

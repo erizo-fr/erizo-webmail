@@ -1,9 +1,14 @@
 require('scripts/models/part');
 
 Client.Model.MultiPart = Client.Model.Part.extend({
-    subparts: [],
-
-    isAttachment: false,
+    subparts: null,
+    isAttachment: null,
+	
+	init: function () {
+		this._super();
+		this.set('subparts', []);
+		this.set('isAttachment', false);
+	},
 
     hasAttachments: function() {
         var subparts = this.get('subparts');

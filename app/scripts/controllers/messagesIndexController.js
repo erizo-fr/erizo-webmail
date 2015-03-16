@@ -7,6 +7,8 @@ Client.MessagesIndexController = Ember.ObjectController.extend({
 	hasMorePages: false,
     
     init: function() {
+		this._super.apply(this, arguments);
+		
         var windowHeight = $(window).height();
         Ember.Logger.debug('Windows height: ' + windowHeight);
         var pageSize = Math.floor((windowHeight - 150) / 35);
