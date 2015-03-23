@@ -28,6 +28,9 @@ app.import('bower_components/utf8/utf8.js');
 //Magicsuggest
 app.import('bower_components/magicsuggest/magicsuggest-min.js');
 
+//Arrive.js
+app.import('bower_components/arrive/minified/arrive.min.js');
+
 //Bootstrap
 app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
