@@ -3,6 +3,44 @@
         <div class="thread">
             <div class="row">
                 <div class="col-xs-12">
+                    <!-- Back -->
+                    {{#link-to 'box' class="btn btn-xs btn-primary"}}<i class="mdi-navigation-arrow-back small"></i>{{/link-to}}
+                    
+                    <!-- Move -->
+                    <div class="btn-group">
+                        <a href="#" data-target="#" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-inbox small"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)">Inbox</a>
+                            </li>
+                            <li><a href="javascript:void(0)">Box1</a>
+                            </li>
+                            <li><a href="javascript:void(0)">Box2</a>
+                            </li>
+                            <li><a href="javascript:void(0)">Box3</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Delete -->
+                    <a class="btn btn-xs btn-primary" {{action "deleteMessage"}}><i class="mdi-action-delete small"></i></a>
+                    
+                    <!-- Reply / Other actions -->
+                    <div class="btn-group">
+                        <a href="javascript:void(0)" class="btn btn-xs btn-primary"><i class="mdi-content-reply small"></i></a>
+                        <div class="btn-group">
+                            <a href="#" data-target="#" class="btn btn-xs btn-slim btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-navigation-arrow-drop-down small"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0)"><i class="mdi-content-reply small"></i>Reply</a>
+                                </li>
+                                <li><a href="javascript:void(0)"><i class="mdi-content-forward small"></i>Forward</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
                     <div class="message-object">
                         {{model.envelope.subject}}
                     </div>
@@ -26,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Send button -->
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" {{action 'sendMessage'}}>Send</button>
