@@ -5,6 +5,9 @@
 // Override @primary color with one took from _colors.less
 @primary: @brown;
 
+//Bootstrap customizations
+@import './bootstrap';
+
 
 html, body {
     height: 100%;
@@ -148,9 +151,11 @@ html, body {
 
 /* Increase checkbox animation speed */
 
-.checkbox input[type=checkbox]:checked~.check:before {
-    animation: checkbox-on .1s linear forwards;
-}
+//.checkbox input[type=checkbox]:checked~.check:before {
+//    animation: checkbox-on .1s linear forwards;
+//}
+
+
 .avatar {
     line-height: 40px;
     background: rgba(121, 85, 72, 1);
@@ -179,7 +184,7 @@ html, body {
  */
 
 #page-content {
-    padding-top: 65px;
+    padding-top: 80px;
 }
 #page-content.no-padding-top {
     padding-top: 50px;
