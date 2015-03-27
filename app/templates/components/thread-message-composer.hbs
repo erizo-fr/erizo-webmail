@@ -17,13 +17,13 @@
         <div {{bind-attr class="isNewMessage::thread-composer-row-tree-columns :thread-composer-row :thread-composer-row-to :btn-group"}}>
             <!-- Reply / Forward selector-->
             <div class="thread-composer-row-left">
-                <a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward"}}></i><span class="caret"></span></a>
+                <a href="javascript:void(0)" class="thread-composer-destination-selector btn btn-default dropdown-toggle" data-toggle="dropdown"><i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward :small"}}></i><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="javascript:void(0)" {{action 'goToWriteModeReply'}}><i class="mdi-content-reply"></i> Reply</a>
+                        <a href="javascript:void(0)" {{action 'goToWriteModeReply'}}><i class="mdi-content-reply small"></i> Reply</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" {{action 'goToWriteModeForward'}}><i class="mdi-content-forward"></i> Forward</a>
+                        <a href="javascript:void(0)" {{action 'goToWriteModeForward'}}><i class="mdi-content-forward small"></i> Forward</a>
                     </li>
                     <hr/>
                     <li>
