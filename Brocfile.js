@@ -31,6 +31,10 @@ app.import('bower_components/magicsuggest/magicsuggest-min.js');
 //Arrive.js
 app.import('bower_components/arrive/minified/arrive.min.js');
 
+//SnackbarJS
+app.import('bower_components/snackbarjs/dist/snackbar.min.js');
+app.import('bower_components/snackbarjs/dist/snackbar.min.css');
+
 //Bootstrap
 app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
