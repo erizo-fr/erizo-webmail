@@ -2,8 +2,10 @@ import Ember from "ember";
 import Api from "erizo-webmail/utils/api";
 
 export default Ember.ObjectController.extend({
-	needs: "box",
+	needs: ['messages', 'box'],
 
+	messageCategories: [],
+	
 	currentPage: -1,
 	pageSize: 10,
 	isMessagesLoading: false,
@@ -38,7 +40,8 @@ export default Ember.ObjectController.extend({
 		}
 
 		//Get variables
-		var box = this.get("controllers.box").get('model');
+		var messagesOrder = this.get('controllers.messages.model');
+		var box = this.get('controllers.box.model');
 		var pageSize = this.get('pageSize');
 		var currentPage = this.get('currentPage');
 		var nextPage = currentPage + 1;
@@ -54,10 +57,11 @@ export default Ember.ObjectController.extend({
 
 		//Load the initial messages
 		Ember.Logger.debug('Getting the message page#' + nextPage + '[' + pageSize + '] of box#' + box.path);
-		var seqMax = Math.max(1, totalElements - pageSize * nextPage);
-		var seqMin = Math.max(1, seqMax - pageSize + 1);
+		var idMin = Math.max(0, nextPage * pageSize);
+		var idMax = Math.min(totalElements - 1, idMin + pageSize);
 		var self = this;
-		Api.getMessages(box.path, seqMin, seqMax).then(function (newMessages) {
+		var ids = messagesOrder.slice(idMin, idMax);
+		Api.getMessagesByIds(box.path, ids).then(function (newMessages) {
 			Api.downloadMessagesPreview(box.path, newMessages).then(function () {
 				var messageCategories = self.get('model');
 

@@ -1,6 +1,6 @@
 import Ember from "ember";
 
-export default Ember.Route.extend({
+export default Ember.Route.extend({	
 	setupController: function(controller) {
 		controller.set('model', []);
 		controller.set('currentPage', -1);

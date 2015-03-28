@@ -128,6 +128,29 @@ export default Ember.Object.extend({
         Ember.Logger.debug('box=' + JSON.stringify(box));
         return box;
     },
+	
+	
+	//#####################################################
+    // Get box order
+    // URL: GET /boxes/:boxPath/order
+    //#####################################################
+
+    getBoxOrder: function (boxPath) {
+        Ember.Logger.debug('getBoxOrder(' + boxPath + ')');
+        Ember.Logger.assert(boxPath);
+        let self = this;
+        
+        return Ember.$.ajax({
+            url: REST_SERVER + '/boxes/' + boxPath + '/order',
+            type: 'GET',
+            dataType: 'json'
+        }).then(self.getBoxOrderResultLogger);
+    },
+
+    getBoxOrderResultLogger: function (order) {
+        Ember.Logger.debug('boxOrder=' + JSON.stringify(order));
+        return order;
+    },
 
 
     //#####################################################
@@ -135,8 +158,8 @@ export default Ember.Object.extend({
     // URL: GET /boxes/:boxPath/messages
     //#####################################################
 
-    getMessages: function (boxPath, seqMin, seqMax) {
-        Ember.Logger.debug('getMessages(' + boxPath + ', ' + seqMin + ', ' + seqMax + ')');
+    getMessagesBySeqsRange: function (boxPath, seqMin, seqMax) {
+        Ember.Logger.debug('getMessagesBySeqsRange(' + boxPath + ', ' + seqMin + ', ' + seqMax + ')');
         Ember.Logger.assert(boxPath);
         Ember.Logger.assert(seqMin);
         Ember.Logger.assert(seqMax);
@@ -148,6 +171,20 @@ export default Ember.Object.extend({
         let self = this;
         return Ember.$.ajax({
                 url: REST_SERVER + '/boxes/' + boxPath + '/messages?seqs=' + seqMin + ':' + seqMax + '&fetchStruct=true&fetchEnvelope=true',
+                type: 'GET',
+                dataType: 'json'
+            }).then(self.getMessagesAdapter)
+            .then(self.getMessagesResultLogger);
+    },
+	
+	getMessagesByIds: function (boxPath, ids) {
+        Ember.Logger.debug('getMessagesByIds(' + boxPath + ', ' + ids + ')');
+        Ember.Logger.assert(boxPath);
+        Ember.Logger.assert(ids);
+
+        let self = this;
+        return Ember.$.ajax({
+                url: REST_SERVER + '/boxes/' + boxPath + '/messages?ids=' + ids.join('&ids=') + '&fetchStruct=true&fetchEnvelope=true',
                 type: 'GET',
                 dataType: 'json'
             }).then(self.getMessagesAdapter)
