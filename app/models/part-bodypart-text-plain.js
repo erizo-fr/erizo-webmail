@@ -10,11 +10,17 @@ export default TextPart.extend({
     }.property('decodedContent'),
 
     previewMessage: function() {
-        var content = this.get('decodedContent');
+        let content = this.get('decodedContent');
         if(content == null) {
             return null;
         } else {
-            return content.replace('/[\n\r]/g', ' ');
+			//The preview is on one line
+            content = content.replace(/[\n\r]/g, ' ');
+			
+			//Replace any series of ------ by a single dash
+            content = content.replace(/-+/g, '-');
+			
+			return content;
         }
     }.property('decodedContent'),
 });
