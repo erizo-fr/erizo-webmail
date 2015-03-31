@@ -3,37 +3,40 @@ import BodyPart from "erizo-webmail/models/part-bodypart";
 
 export default BodyPart.extend({
     decodedContent: function() {
-        var content = this.get('content');
-        var charset = (this.get('params').charset || '').toLowerCase();
-        var encoding = this.get('encoding').toLowerCase();
+        let content = this.get('content');
+        let charset = (this.get('params').charset || '').toLowerCase();
+        let encoding = this.get('encoding').toLowerCase();
 
         if(content == null) {
             return null;
         }
-
-        //Decode the content
-        var decodedContent = content;
-        try {
+		
+        //Decode model content
+        content = window.atob(content);
+		
+		//Decode part
+		try {
             if(encoding === 'quoted-printable') {
-                decodedContent = quotedPrintable.decode(content);
+                content = quotedPrintable.decode(content);
             } else if(encoding === 'base64') {
-                decodedContent = window.atob(content);
+                content = window.atob(content);
             }
         } catch(e) {
             Ember.Logger.warn('Failed to decode content: ' + content + '\n' + e);
         }
-
-        //Convert the charset
-        var result = decodedContent;
+		
+		//Convert the charset
         if(charset === 'utf-8') {
             try {
-                result = utf8.decode(decodedContent);
+                content = utf8.decode(content);
             } catch(e) {
-                Ember.Logger.warn('Failed to convert the utf8 charset : ' + decodedContent + '\n' + e);
+                Ember.Logger.warn('Failed to convert the utf8 charset : ' + content + '\n' + e);
             }
         }
 
-        return result;
+        
+
+        return content;
     }.property('encoding', 'content'),
 	
 	displayParts: function() {
