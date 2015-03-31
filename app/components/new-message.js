@@ -24,12 +24,24 @@ export default Ember.Component.extend({
         },
         sendMessage: function () {
             Ember.Logger.debug('Action received: Send new message');
-            Api.sendMessage(this.get('newMessage'));
+			let self = this;
+            Api.sendMessage(this.get('newMessage')).done(function () {
+				//Show success
+				Ember.$.snackbar({
+					content: "Message sent !",
+					timeout: 3000
+				});
 
-            //TODO: Handle errors
-
-            //Close the new message
-            this.sendAction('delete', this.get('newMessage'));
+				//Close the new message
+            	self.sendAction('delete', self.get('newMessage'));
+			}).fail(function () {
+				//Show error
+				Ember.$.snackbar({
+					content: "Failed to send the message :(<br/>Maybe you should try to send it later",
+					style: 'error',
+					timeout: 3000
+				});
+			});
         },
         close: function () {
             this.sendAction('delete', this.get('newMessage'));
