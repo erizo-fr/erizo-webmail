@@ -360,8 +360,8 @@ export default Ember.Object.extend({
 		Ember.Logger.assert(message);
 
 		var data = {
-			//            from: this.sendMessageEmailFormatter(message.get('from')),
-			//            to: this.sendMessageEmailFormatter(message.get('to')),
+			from: this.sendMessageEmailFormatter(message.get('from')),
+			to: this.sendMessageEmailFormatter(message.get('to')),
 			cc: this.sendMessageEmailFormatter(message.get('cc')),
 			bcc: this.sendMessageEmailFormatter(message.get('bcc')),
 			subject: message.get('subject'),
