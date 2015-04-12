@@ -11,7 +11,6 @@ export default Ember.Object.extend({
             emailParts = this.splitEmailString(email);
             data.mailbox = emailParts[0];
             data.host = emailParts[1];
-            data.name = email;
         } else {
             data.name = email.name;
             if (email.address) {

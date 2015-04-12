@@ -1,74 +1,117 @@
 import Ember from "ember";
+import Api from "erizo-webmail/utils/api";
 import EmailFactory from "erizo-webmail/models/factories/email";
 
+
+let REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+	'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+
 export default Ember.Component.extend({
-    addresses: [],
-    placeholder: '',
+	addresses: [],
+	placeholder: '',
 
-    magicSuggestInstance: null,
+	instance: null,
 
-    addressesChanged: function () {
-        var addresses = this.get('addresses');
-        Ember.Logger.debug('Addresses property changed: ' + JSON.stringify(addresses));
-        var instance = this.get('magicSuggestInstance');
+	addressesChanged: function () {
+		var addresses = this.get('addresses');
+		Ember.Logger.debug('Addresses property changed: ' + JSON.stringify(addresses));
+		var instance = this.get('instance');
 
-        //Set selection
-        var elements = [];
-        addresses.forEach(function (address) {
-            elements.push(address.toJSON());
-        });
-        instance.clear(true);
-        instance.setSelection(elements);
-    }.observes('addresses'),
+		//Set selection
+		instance.clear(true);
+		Ember.$.each(addresses, function (index, value) {
+			instance.addOption(value.toJSON());
+			instance.addItem(value.get('address'), true);
 
-    didInsertElement: function () {
-        //Get var
-        var placeholder = this.get('placeholder');
-        var addresses = this.get('addresses');
+		});
+	}.observes('addresses'),
 
-        //Init auto complete addresses
-        var instance = this.$('.ms-instance').magicSuggest({
-            selectFirst: true,
-            allowFreeEntries: true,
-            allowDuplicates: false,
-            hideTrigger: true,
-            minChars: 1,
-            maxSuggestions: 5,
-            placeholder: placeholder,
-            displayField: 'displayName',
-            valueField: 'address',
-            renderer: function (data) {
-                var result =
-                    '<div class="media"> \
-            <div class="media-left"> \
-            <div class="avatar"> \
-            <i class="mdi-social-person"></i> \
-            </div> \
-            </div> \
-            <div class="media-body"> \
-            <p>' +
-                    data.displayName + '</p> \
-            </div> \
-            </div>';
-                return result;
-            }
-        });
-        instance.empty();
-        instance.clear(true);
-        instance.setSelection(addresses);
+	didInsertElement: function () {
+		//Init auto complete addresses instance
+		let self = this;
+		let instance;
+		let element = this.$('.address-component-instance').selectize({
+			persist: false,
+			maxItems: 10,
+			maxOptions: 10,
+			valueField: 'address',
+			optgroupField: 'displayName',
+			openOnFocus: false,
+			searchField: ['address', 'displayName'],
+			hideSelected: true,
+			closeAfterSelect: true,
+			create: function (input) {
+				Ember.Logger.debug('Create new option from input: ' + input);
+				return EmailFactory.createEmail(input).toJSON();
+			},
+			createFilter: function (input) {
+				// email@address.com
+				let regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+				let match = input.match(regex);
+				if (match) {
+					return !this.options.hasOwnProperty(match[0]);
+				}
 
-        //Update the value when addresses field change
-        var self = this;
-        $(instance).on('blur', function () {
-            var records = instance.getSelection();
-            Ember.Logger.debug('Addresses component blur event fired: ' + JSON.stringify(records));
+				// name <email@address.com>
+				regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+				match = input.match(regex);
+				if (match) {
+					return !this.options.hasOwnProperty(match[2]);
+				}
 
-            //Convert records into model objects
-            var addresses = EmailFactory.createEmailArray(records);
-            self.set('addresses', addresses);
-        });
+				Ember.Logger.info('The input does not match the email pattern: ' + input);
+				return false;
+			},
+			render: {
+				item: function (item, escape) {
+					return '<div>' +
+						(item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+						(item.address ? ' <span class="email">' + escape(item.address) + '</span>' : '') +
+						'</div>';
+				},
+				option: function (item, escape) {
+					if (item.name) {
+						return '<div class="media"><div class="media-left"><div class="avatar"><i class="mdi-social-person"></i></div></div><div class="media-body"><strong>' + escape(item.name) + '</strong> <span class="email text-muted">' + escape(item.address) + '</span>' + '</div></div>';
+					} else {
+						return '<div class="media"><div class="media-left"><div class="avatar"><i class="mdi-social-person"></i></div></div><div class="media-body"><strong>' + escape(item.address) + '</strong></div></div>';
+					}
 
-        //Save the instance
-        this.set('magicSuggestInstance', instance);
-    }
+				}
+			},
+			load: function (query, callback) {
+				if (!query.length) {
+					return callback();
+				}
+				Api.getContactsEmails(query, 10).then(function (emails) {
+					let res = [];
+					Ember.$.each(emails, function (index, email) {
+						res.push(email.toJSON());
+					});
+					callback(res);
+				});
+			},
+			onItemAdd: function (value) {
+				Ember.Logger.debug('onItemAdd event fired: ' + JSON.stringify(value));
+
+				//Convert records into model objects
+				let option = instance.options[value];
+				let address = EmailFactory.createEmail(option);
+				self.get('addresses').pushObject(address);
+			},
+			onItemRemove: function (value) {
+				Ember.Logger.debug('onItemRemove event fired: ' + JSON.stringify(value));
+
+				//Convert records into model objects
+				let option = instance.options[value];
+				let address = EmailFactory.createEmail(option);
+				self.get('addresses').removeObject(address);
+			}
+		});
+		instance = element[0].selectize;
+
+
+		//Save the instance
+		this.set('instance', instance);
+	}
 });

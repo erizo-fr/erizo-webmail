@@ -14,7 +14,7 @@ export default Ember.ObjectController.extend({
 	init: function () {
 		this._super.apply(this, arguments);
 
-		var windowHeight = $(window).height();
+		var windowHeight = Ember.$(window).height();
 		Ember.Logger.debug('Windows height: ' + windowHeight);
 		var pageSize = Math.floor((windowHeight - 150) / 35);
 		Ember.Logger.debug('pageSize: ' + pageSize);

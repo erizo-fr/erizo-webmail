@@ -1,5 +1,6 @@
 import Ember from "ember";
 import UserDataFactory from "erizo-webmail/models/factories/user-data";
+import ContactFactory from "erizo-webmail/models/factories/contact";
 import Message from "erizo-webmail/models/message";
 import DataCacheUtil from "erizo-webmail/utils/dataCache";
 
@@ -418,6 +419,48 @@ export default Ember.Object.extend({
 			url: REST_SERVER + '/boxes/' + boxPath + '/messages/' + messageId,
 			type: 'DELETE'
 		});
+	},
+
+
+	//#####################################################
+	// Get contacts
+	// URL: GET /contacts?criteria=:criteria&limit=:limit
+	//#####################################################
+
+	getContacts(criteria, limit) {
+		Ember.Logger.debug('getContacts(' + criteria + ', ' + limit + ')');
+		Ember.Logger.assert(criteria);
+
+		let self = this;
+		return Ember.$.ajax({
+			url: REST_SERVER + '/contacts?criteria=' + criteria + (limit ? '&limit=' + limit : ''),
+			type: 'GET'
+		}).then(self.getContactsAdapter);
+	},
+
+	getContactsAdapter: function (vcards) {
+		let adaptedResult = [];
+		Ember.$.each(vcards, function (index, vcard) {
+			adaptedResult.push(ContactFactory.createContactFromVCard(vcard));
+		});
+		return adaptedResult;
+	},
+
+	getContactsEmails(criteria, limit) {
+		return this.getContacts(criteria, limit).then(function (contacts) {
+			let emails = [];
+			for (let i = 0; i < contacts.length; i++) {
+				let contact = contacts[i];
+				for (let j = 0; j < contact.email.length; j++) {
+					if (emails.length < limit) {
+						emails.push(contact.email[j]);
+					}
+				}
+			}
+
+			return emails;
+		});
+
 	}
 
 }).create();

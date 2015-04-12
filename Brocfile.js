@@ -25,8 +25,8 @@ app.import('bower_components/moment-timezone/builds/moment-timezone-with-data.mi
 app.import('bower_components/quoted-printable/quoted-printable.js');
 app.import('bower_components/utf8/utf8.js');
 
-//Magicsuggest
-app.import('bower_components/magicsuggest/magicsuggest-min.js');
+//Selectize
+app.import('bower_components/selectize/dist/js/standalone/selectize.min.js');
 
 //Arrive.js
 app.import('bower_components/arrive/minified/arrive.min.js');
