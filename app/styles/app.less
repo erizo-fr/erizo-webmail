@@ -12,23 +12,13 @@
 //Selectize customizations
 @import './selectize';
 
+//Login page
+@import './page-login';
+
 
 html, body {
     height: 100%;
     background-color: #FAFAFA;
-}
-/*
- * Login page
- */
-
-#login-panel {
-    height: 250px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
 }
 
 /*
@@ -118,6 +108,12 @@ html, body {
     margin: 0;
 }
 
+.rotation {
+	-webkit-animation: spin-reverse 1s linear infinite;
+    -moz-animation: spin-reverse 1s linear infinite;
+    animation: spin-reverse 1s linear infinite;
+}
+
 
 /*
  * Loading animation
@@ -127,9 +123,6 @@ html, body {
     height: 30px;
     width: 30px;
     margin: 0 auto;
-    -webkit-animation: spin-reverse 1s linear infinite;
-    -moz-animation: spin-reverse 1s linear infinite;
-    animation: spin-reverse 1s linear infinite;
 }
 
 .loading-messages i {

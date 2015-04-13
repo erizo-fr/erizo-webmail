@@ -4,50 +4,46 @@ import Api from "erizo-webmail/utils/api";
 export default Ember.ObjectController.extend({
 	username: '',
 	password: '',
-	errorMessage: '',
 	requestRunning: false,
 
 	actions: {
 		login: function () {
-			this.beginRequestEvent();
+			let username = this.get('username');
+			let password = this.get('password');
+			if (!username) {
+				this.shakeButton();
+				Ember.$('#input-username').focus();
+				return;
+			}
+			if (!password) {
+				this.shakeButton();
+				Ember.$('#input-password').focus();
+				return;
+			}
 
-			var self = this;
-            Api.login(this.get('username'), this.get('password'))
-            .always(function () {
-				self.endRequestEvent();
-			}).done(function () {
-				self.transitionToRoute('boxes');
-			}).fail(function (jqXHR) {
-				self.setErrorMessage(jqXHR.responseText);
-			});
+			this.set('requestRunning', true);
+			let self = this;
+			Api.login(username, password)
+				.always(function () {
+					self.set('requestRunning', false);
+				}).done(function () {
+					self.transitionToRoute('boxes');
+				}).fail(function (jqXHR) {
+					//Show error
+					Ember.$.snackbar({
+						content: "Failed login: " + jqXHR.responseText,
+						style: 'error',
+						timeout: 3000
+					});
+				});
 		}
 	},
 
-	beginRequestEvent: function () {
-		this.setErrorMessage('');
-		this.set('requestRunning', true);
-		Ember.$('#loadingAnimation').removeClass().addClass('animated fadeIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-			Ember.$(this).removeClass();
+	shakeButton: function () {
+		let button = Ember.$('#login');
+		button.addClass('animated shake');
+		button.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+			button.removeClass('animated shake');
 		});
-	},
-
-	endRequestEvent: function () {
-		Ember.$('#loadingAnimation').removeClass().addClass('animated fadeOut').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-			Ember.$(this).removeClass();
-		});
-		this.set('requestRunning', false);
-
-	},
-
-	setErrorMessage: function (errorMessage) {
-		if (!errorMessage || errorMessage === '') {
-			this.set('errorMessage', '');
-			Ember.$(this).removeClass();
-		} else {
-			this.set('errorMessage', errorMessage);
-			Ember.$('#errorMessage').removeClass().addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-				Ember.$(this).removeClass();
-			});
-		}
 	}
 });
