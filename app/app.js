@@ -12,8 +12,8 @@ var App = Ember.Application.extend({
 
     ready: function () {
         //Init material design
-        $(function () {
-            $.material.init();
+        Ember.$(function () {
+            Ember.$.material.init();
         });
     }
 });
