@@ -34,7 +34,11 @@ export default Ember.ObjectController.extend({
 					self.transitionToRoute('box');
 				}).fail(function (jqXHR, textStatus) {
 					Ember.Logger.error('Failed to delete the message: ' + textStatus);
-					self.send('showPopup', 'Delete error', 'The server failed to delete the message\n' + textStatus);
+					Ember.$.snackbar({
+						content: 'The server can not delete the message: ' + textStatus,
+						style: 'error',
+						timeout: 3000
+					});
 				});
 		},
 		sendMessage: function () {
