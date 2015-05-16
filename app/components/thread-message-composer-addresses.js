@@ -32,14 +32,10 @@ export default Ember.Component.extend({
 		let self = this;
 		let instance;
 		let element = this.$('.address-component-instance').selectize({
-			persist: false,
-			maxItems: 10,
-			maxOptions: 10,
+			persist: true,
 			valueField: 'address',
-			optgroupField: 'displayName',
 			openOnFocus: false,
 			searchField: ['address', 'displayName'],
-			hideSelected: true,
 			closeAfterSelect: true,
 			create: function (input) {
 				Ember.Logger.debug('Create new option from input: ' + input);
@@ -91,21 +87,27 @@ export default Ember.Component.extend({
 					callback(res);
 				});
 			},
-			onItemAdd: function (value) {
-				Ember.Logger.debug('onItemAdd event fired: ' + JSON.stringify(value));
+			onItemAdd: function (addedValue) {
+				Ember.Logger.debug('onItemAdd event fired: ' + JSON.stringify(addedValue));
 
 				//Convert records into model objects
-				let option = instance.options[value];
+				let option = instance.options[addedValue];
 				let address = EmailFactory.createEmail(option);
 				self.get('addresses').pushObject(address);
+				Ember.Logger.debug('Item added to model');
 			},
-			onItemRemove: function (value) {
-				Ember.Logger.debug('onItemRemove event fired: ' + JSON.stringify(value));
+			onItemRemove: function (removedValue) {
+				Ember.Logger.debug('onItemRemove event fired: ' + JSON.stringify(removedValue));
 
-				//Convert records into model objects
-				let option = instance.options[value];
-				let address = EmailFactory.createEmail(option);
-				self.get('addresses').removeObject(address);
+				//Remove the address from the list
+				let addresses = self.get('addresses');
+				for (var i = 0; i < addresses.length; i++) {
+					if (addresses[i].get('address') === removedValue) {
+						Ember.Logger.debug('Item removed from model');
+						addresses.removeObject(addresses[i]);
+						break;
+					}
+				}
 			}
 		});
 		instance = element[0].selectize;
