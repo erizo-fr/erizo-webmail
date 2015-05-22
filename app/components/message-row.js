@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 		if(!model) {
 			return null;
 		}
-		return model.isSeen();
+		return model.get('isSeen');
 	}.property('model'),
 
 	previewText: function () {
