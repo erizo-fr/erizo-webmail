@@ -14,9 +14,21 @@ export default Ember.ObjectController.extend({
 	init: function () {
 		this._super.apply(this, arguments);
 
+		//Init resize event handler to update page size
+		let self = this;
+		Ember.$( window ).resize(function() {
+			Ember.Logger.debug('Page resized event has been triggered: Updating message page size');
+			self.updatePageSize();
+		});
+		
+		//Update page size
+		this.updatePageSize();
+	},
+	
+	updatePageSize: function() {
 		var windowHeight = Ember.$(window).height();
 		Ember.Logger.debug('Windows height: ' + windowHeight);
-		var pageSize = Math.floor((windowHeight - 150) / 35);
+		var pageSize = Math.floor((windowHeight - 150) / 45);
 		Ember.Logger.debug('pageSize: ' + pageSize);
 		this.set('pageSize', pageSize);
 	},
