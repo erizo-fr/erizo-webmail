@@ -1,0 +1,4 @@
+[submodule "api"]
+	path = api
+	url = https://github.com/erizo-fr/erizo-webmail-api.git
+	branch = develop

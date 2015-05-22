@@ -15,3 +15,11 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
+/logs
+
+# Vagrant
+/.vagrant
+
+# IDE
+*.sublime-project
+*.sublime-workspace
