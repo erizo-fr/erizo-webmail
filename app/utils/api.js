@@ -1,7 +1,7 @@
 import Ember from "ember";
 import UserDataFactory from "erizo-webmail/models/factories/user-data";
 import ContactFactory from "erizo-webmail/models/factories/contact";
-import Message from "erizo-webmail/models/message";
+import MessageFactory from "erizo-webmail/models/factories/message";
 import DataCacheUtil from "erizo-webmail/utils/dataCache";
 
 var REST_SERVER = '';
@@ -204,7 +204,7 @@ export default Ember.Object.extend({
 	getMessagesAdapter: function (messages) {
 		var adaptedMessages = [];
 		for (var i = 0; i < messages.length; i++) {
-			adaptedMessages.push(new Message(messages[i]));
+			adaptedMessages.push(MessageFactory.createMessage(messages[i]));
 		}
 		return adaptedMessages;
 	},
@@ -230,7 +230,7 @@ export default Ember.Object.extend({
 			type: 'GET',
 			dataType: 'json'
 		}).then(function (result) {
-			return new Message(result);
+			return MessageFactory.createMessage(result);
 		});
 	},
 
@@ -240,23 +240,23 @@ export default Ember.Object.extend({
 
 		//Get part promise
 		let promise;
-		let cacheKey = boxPath + '.' + message.uid + '.' + partId;
+		let cacheKey = boxPath + '.' + message.get('uid') + '.' + partId;
 		let part = DataCacheUtil.getData('part', cacheKey);
 		if (part) {
 			//Cache version
 			promise = new Ember.RSVP.Promise(function (resolve) {
-				Ember.Logger.debug('Part#' + partId + ' of message#' + message.seq + ' in box#' + boxPath + ' found in cache');
+				Ember.Logger.debug('Part#' + partId + ' of message#' + message.get('seq') + ' in box#' + boxPath + ' found in cache');
 				resolve(part);
 			});
 		} else {
 			//Server version
-			Ember.Logger.debug('Ask the server for part#' + partId + ' of message#' + message.uid + ' in box#' + boxPath);
+			Ember.Logger.debug('Ask the server for part#' + partId + ' of message#' + message.get('uid') + ' in box#' + boxPath);
 			promise = Ember.$.ajax({
-				url: REST_SERVER + '/boxes/' + boxPath + '/messages/' + message.uid + '?&markSeen=true&bodies=' + partId,
+				url: REST_SERVER + '/boxes/' + boxPath + '/messages/' + message.get('uid') + '?&markSeen=true&bodies=' + partId,
 				type: 'GET',
 				dataType: 'json'
 			}).then(function (result) {
-				Ember.Logger.debug('Part#' + partId + ' of message#' + message.seq + ' in box#' + boxPath + ' receive');
+				Ember.Logger.debug('Part#' + partId + ' of message#' + message.get('seq') + ' in box#' + boxPath + ' receive');
 				DataCacheUtil.storeData('part', cacheKey, result);
 				return result;
 			});
@@ -299,10 +299,10 @@ export default Ember.Object.extend({
 	downloadMessagePreview: function (boxPath, message) {
 		Ember.Logger.assert(boxPath);
 		Ember.Logger.assert(message);
-		Ember.Logger.assert(message.part);
+		Ember.Logger.assert(message.get('part'));
 
-		Ember.Logger.debug('Ask the server for preview parts of message#' + message.seq + ' in box#' + boxPath);
-		var parts = message.part.get('previewParts');
+		Ember.Logger.debug('Ask the server for preview parts of message#' + message.get('seq') + ' in box#' + boxPath);
+		var parts = message.get('part').get('previewParts');
 		return this.downloadPartsContent(boxPath, message, parts);
 	},
 
@@ -322,10 +322,10 @@ export default Ember.Object.extend({
 	downloadMessageDisplayContent: function (boxPath, message) {
 		Ember.Logger.assert(boxPath);
 		Ember.Logger.assert(message);
-		Ember.Logger.assert(message.part);
+		Ember.Logger.assert(message.get('part'));
 
-		Ember.Logger.debug('Ask the server for displayable parts of message#' + message.seq + ' in box#' + boxPath);
-		var parts = message.part.get('displayParts');
+		Ember.Logger.debug('Ask the server for displayable parts of message#' + message.get('seq') + ' in box#' + boxPath);
+		var parts = message.get('part').get('displayParts');
 		return this.downloadPartsContent(boxPath, message, parts);
 	},
 

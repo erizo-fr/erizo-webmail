@@ -1,5 +1,5 @@
 import Ember from "ember";
-import EmailFactory from "erizo-webmail/models/factories/email";
+import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress";
 
 export default Ember.Component.extend({
     classNames: ['media-body'],
@@ -30,7 +30,7 @@ export default Ember.Component.extend({
             var lastMessage = this.get('lastMessage');
             var newMessage = this.get('newMessage');
             newMessage.set('subject', 'RE: ' + lastMessage.envelope.subject);
-            newMessage.set('to', EmailFactory.createEmailArray(lastMessage.envelope.from));
+            newMessage.set('to', EmailAddressFactory.createEmailArray(lastMessage.envelope.from));
             this.set('isWriteModeReply', true);
             this.set('isWriteModeForward', false);
         },

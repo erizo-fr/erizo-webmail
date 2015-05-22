@@ -1,6 +1,6 @@
 import Ember from "ember";
 import Api from "erizo-webmail/utils/api";
-import EmailFactory from "erizo-webmail/models/factories/email";
+import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress";
 
 
 let REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
@@ -39,7 +39,7 @@ export default Ember.Component.extend({
 			closeAfterSelect: true,
 			create: function (input) {
 				Ember.Logger.debug('Create new option from input: ' + input);
-				return EmailFactory.createEmail(input).toJSON();
+				return EmailAddressFactory.createEmail(input).toJSON();
 			},
 			createFilter: function (input) {
 				// email@address.com
@@ -92,7 +92,7 @@ export default Ember.Component.extend({
 
 				//Convert records into model objects
 				let option = instance.options[addedValue];
-				let address = EmailFactory.createEmail(option);
+				let address = EmailAddressFactory.createEmail(option);
 				self.get('addresses').pushObject(address);
 				Ember.Logger.debug('Item added to model');
 			},

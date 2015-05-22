@@ -1,6 +1,6 @@
 import Ember from "ember";
 import Api from "erizo-webmail/utils/api";
-import EmailFactory from "erizo-webmail/models/factories/email";
+import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress";
 import NewMessage from "erizo-webmail/models/new-message";
 
 export default Ember.ObjectController.extend({
@@ -12,7 +12,7 @@ export default Ember.ObjectController.extend({
 		this._super.apply(this, arguments);
 
 		var newMessage = NewMessage.create();
-		newMessage.from = EmailFactory.createEmailArray(this.get('controllers.account.model.defaultIdentity'));
+		newMessage.from = EmailAddressFactory.createEmailArray(this.get('controllers.account.model.defaultIdentity'));
 
 		this.set('newMessage', newMessage);
 	},
@@ -67,7 +67,7 @@ export default Ember.ObjectController.extend({
 			var lastMessage = this.get('model');
 			var newMessage = this.get('newMessage');
 			newMessage.set('subject', 'RE: ' + lastMessage.envelope.subject);
-			newMessage.set('to', EmailFactory.createEmailArray(lastMessage.envelope.from));
+			newMessage.set('to', EmailAddressFactory.createEmailArray(lastMessage.envelope.from));
 			this.set('isWriteModeReply', true);
 			this.set('isWriteModeForward', false);
 		},

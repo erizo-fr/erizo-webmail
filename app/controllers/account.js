@@ -1,5 +1,5 @@
 import Ember from "ember";
-import EmailFactory from "erizo-webmail/models/factories/email";
+import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress";
 import NewMessage from "erizo-webmail/models/new-message";
 
 export default Ember.ObjectController.extend({
@@ -9,7 +9,7 @@ export default Ember.ObjectController.extend({
 
     createNewMessage: function () {
         var newMessage = NewMessage.create();
-        newMessage.from = EmailFactory.createEmailArray(this.get('controllers.account.model.defaultIdentity'));
+        newMessage.from = EmailAddressFactory.createEmailArray(this.get('controllers.account.model.defaultIdentity'));
         this.get('newMessages').insertAt(0, newMessage);
     },
 
