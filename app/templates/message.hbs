@@ -5,7 +5,7 @@
 				<div class="col-xs-12">
 					<!-- Back -->
 					{{#link-to "box" class="btn btn-xs btn-primary"}}<i class="mdi-navigation-arrow-back small"></i>{{/link-to}}
-					
+
 					<!-- Move -->
 					<div class="btn-group">
 						<a href="#" data-target="#" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-inbox small"></i></a>
@@ -20,7 +20,7 @@
 							</li>
 						</ul>
 					</div>
-					
+
 					<!-- Delete -->
 					<a class="btn btn-xs btn-primary" {{action "deleteMessage"}}><i class="mdi-action-delete small"></i></a>
 				</div>
@@ -46,7 +46,7 @@
 								<i class="mdi-social-person"></i>
 							</div>
 						</div>
-						{{thread-message-composer newMessage=newMessage lastMessage=model}}
+						{{message-composer newMessage=newMessage lastMessage=model}}
 					</div>
 				</div>
 			</div>

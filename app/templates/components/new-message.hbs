@@ -6,7 +6,7 @@
 		{{else}}
 			<a {{action "toggleHide"}}>{{title}}</a>
 		{{/if}}
-		
+
 		<div class="pull-right">
 			<a {{action "toggleHide"}}><i class="mdi-content-remove"></i></a>
 			<a {{action "close"}}><i class="mdi-content-clear"></i></a>
@@ -18,11 +18,11 @@
 	<div class="new-message-body">
 
 		<!-- Message composer -->
-		{{thread-message-composer newMessage=newMessage isSubjectVisible="true"}}
+		{{message-composer newMessage=newMessage isSubjectVisible="true"}}
 
-		
+
 		<button type="submit" class="btn btn-primary new-message-send" {{action "sendMessage"}}>Send</button>
-		
+
 	</div>
 	{{/if}}
 </div>

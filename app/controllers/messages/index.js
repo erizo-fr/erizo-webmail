@@ -5,6 +5,7 @@ export default Ember.ObjectController.extend({
 	needs: ["messages", "box"],
 
 	messageCategories: [],
+	selectedMessages: [],
 
 	currentPage: -1,
 	pageSize: 10,
@@ -38,6 +39,9 @@ export default Ember.ObjectController.extend({
 		deleteSelectedMessages: function () {
 			Ember.Logger.debug("Action received: Delete selected messages")
 			Ember.Logger.warn("TODO")
+		},
+		selectMessage: function () {
+
 		},
 	},
 
