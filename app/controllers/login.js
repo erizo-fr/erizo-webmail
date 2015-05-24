@@ -1,49 +1,49 @@
-import Ember from "ember";
-import Api from "erizo-webmail/utils/api";
+import Ember from "ember"
+import Api from "erizo-webmail/utils/api"
 
 export default Ember.ObjectController.extend({
-	username: '',
-	password: '',
+	username: "",
+	password: "",
 	requestRunning: false,
 
 	actions: {
 		login: function () {
-			let username = this.get('username');
-			let password = this.get('password');
+			let username = this.get("username")
+			let password = this.get("password")
 			if (!username) {
-				this.shakeButton();
-				Ember.$('#input-username').focus();
-				return;
+				this.shakeButton()
+				Ember.$("#input-username").focus()
+				return
 			}
 			if (!password) {
-				this.shakeButton();
-				Ember.$('#input-password').focus();
-				return;
+				this.shakeButton()
+				Ember.$("#input-password").focus()
+				return
 			}
 
-			this.set('requestRunning', true);
-			let self = this;
+			this.set("requestRunning", true)
+			let self = this
 			Api.login(username, password)
 				.always(function () {
-					self.set('requestRunning', false);
+					self.set("requestRunning", false)
 				}).done(function () {
-					self.transitionToRoute('boxes');
+					self.transitionToRoute("boxes")
 				}).fail(function (jqXHR) {
-					//Show error
+					// Show error
 					Ember.$.snackbar({
 						content: "Failed login: " + jqXHR.responseText,
-						style: 'error',
-						timeout: 3000
-					});
-				});
-		}
+						style: "error",
+						timeout: 3000,
+					})
+				})
+		},
 	},
 
 	shakeButton: function () {
-		let button = Ember.$('#login');
-		button.addClass('animated shake');
-		button.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-			button.removeClass('animated shake');
-		});
-	}
-});
+		let button = Ember.$("#login")
+		button.addClass("animated shake")
+		button.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
+			button.removeClass("animated shake")
+		})
+	},
+})

@@ -1,4 +1,4 @@
-import Ember from "ember";
+import Ember from "ember"
 
 export default Ember.Object.extend({
 	fn: null,
@@ -6,7 +6,7 @@ export default Ember.Object.extend({
 
 	init: function () {
 		if (!this.email) {
-			this.email = [];
+			this.email = []
 		}
 	},
-});
+})

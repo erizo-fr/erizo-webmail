@@ -1,60 +1,60 @@
 <div id="page-content">
-    <div class="container-fluid">
-        <div class="thread">
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- Back -->
-                    {{#link-to 'box' class="btn btn-xs btn-primary"}}<i class="mdi-navigation-arrow-back small"></i>{{/link-to}}
-                    
-                    <!-- Move -->
-                    <div class="btn-group">
-                        <a href="#" data-target="#" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-inbox small"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)">Inbox</a>
-                            </li>
-                            <li><a href="javascript:void(0)">Box1</a>
-                            </li>
-                            <li><a href="javascript:void(0)">Box2</a>
-                            </li>
-                            <li><a href="javascript:void(0)">Box3</a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Delete -->
-                    <a class="btn btn-xs btn-primary" {{action "deleteMessage"}}><i class="mdi-action-delete small"></i></a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="message-object">
-                        {{model.envelope.subject}}
-                    </div>
-                </div>
-            </div>
+	<div class="container-fluid">
+		<div class="thread">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- Back -->
+					{{#link-to "box" class="btn btn-xs btn-primary"}}<i class="mdi-navigation-arrow-back small"></i>{{/link-to}}
+					
+					<!-- Move -->
+					<div class="btn-group">
+						<a href="#" data-target="#" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-inbox small"></i></a>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:void(0)">Inbox</a>
+							</li>
+							<li><a href="javascript:void(0)">Box1</a>
+							</li>
+							<li><a href="javascript:void(0)">Box2</a>
+							</li>
+							<li><a href="javascript:void(0)">Box3</a>
+							</li>
+						</ul>
+					</div>
+					
+					<!-- Delete -->
+					<a class="btn btn-xs btn-primary" {{action "deleteMessage"}}><i class="mdi-action-delete small"></i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="message-object">
+						{{model.envelope.subject}}
+					</div>
+				</div>
+			</div>
 
-            <!-- Message -->
-            {{thread-message model=model}}
+			<!-- Message -->
+			{{thread-message model=model}}
 
-            <!-- Message composer -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="thread-element media">
-                        <!-- Icon -->
-                        <div class="media-left">
-                            <div class="avatar">
-                                <i class="mdi-social-person"></i>
-                            </div>
-                        </div>
-                        {{thread-message-composer newMessage=newMessage lastMessage=model}}
-                    </div>
-                </div>
-            </div>
+			<!-- Message composer -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="thread-element media">
+						<!-- Icon -->
+						<div class="media-left">
+							<div class="avatar">
+								<i class="mdi-social-person"></i>
+							</div>
+						</div>
+						{{thread-message-composer newMessage=newMessage lastMessage=model}}
+					</div>
+				</div>
+			</div>
 
-            <!-- Send button -->
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" {{action 'sendMessage'}}>Send</button>
-            </div>
-        </div>
-    </div>
+			<!-- Send button -->
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary" {{action "sendMessage"}}>Send</button>
+			</div>
+		</div>
+	</div>
 </div>

@@ -1,8 +1,8 @@
-import Ember from "ember";
+import Ember from "ember"
 
 export default Ember.Route.extend({
 	model: function () {
-        //TODO
-		return {};
-	}
-});
+		// TODO
+		return {}
+	},
+})

@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import Ember from "ember"
 
 export default Ember.Component.extend({
-	classNames: ['draggableItem'],
-	attributeBindings: ['draggable'],
-	draggable: 'true',
+	classNames: ["draggableItem"],
+	attributeBindings: ["draggable"],
+	draggable: "true",
 
-	dragStart(event) {
-		return event.dataTransfer.setData('text/data', this.get('content'));
-	}
-});
+	dragStart (event) {
+		return event.dataTransfer.setData("text/data", this.get("content"))
+	},
+})

@@ -1,25 +1,24 @@
-import Ember from "ember";
-
+import Ember from "ember"
 
 export default Ember.Object.extend({
-    part: null,
-    enveloppe: null,
-    date: null,
-    uid: null,
-    seq: null,
-    flags: null,
-	
+	part: null,
+	enveloppe: null,
+	date: null,
+	uid: null,
+	seq: null,
+	flags: null,
+
 	hasAttachment: function () {
-        if(!this.get('part')) {
-			return null; //Struct element has not been fetched
+		if (!this.get("part")) {
+			return null // Struct element has not been fetched
 		}
-		return this.get('part').hasAttachments();
-    }.property('part'),
-	
+		return this.get("part").hasAttachments()
+	}.property("part"),
+
 	isSeen: function () {
-        if(!this.get('flags')) {
-			return null; //flags element has not been fetched
+		if (!this.get("flags")) {
+			return null // flags element has not been fetched
 		}
-		return this.get('flags').indexOf('\\Seen') !== -1;
-    }.property('flags')
-});
+		return this.get("flags").indexOf("\\Seen") !== -1
+	}.property("flags"),
+})
