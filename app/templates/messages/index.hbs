@@ -1,13 +1,15 @@
 <!-- Bottom bar -->
-<nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom nav-erizo" role="navigation" style="display:none">
-	<div class="container-fluid">
-		<div class="text-center">
-			<button {{action "deleteSelectedMessages"}} class="btn btn-flat btn-default">
-				<i class="mdi-action-delete"></i>
-			</button>
+{{#if hasSelectedMessages}}
+	<nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom nav-erizo" role="navigation">
+		<div class="container-fluid">
+			<div class="text-center">
+				<button {{action "deleteSelectedMessages"}} class="btn btn-flat btn-default">
+					<i class="mdi-action-delete"></i>
+				</button>
+			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
+{{/if}}
 
 <div id="page-content">
 	<div class="container-fluid">
@@ -17,10 +19,27 @@
 					<div class="message-list">
 						{{#each messageCategory in model}}
 							<div class="message-list-group">
-								<p class="message-list-group-title">{{messageCategory.label}}</p>
+								<p class="message-list-group-title">{{messageCategory.name}}</p>
 
-								{{#each message in messageCategory.messages}}
-									{{message-row model=message}}
+								{{#each message in messageCategory.messages itemController="message-row"}}
+									<div {{bind-attr class=":message-row message.model.isSeen::seen" }}>
+										<p class="message-row-date pull-right">{{date-formatter message.model.date null "message-list"}}</p>
+										<div class="checkbox message-row-selector message-column">
+											<label>
+												{{input type="checkbox" checked=message.isSelected}}
+											</label>
+										</div>
+										<div class="message-row-icon message-column">
+											<i class="mdi-social-person"></i>
+										</div>
+										{{#link-to "message" message.model.uid}}
+											<p class="message-row-from message-column">{{#each from in message.model.envelope.from}}{{mail-address model=from}}{{/each}}</p>
+											<p class="message-row-content message-column">
+												<span class="message-row-subject">{{message.model.envelope.subject}}</span>
+												<span class="message-row-preview">{{message.model.previewMessage}}</span>
+											</p>
+										{{/link-to}}
+									</div>
 									<div class="message-list-separator"></div>
 								{{/each}}
 

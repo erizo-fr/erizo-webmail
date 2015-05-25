@@ -1,7 +1,8 @@
 import Ember from "ember"
 
-export default Ember.Component.extend({
+export default Ember.ObjectController.extend({
 	model: null,
+	isSelected: false,
 
 	isSeen: function () {
 		var model = this.get("model")

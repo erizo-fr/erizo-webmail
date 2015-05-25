@@ -21,4 +21,11 @@ export default Ember.Object.extend({
 		}
 		return this.get("flags").indexOf("\\Seen") !== -1
 	}.property("flags"),
+
+	previewMessage: function () {
+		if (!this.get("part")) {
+			return ""
+		}
+		return this.get("part").get("previewMessage")
+	}.property("part.previewMessage"),
 })
