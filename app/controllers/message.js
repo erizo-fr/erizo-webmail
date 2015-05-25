@@ -22,10 +22,13 @@ export default Ember.ObjectController.extend({
 			var box = this.get("controllers.box.model")
 			// Get the message id
 			var message = this.get("model")
-			Ember.Logger.info("Delete message#" + message.uid + " in box#" + box.path)
 			var self = this
-			Api.deleteMessage(box.path, message.uid)
+			Api.deleteMessage(box, message)
 				.done(function () {
+					Ember.$.snackbar({
+						content: "Message deleted",
+						timeout: 3000,
+					})
 					self.transitionToRoute("box")
 				}).fail(function (jqXHR, textStatus) {
 					Ember.Logger.error("Failed to delete the message: " + textStatus)

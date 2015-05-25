@@ -6,35 +6,36 @@ import MessagesCategoryFactory from "erizo-webmail/models/factories/messagesCate
 export default Ember.ArrayController.extend({
 	needs: ["messages", "box"],
 
-	messageRowElements: [],
-
 	currentPage: -1,
 	pageSize: 10,
 	isMessagesLoading: false,
 	hasMorePages: false,
 
-	allSelectedMessages: Ember.computed.filterBy("messageRowElements", "isSelected", true),
-	totalSelectedMessageCount: Ember.computed.alias("allSelectedMessages.length"),
-	hasSelectedMessages: Ember.computed.gt("totalSelectedMessageCount", 0),
+	messagesControllers: [],
+	selectedMessagesControllers: Ember.computed.filterBy("messagesControllers", "isSelected", true),
+	selectedMessageCount: Ember.computed.alias("selectedMessagesControllers.length"),
+	hasSelectedMessages: Ember.computed.gt("selectedMessageCount", 0),
 
 	init: function () {
 		this._super.apply(this, arguments)
+
 		// Init resize event handler to update page size
 		let self = this
 		Ember.$(window).resize(function () {
 			Ember.Logger.debug("Page resized event has been triggered: Updating message page size")
 			self.updatePageSize()
 		})
+
 		// Update page size
 		this.updatePageSize()
 	},
 
 	actions: {
 		registerMessageRow: function (messageRow) {
-			this.get("messageRowElements").addObject(messageRow)
+			this.get("messagesControllers").addObject(messageRow)
 		},
 		unregisterMessageRow: function (messageRow) {
-			this.get("messageRowElements").removeObject(messageRow)
+			this.get("messagesControllers").removeObject(messageRow)
 		},
 
 		loadMoreMessages: function () {
@@ -42,10 +43,27 @@ export default Ember.ArrayController.extend({
 		},
 		deleteSelectedMessages: function () {
 			Ember.Logger.debug("Action received: Delete selected messages")
-			Ember.Logger.warn("TODO")
-		},
-		selectMessage: function () {
 
+			let box = this.get("controllers.box.model")
+			let self = this
+			this.get("selectedMessagesControllers").forEach(function (messageController) {
+				var message = messageController.get("model")
+				Api.deleteMessage(box, message)
+					.done(function () {
+						self.unloadMessage(message)
+						Ember.$.snackbar({
+							content: "Message deleted",
+							timeout: 3000,
+						})
+					}).fail(function (jqXHR, textStatus) {
+						Ember.Logger.error("Failed to delete the message: " + textStatus)
+						Ember.$.snackbar({
+							content: "The server can not delete the message: " + textStatus,
+							style: "error",
+							timeout: 3000,
+						})
+					})
+			})
 		},
 	},
 
@@ -57,7 +75,7 @@ export default Ember.ArrayController.extend({
 		this.set("pageSize", pageSize)
 	},
 
-	insertMessage: function (message) {
+	loadMessage: function (message) {
 		// Try to insert the message into existing categories
 		let categories = this.get("model")
 		for (let i = 0; i < categories.length; i++) {
@@ -97,6 +115,24 @@ export default Ember.ArrayController.extend({
 			}
 		}
 		this.get("model").pushObject(MessagesCategoryFactory.create(newCategoryData))
+	},
+
+	unloadMessage: function (message) {
+		let categories = this.get("model")
+		for (let i = 0; i < categories.length; i++) {
+			if (categories[i].get("messages").contains(message)) {
+				// Remove the message from the category
+				Ember.Logger.debug("Message#" + message.get("uid") + " removed from controller list")
+				categories[i].get("messages").removeObject(message)
+
+				// Remove the category if empty
+				if (categories[i].get("messages").length === 0) {
+					categories.removeObject(categories[i])
+				}
+				return
+			}
+		}
+		Ember.Logger.warn("The Message#" + message.get("uid") + " can not be found in the controller list")
 
 	},
 
@@ -134,7 +170,7 @@ export default Ember.ArrayController.extend({
 				// Insert the messages
 				var newMessagesReversed = newMessages.reverse()
 				Ember.$.each(newMessagesReversed, function (index, message) {
-					self.insertMessage(message)
+					self.loadMessage(message)
 				})
 
 				// Update var

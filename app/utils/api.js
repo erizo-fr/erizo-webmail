@@ -386,12 +386,12 @@ export default Ember.Object.extend({
 	// URL: DELETE /boxes/:boxPath/messages/:messageId
 	// #####################################################
 
-	deleteMessage: function (boxPath, messageId) {
-		Ember.Logger.debug("deleteMessage(" + boxPath + ", " + messageId + ")")
-		Ember.Logger.assert(boxPath)
-		Ember.Logger.assert(messageId)
+	deleteMessage: function (box, message) {
+		Ember.Logger.assert(box)
+		Ember.Logger.assert(message)
+		Ember.Logger.info("Delete message#" + message.get("uid") + " in box#" + box.path)
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + messageId,
+			url: REST_SERVER + "/boxes/" + box.path + "/messages/" + message.get("uid"),
 			type: "DELETE",
 		})
 	},
