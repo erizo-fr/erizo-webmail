@@ -1,16 +1,25 @@
 #!/bin/bash
 
+# Install user conf
+/vagrant/scripts/steps/user-conf.sh
+
 # Install build tools
-$(dirname $0)/steps/build-tools.sh
+/vagrant/scripts/steps/build-tools.sh
+
+# Installing IMAP server
+/vagrant/scripts/steps/imap.sh
+
+# Installing IMAP server
+/vagrant/scripts/steps/smtp.sh
 
 # Installing NodeJS
-$(dirname $0)/steps/node.sh
+/vagrant/scripts/steps/node.sh
 
 # Install watchman
-$(dirname $0)/steps/watchman.sh
+/vagrant/scripts/steps/watchman.sh
 
 # Erizo webmail - API
-$(dirname $0)/steps/erizo-webmail-api.sh
+/vagrant/scripts/steps/erizo-webmail-api.sh
 
 # Erizo webmail - front app
-$(dirname $0)/steps/erizo-webmail.sh
+/vagrant/scripts/steps/erizo-webmail.sh
