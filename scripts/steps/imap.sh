@@ -8,8 +8,6 @@ echo "--------------------------------------------------"
 command -v node >/dev/null 2>&1 || {
 	echo "Installing ..."
 	apt-get install -y dovecot-imapd dovecot-lmtpd
-} else {
-	echo "Dovecot is already installed ... skipping"
 }
 
 echo "Configuring ..."
