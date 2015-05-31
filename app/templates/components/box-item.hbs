@@ -1,10 +1,10 @@
-<a href="#" {{action "click"}}>
+<a href="#" {{action "click"}} {{bind-attr class="isActive:active"}}>
 	<i {{bind-attr class="boxIcon :small"}}></i> {{box.name}}
 </a>
 {{#if box.children}}
 <ul class="nav navmenu-nav">
 	{{#each child in box.children}}
-		{{box-item box=child clickAction="childBoxItemClick"}}
+		{{box-item box=child clickAction="childBoxItemClick" hiddenBoxes=hiddenBoxes activeBoxes=activeBoxes}}
 	{{/each}}
 </ul>
 {{/if}}

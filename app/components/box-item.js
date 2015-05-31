@@ -2,6 +2,34 @@ import Ember from "ember"
 
 export default Ember.Component.extend({
 	tagName: "li",
+	classNameBindings: ["isHidden:hidden"],
+	hiddenBoxes: [],
+	activeBoxes: [],
+
+	boxIcon: function () {
+		var iconClass = "mdi-content-inbox"
+		var box = this.get("box")
+		if (box) {
+			if (box.get("isTrashBox")) {
+				iconClass = "mdi-action-delete"
+			} else if (box.get("isSentBox")) {
+				iconClass = "mdi-content-send"
+			} else if (box.get("isDraftBox")) {
+				iconClass = "mdi-content-drafts"
+			}
+		} else {
+			Ember.Logger.warn("No box defined into BoxItemComponent")
+		}
+		return iconClass
+	}.property("box"),
+
+	isActive: function () {
+		return this.isInBoxList(this.get("activeBoxes"))
+	}.property("activeBoxes"),
+
+	isHidden: function () {
+		return this.isInBoxList(this.get("hiddenBoxes"))
+	}.property("hiddenBoxes"),
 
 	actions: {
 		click: function () {
@@ -13,23 +41,19 @@ export default Ember.Component.extend({
 		},
 	},
 
-	boxIcon: function () {
-		var iconClass = "mdi-content-inbox"
-		var box = this.get("box")
-		if (box) {
-			var boxAttribs = box.special_use_attrib
-			if (boxAttribs === "\\Drafts") {
-				iconClass = "mdi-content-drafts"
-			} else if (boxAttribs === "\\Sent") {
-				iconClass = "mdi-content-send"
-			} else if (boxAttribs === "\\Trash") {
-				iconClass = "mdi-action-delete"
-			} else if (boxAttribs === "\\Trash") {
-				iconClass = "mdi-action-delete"
+	isInBoxList: function (boxes) {
+		let boxPath = this.get("box.path")
+		if (boxes instanceof Array) {
+			for (let i = 0; i < boxes.length; i++) {
+				if (boxes[i].get("path") === boxPath) {
+					return true
+				}
 			}
-		} else {
-			Ember.Logger.warn("No box defined into BoxItemComponent")
+		} else if (boxes) {
+			if (boxes.get("path") === boxPath) {
+				return true
+			}
 		}
-		return iconClass
-	}.property("box"),
+		return false
+	},
 })

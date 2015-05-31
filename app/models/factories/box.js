@@ -34,18 +34,51 @@ export default Ember.Object.extend({
 
 	createArray: function (json, parent) {
 		let self = this
+		let result
 		if (json instanceof Array) {
-			let result = []
+			result = []
 			json.forEach(function (element) {
 				result.push(self.create(element, parent))
 			})
-			return result
 		} else {
 			// Convert api object to array
-			return Ember.$.map(json, function (value, index) {
+			result = Ember.$.map(json, function (value, index) {
 				value.name = index
 				return [self.create(value, parent)]
 			})
 		}
+
+		return this.sortArray(result)
+	},
+
+	sortArray: function (boxes) {
+		return boxes.sort(function (box1, box2) {
+			if (box1 === null && box2 === null) {
+				return 0
+			}
+			if (box1 === null || box2 === null) {
+				return box1 === null ? 1 : -1
+			}
+
+			if (box1.name === box2.name) {
+				return 0
+			}
+
+			// Inbox first
+			if (box1.get("name") === "INBOX") {
+				return -1
+			}
+			if (box2.get("name") === "INBOX") {
+				return 1
+			}
+
+			// Special attributes then
+			if (box1.get("isSpecialBox") !== box2.get("isSpecialBox")) {
+				return box1.get("isSpecialBox") ? -1 : 1
+			}
+
+			// Others
+			return box1.get("name") > box2.get("name") ? 1 : -1
+		})
 	},
 }).create()

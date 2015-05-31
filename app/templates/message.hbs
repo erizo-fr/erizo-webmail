@@ -9,9 +9,9 @@
 					<!-- Move -->
 					<div class="btn-group">
 						<a href="#" data-target="#" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-inbox small"></i></a>
-						<ul class="dropdown-menu">
+						<ul class="box-selector dropdown-menu">
 							{{#each box in controllers.boxes}}
-								{{box-item box=box clickAction="moveMessage"}}
+								{{box-item box=box clickAction="moveMessage" hiddenBoxes=controllers.boxes.selectedBox}}
 							{{/each}}
 						</ul>
 					</div>

@@ -37,6 +37,14 @@ export default Ember.Object.extend({
 		return this.get("attribs").contains("\\Sent")
 	}.property("attribs"),
 
+	isDraftBox: function () {
+		return this.get("attribs").contains("\\Draft")
+	}.property("attribs"),
+
+	isSpecialBox: function () {
+		return this.get("isSentBox") || this.get("isTrashBox")
+	}.property("isSentBox", "isTrashBox"),
+
 	isParentOf: function (boxPath) {
 		return boxPath.startsWith(this.get("path"))
 	},
