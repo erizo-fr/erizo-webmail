@@ -3,8 +3,22 @@ import Api from "erizo-webmail/utils/api"
 
 export default Ember.Route.extend({
 	model: function (param) {
-		var boxPath = param.box
+		let boxPath = param.box
 		Ember.Logger.assert(boxPath)
-		return Api.getBox(boxPath)
+
+		Ember.Logger.debug("Box route, trying to find box#" + boxPath)
+		let boxes = this.modelFor("boxes")
+		Ember.Logger.assert(boxes)
+
+		// Find the box by path
+		for (let i = 0; i < boxes.length; i++) {
+			let box = boxes.get(i)
+			if (box.get("path") === boxPath) {
+				return Api.getBox(box)
+			}
+		}
+
+		Ember.Logger.error("No box is matching the path '" + boxPath + "', redirect to inbox")
+		this.transitionTo("box", "INBOX")
 	},
 })

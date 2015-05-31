@@ -2,6 +2,7 @@ import Ember from "ember"
 import UserDataFactory from "erizo-webmail/models/factories/user-data"
 import ContactFactory from "erizo-webmail/models/factories/contact"
 import MessageFactory from "erizo-webmail/models/factories/message"
+import BoxFactory from "erizo-webmail/models/factories/box"
 import DataCacheUtil from "erizo-webmail/utils/dataCache"
 
 var REST_SERVER = ""
@@ -38,68 +39,15 @@ export default Ember.Object.extend({
 				dataType: "json",
 			}).then(function (boxes) {
 				return self.getBoxesAdapter(boxes)
-			}).then(self.getBoxesSorter)
-			.then(self.getBoxesResultLogger)
+			}).then(self.getBoxesResultLogger)
 	},
 
-	getBoxesAdapter: function (boxes, path) {
-		// Transform object to array
-		var adaptedBoxes = []
-		if (boxes) {
-			for (var boxName in boxes) {
-				if (boxes.hasOwnProperty(boxName)) {
-					var box = boxes[boxName]
-					box.name = boxName
-					box.path = path ? path + box.name : box.name
-					let delimiter = box.delimiter ? box.delimiter : "."
-					box.children = this.getBoxesAdapter(box.children, box.path + delimiter)
-					adaptedBoxes.push(box)
-				}
-			}
-		}
-		return adaptedBoxes
-	},
-
-	getBoxesSorter: function (boxes) {
-		var sortedBoxes = boxes.sort(function (box1, box2) {
-			if (box1 === null && box2 === null) {
-				return 0
-			}
-			if (box1 === null || box2 === null) {
-				return box1 === null ? 1 : -1
-			}
-
-			if (box1.name === box2.name) {
-				return 0
-			}
-
-			// Inbox first
-			if (box1.name === "INBOX") {
-				return -1
-			}
-			if (box2.name === "INBOX") {
-				return 1
-			}
-
-			// Special attributes then
-			if (box1.special_use_attrib && box2.special_use_attrib) {
-				return box1.special_use_attrib > box2.special_use_attrib ? 1 : -1
-			}
-			if (box1.special_use_attrib) {
-				return -1
-			}
-			if (box2.special_use_attrib) {
-				return 1
-			}
-
-			// Others
-			return box1.name > box2.name ? 1 : -1
-		})
-		return sortedBoxes
+	getBoxesAdapter: function (boxes) {
+		return BoxFactory.createArray(boxes)
 	},
 
 	getBoxesResultLogger: function (boxes) {
-		Ember.Logger.debug("boxes=" + JSON.stringify(boxes))
+		Ember.Logger.debug("boxes=" + Ember.inspect(boxes))
 		return boxes
 	},
 
@@ -108,17 +56,18 @@ export default Ember.Object.extend({
 	// URL: GET /boxes/:boxPath
 	// #####################################################
 
-	getBox: function (boxPath) {
+	getBox: function (box) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.debug("getBox(" + boxPath + ")")
-		Ember.Logger.assert(boxPath)
 		let self = this
 		return Ember.$.ajax({
 			url: REST_SERVER + "/boxes/" + boxPath,
 			type: "GET",
 			dataType: "json",
-		}).then(function (box) {
-			box.path = boxPath
-			return box
+		}).then(function (boxDetail) {
+			boxDetail.path = boxPath
+			return boxDetail
 		}).then(self.getBoxResultLogger)
 	},
 
