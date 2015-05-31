@@ -50,8 +50,9 @@ export default Ember.Object.extend({
 				if (boxes.hasOwnProperty(boxName)) {
 					var box = boxes[boxName]
 					box.name = boxName
-					box.path = path === undefined ? box.name : path + box.name
-					box.children = this.getBoxesAdapter(box.children, box.path + box.delimiter)
+					box.path = path ? path + box.name : box.name
+					let delimiter = box.delimiter ? box.delimiter : "."
+					box.children = this.getBoxesAdapter(box.children, box.path + delimiter)
 					adaptedBoxes.push(box)
 				}
 			}
