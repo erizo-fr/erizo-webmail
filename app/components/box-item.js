@@ -8,6 +8,9 @@ export default Ember.Component.extend({
 			Ember.Logger.debug("BoxItemComponent click action triggered")
 			this.sendAction("clickAction", this.get("box"))
 		},
+		childBoxItemClick: function (box) {
+			this.sendAction("clickAction", box)
+		},
 	},
 
 	boxIcon: function () {

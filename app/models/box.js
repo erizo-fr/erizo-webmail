@@ -36,4 +36,8 @@ export default Ember.Object.extend({
 	isSentBox: function () {
 		return this.get("attribs").contains("\\Sent")
 	}.property("attribs"),
+
+	isParentOf: function (boxPath) {
+		return boxPath.startsWith(this.get("path"))
+	},
 })

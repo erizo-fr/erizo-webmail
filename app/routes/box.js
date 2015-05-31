@@ -11,14 +11,23 @@ export default Ember.Route.extend({
 		Ember.Logger.assert(boxes)
 
 		// Find the box by path
+		let box = this.getMatchingBox(boxes, boxPath)
+		if (!box) {
+			Ember.Logger.error("No box is matching the path '" + boxPath + "', redirect to inbox")
+			this.transitionTo("box", "INBOX")
+		} else {
+			return box
+		}
+	},
+
+	getMatchingBox: function (boxes, boxPath) {
 		for (let i = 0; i < boxes.length; i++) {
 			let box = boxes.get(i)
 			if (box.get("path") === boxPath) {
 				return Api.getBox(box)
+			} else if (box.isParentOf(boxPath)) {
+				return this.getMatchingBox(box.get("children"), boxPath)
 			}
 		}
-
-		Ember.Logger.error("No box is matching the path '" + boxPath + "', redirect to inbox")
-		this.transitionTo("box", "INBOX")
 	},
 })
