@@ -3,6 +3,7 @@ import UserDataFactory from "erizo-webmail/models/factories/user-data"
 import ContactFactory from "erizo-webmail/models/factories/contact"
 import MessageFactory from "erizo-webmail/models/factories/message"
 import BoxFactory from "erizo-webmail/models/factories/box"
+import OpenBoxFactory from "erizo-webmail/models/factories/openBox"
 import DataCacheUtil from "erizo-webmail/utils/dataCache"
 
 var REST_SERVER = ""
@@ -65,14 +66,13 @@ export default Ember.Object.extend({
 			url: REST_SERVER + "/boxes/" + boxPath,
 			type: "GET",
 			dataType: "json",
-		}).then(function (boxDetail) {
-			boxDetail.path = boxPath
-			return boxDetail
+		}).then(function (openBoxDetail) {
+			return OpenBoxFactory.create(openBoxDetail, box)
 		}).then(self.getBoxResultLogger)
 	},
 
 	getBoxResultLogger: function (box) {
-		Ember.Logger.debug("box=" + JSON.stringify(box))
+		Ember.Logger.debug("box=" + Ember.inspect(box))
 		return box
 	},
 
@@ -81,9 +81,12 @@ export default Ember.Object.extend({
 	// URL: GET /boxes/:boxPath/order
 	// #####################################################
 
-	getBoxOrder: function (boxPath) {
-		Ember.Logger.debug("getBoxOrder(" + boxPath + ")")
+	getBoxOrder: function (box) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.assert(boxPath)
+		Ember.Logger.debug("getBoxOrder(" + boxPath + ")")
+
 		let self = this
 		return Ember.$.ajax({
 			url: REST_SERVER + "/boxes/" + boxPath + "/order",
@@ -102,7 +105,9 @@ export default Ember.Object.extend({
 	// URL: GET /boxes/:boxPath/messages
 	// #####################################################
 
-	getMessagesBySeqsRange: function (boxPath, seqMin, seqMax) {
+	getMessagesBySeqsRange: function (box, seqMin, seqMax) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.debug("getMessagesBySeqsRange(" + boxPath + ", " + seqMin + ", " + seqMax + ")")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(seqMin)
@@ -122,7 +127,9 @@ export default Ember.Object.extend({
 			.then(self.getMessagesResultLogger)
 	},
 
-	getMessagesByIds: function (boxPath, ids) {
+	getMessagesByIds: function (box, ids) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.debug("getMessagesByIds(" + boxPath + ", " + ids + ")")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(ids)
@@ -158,7 +165,9 @@ export default Ember.Object.extend({
 	// URL: GET /boxes/:boxPath/messages/:messageId
 	// #####################################################
 
-	getMessage: function (boxPath, messageId) {
+	getMessage: function (box, messageId) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.debug("getMessage(" + boxPath + ", " + messageId + ")")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(messageId)
@@ -171,7 +180,9 @@ export default Ember.Object.extend({
 		})
 	},
 
-	downloadBodyPartContent: function (boxPath, message, bodyPart) {
+	downloadBodyPartContent: function (box, message, bodyPart) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		var partId = bodyPart.get("partID")
 		Ember.Logger.assert(partId)
 		// Get part promise
@@ -205,59 +216,69 @@ export default Ember.Object.extend({
 		})
 	},
 
-	downloadPartsContent: function (boxPath, message, parts) {
+	downloadPartsContent: function (box, message, parts) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(message)
 		Ember.Logger.assert(parts)
 		var promises = []
 		for (var i = 0; i < parts.length; i++) {
-			var promise = this.downloadBodyPartContent(boxPath, message, parts[i])
+			var promise = this.downloadBodyPartContent(box, message, parts[i])
 			promises.push(promise)
 		}
 
 		return Ember.RSVP.all(promises)
 	},
 
-	downloadMessagesPreview: function (boxPath, messages) {
+	downloadMessagesPreview: function (box, messages) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(messages)
 		var promises = []
 		for (var i = 0; i < messages.length; i++) {
-			var promise = this.downloadMessagePreview(boxPath, messages[i])
+			var promise = this.downloadMessagePreview(box, messages[i])
 			promises.push(promise)
 		}
 
 		return Ember.RSVP.all(promises)
 	},
 
-	downloadMessagePreview: function (boxPath, message) {
+	downloadMessagePreview: function (box, message) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(message)
 		Ember.Logger.assert(message.get("part"))
 		Ember.Logger.debug("Ask the server for preview parts of message#" + message.get("seq") + " in box#" + boxPath)
 		var parts = message.get("part").get("previewParts")
-		return this.downloadPartsContent(boxPath, message, parts)
+		return this.downloadPartsContent(box, message, parts)
 	},
 
-	downloadMessagesDisplayContent: function (boxPath, messages) {
+	downloadMessagesDisplayContent: function (box, messages) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(messages)
 		var promises = []
 		for (var i = 0; i < messages.length; i++) {
-			var promise = this.downloadMessageDisplayContent(boxPath, messages[i])
+			var promise = this.downloadMessageDisplayContent(box, messages[i])
 			promises.push(promise)
 		}
 
 		return Ember.RSVP.all(promises)
 	},
 
-	downloadMessageDisplayContent: function (boxPath, message) {
+	downloadMessageDisplayContent: function (box, message) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(message)
 		Ember.Logger.assert(message.get("part"))
 		Ember.Logger.debug("Ask the server for displayable parts of message#" + message.get("seq") + " in box#" + boxPath)
 		var parts = message.get("part").get("displayParts")
-		return this.downloadPartsContent(boxPath, message, parts)
+		return this.downloadPartsContent(box, message, parts)
 	},
 
 	// #####################################################
@@ -339,9 +360,10 @@ export default Ember.Object.extend({
 	deleteMessage: function (box, message) {
 		Ember.Logger.assert(box)
 		Ember.Logger.assert(message)
-		Ember.Logger.info("Delete message#" + message.get("uid") + " in box#" + box.path)
+		let boxPath = box.get("path")
+		Ember.Logger.info("Delete message#" + message.get("uid") + " in box#" + boxPath)
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + box.path + "/messages/" + message.get("uid"),
+			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid"),
 			type: "DELETE",
 		})
 	},

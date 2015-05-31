@@ -145,11 +145,11 @@ export default Ember.ArrayController.extend({
 
 		// Get variables
 		var messagesOrder = this.get("controllers.messages.model")
-		var box = this.get("controllers.box.model")
+		let box = this.get("controllers.box.model")
 		var pageSize = this.get("pageSize")
 		var currentPage = this.get("currentPage")
 		var nextPage = currentPage + 1
-		var totalElements = box.messages.total
+		var totalElements = box.get("messageCount")
 		var lastPage = Math.ceil(totalElements / pageSize) - 1
 		if (currentPage >= lastPage) {
 			Ember.Logger.info("Try to load more message (page#" + nextPage + ") but no more pages are available (lastPage: " + lastPage + ")")
@@ -159,13 +159,13 @@ export default Ember.ArrayController.extend({
 		}
 
 		// Load the initial messages
-		Ember.Logger.debug("Getting the message page#" + nextPage + "[" + pageSize + "] of box#" + box.path)
+		Ember.Logger.debug("Getting the message page#" + nextPage + "[" + pageSize + "] of box#" + box.get("path"))
 		var idMin = Math.max(0, nextPage * pageSize)
 		var idMax = Math.min(totalElements - 1, idMin + pageSize) + 1
 		var self = this
 		var ids = messagesOrder.slice(idMin, idMax)
-		Api.getMessagesByIds(box.path, ids).then(function (newMessages) {
-			Api.downloadMessagesPreview(box.path, newMessages).then(function () {
+		Api.getMessagesByIds(box, ids).then(function (newMessages) {
+			Api.downloadMessagesPreview(box, newMessages).then(function () {
 
 				// Insert the messages
 				var newMessagesReversed = newMessages.reverse()

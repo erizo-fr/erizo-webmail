@@ -61,7 +61,7 @@ export default Ember.ObjectController.extend({
 		},
 		moveMessage: function (box) {
 			Ember.Logger.assert(box)
-			Ember.Logger.debug("Action received: Move message to box#" + box.path)
+			Ember.Logger.debug("Action received: Move message to box#" + box.get("path"))
 
 			Ember.Logger.warn("TODO")
 		},
