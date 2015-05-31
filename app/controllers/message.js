@@ -4,7 +4,7 @@ import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
 import NewMessage from "erizo-webmail/models/new-message"
 
 export default Ember.ObjectController.extend({
-	needs: ["box", "account"],
+	needs: ["boxes", "box", "account"],
 
 	newMessage: null,
 
@@ -58,6 +58,12 @@ export default Ember.ObjectController.extend({
 					timeout: 3000,
 				})
 			})
+		},
+		moveMessage: function (box) {
+			Ember.Logger.assert(box)
+			Ember.Logger.debug("Action received: Move message to box#" + box.path)
+
+			Ember.Logger.warn("TODO")
 		},
 
 		goToWriteModeReply: function () {

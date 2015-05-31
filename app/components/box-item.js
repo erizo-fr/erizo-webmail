@@ -3,6 +3,13 @@ import Ember from "ember"
 export default Ember.Component.extend({
 	tagName: "li",
 
+	actions: {
+		click: function () {
+			Ember.Logger.debug("BoxItemComponent click action triggered")
+			this.sendAction("clickAction", this.get("box"))
+		},
+	},
+
 	boxIcon: function () {
 		var iconClass = "mdi-content-inbox"
 		var box = this.get("box")

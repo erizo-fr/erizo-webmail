@@ -10,14 +10,9 @@
 					<div class="btn-group">
 						<a href="#" data-target="#" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-inbox small"></i></a>
 						<ul class="dropdown-menu">
-							<li><a href="javascript:void(0)">Inbox</a>
-							</li>
-							<li><a href="javascript:void(0)">Box1</a>
-							</li>
-							<li><a href="javascript:void(0)">Box2</a>
-							</li>
-							<li><a href="javascript:void(0)">Box3</a>
-							</li>
+							{{#each box in controllers.boxes}}
+								{{box-item box=box clickAction="moveMessage"}}
+							{{/each}}
 						</ul>
 					</div>
 
