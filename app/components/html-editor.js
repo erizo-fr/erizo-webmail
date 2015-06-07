@@ -1,8 +1,17 @@
 import Ember from "ember"
 
 export default Ember.Component.extend({
+
+	instance: null,
+
 	htmlValue: "",
 	textValue: "",
+
+	htmlValueObserver: function () {
+		if (this.get("instance").getData() !== this.get("htmlValue")) {
+			this.get("instance").setData(this.get("htmlValue"))
+		}
+	}.observes("htmlValue"),
 
 	didInsertElement: function () {
 		// Init CKEditor
@@ -63,5 +72,7 @@ export default Ember.Component.extend({
 			self.set("htmlValue", htmlValue)
 			self.set("textValue", textValue)
 		})
+
+		this.set("instance", instance)
 	},
 })
