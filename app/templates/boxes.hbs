@@ -6,7 +6,7 @@
 			{{#link-to "settings"}}<i class="mdi-action-settings"></i>{{/link-to}}
 		</div>
 	</div>
-	<ul class="box-list nav navmenu-nav">
+	<ul class="box-list box-selector nav navmenu-nav">
 		{{#each box in model}}
 			{{box-item box=box clickAction="selectBox" activeBoxes=selectedBox}}
 		{{/each}}

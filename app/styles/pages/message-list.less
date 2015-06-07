@@ -1,0 +1,87 @@
+.message-list {
+	.message-list-group {
+	    margin-bottom: 15px;
+	}
+
+	.message-list-group-title {
+	    margin: 0;
+	}
+
+	.message-row {
+		width: 100%;
+	    margin: 5px 0;
+
+	    .message-column {
+			display: inline-block;
+		    margin: 0 5px;
+		}
+
+	    .message-date {
+			width: 100px;
+			overflow: hidden;
+		}
+
+		.message-row-icon i {
+		    background: rgba(121, 85, 72, 1);
+			border-radius: 100%;
+		  	text-align: center;
+		  	font-size: 15px;
+		  	color: white;
+			padding: 5px;
+		}
+
+		p {
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+			margin: 0;
+		}
+
+		.message-row-from {
+			width: 150px;
+		}
+
+		.message-row-content {
+			width: calc(~"100% - 355px");
+		}
+
+		.message-row-preview {
+			color: #777;
+		}
+
+		.message-row-subject {
+		    color: #2A2A2A;
+		}
+	}
+
+	.message-row.unseen {
+		  font-weight: bold;
+	}
+}
+
+
+#bottom-toolbar {
+	.buttons {
+		div {
+			display: inline;
+		}
+	}
+}
+
+/*
+ * Loading animation
+ */
+
+.loading-messages {
+    height: 30px;
+    width: 30px;
+    margin: 0 auto;
+
+    i {
+	    font-size: 30px;
+	}
+}
+
+.load-more-messages button {
+    width: 100%;
+}

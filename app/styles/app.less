@@ -3,32 +3,33 @@
 // Override @primary color with one took from _colors.less
 @primary: @brown;
 
-//Bootstrap customizations
-@import './bootstrap';
-
-//Snackbar customizations
-@import './snackbar';
-
-//Selectize customizations
-@import './selectize';
+//Vendos customizations
+@import './vendors/bootstrap';
+@import './vendors/snackbar';
+@import './vendors/selectize';
 
 //Pages
-@import './page-login';
-@import './page-message-list';
-@import './page-message';
+@import './pages/login';
+@import './pages/message-list';
+@import './pages/message';
+
+//Components
+@import './components/avatar';
+@import './components/box-selector';
+@import './components/left-panel';
+@import './components/message-composer';
+@import './components/new-message';
 
 //Tools
 @import './tools';
+
 
 html, body {
     height: 100%;
     background-color: #FAFAFA;
 }
 
-/*
- * Nav bar
- */
-
+//Nav bar
 @media (min-width: 992px) {
     #page-content, .nav-erizo {
         margin-left: 300px;
@@ -42,131 +43,11 @@ html, body {
         display: inherit;
     }
 }
-.navmenu-default .navmenu-nav .active, .navmenu-default .navmenu-nav>.active>a, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a, .navmenu-default .navmenu-nav>.active>a:hover, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:hover, .navmenu-default .navmenu-nav>.active>a:focus, .navbar-default .navbar-offcanvas .navmenu-nav>.active>a:focus {
-    color: #f8f8f8;
-    background-color: rgba(121, 85, 72, 1);
-}
-
-.navmenu-default .navmenu-nav>li>a.active:hover, .navmenu-default .navmenu-nav>li>a.active:focus {
-    color: #f8f8f8;
-    background-color: rgba(121, 85, 72, 1);
-}
 
 
-/*
- * Message list
- */
-
-.message-list .message-row {
-	width: 100%;
-    margin: 5px 0;
-}
-
-.message-list .message-row .message-date {
-	width: 100px;
-	overflow: hidden;
-}
-
-.message-list .message-row .message-column {
-	display: inline-block;
-    margin: 0 5px;
-}
-
-.message-list .message-row .message-row-icon i {
-    background: rgba(121, 85, 72, 1);
-	border-radius: 100%;
-  	text-align: center;
-  	font-size: 15px;
-  	color: white;
-	padding: 5px;
-}
-
-.message-list .message-row p {
-	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-	margin: 0;
-}
-
-.message-list .message-row .message-row-from {
-	width: 150px;
-}
-
-.message-list .message-row .message-row-content {
-	width: calc(~"100% - 355px");
-}
-
-.message-list .message-row .message-row-preview {
-	color: #777;
-}
-
-.message-list .message-row .message-row-subject {
-    color: #2A2A2A;
-}
-
-.message-list-group {
-    margin-bottom: 15px;
-}
-
-.message-list-group-title {
-    margin: 0;
-}
-
-.rotation {
-	-webkit-animation: spin-reverse 1s linear infinite;
-    -moz-animation: spin-reverse 1s linear infinite;
-    animation: spin-reverse 1s linear infinite;
-}
 
 
-/*
- * Loading animation
- */
 
-.loading-messages {
-    height: 30px;
-    width: 30px;
-    margin: 0 auto;
-}
-
-.loading-messages i {
-    font-size: 30px;
-}
-
-.load-more-messages button {
-    width: 100%;
-}
-
-/*
- * Globals
- */
-
- @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
- @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
- @keyframes spin { 100% { transform:rotate(360deg); } }
-
- @-moz-keyframes spin-reverse { 100% { -moz-transform: rotate(-360deg); } }
- @-webkit-keyframes spin-reverse { 100% { -webkit-transform: rotate(-360deg); } }
- @keyframes spin-reverse { 100% { transform:rotate(-360deg); } }
-
-
-/* Increase checkbox animation speed */
-
-//.checkbox input[type=checkbox]:checked~.check:before {
-//    animation: checkbox-on .1s linear forwards;
-//}
-
-
-.avatar {
-    line-height: 40px;
-    background: rgba(121, 85, 72, 1);
-    border-radius: 100%;
-    text-align: center;
-    font-size: 20px;
-    color: white;
-    width: 40px;
-    height: 40px;
-}
 /*
  * Bottom bar
  */
@@ -191,17 +72,7 @@ html, body {
     padding-top: 50px;
 }
 
-/*
- * Drop down menu
- */
-.dropdown-menu {
-	border-radius: 0;
-}
 
-.dropdown-menu hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
 
 /*
  * Top bar
@@ -216,313 +87,10 @@ html, body {
     right: 200px;
     background-color: white
 }
-.navbar .navbar-form {
-    margin-top: 8px;
-}
-/*
- * Left bar
- */
-
-#left-panel {
-    /* Avoid shadows to lay on the panel */
-
-    z-index: 1040;
-    background-color: #FFF;
-}
-#left-panel .box-list i {
-    vertical-align: middle;
-    margin-right: 10px;
-}
-#left-panel .top {
-    font-size: 18px;
-    line-height: 20px;
-    border-bottom: 1px solid #D5D5D5;
-    padding: 15px;
-    margin-top: 0;
-    margin-bottom: 30px;
-    margin-left: 0;
-    margin-right: 0;
-}
-#left-panel .top a {
-    text-decoration: none;
-}
-#left-panel .top .parameter-button {
-    float: right;
-    cursor: pointer;
-    vertical-align: middle;
-}
-#left-panel .bottom {
-    position: absolute;
-    bottom: 0;
-}
-
-#left-panel li>ul {
-    padding-left: 15px;
-}
-
-/*
- * Thread element
- */
-
-.thread-element {
-    padding-top: 7px;
-    padding-bottom: 7px;
-}
-.thread-element .media-body {
-    width: 100%;
-}
-/*
- * Message component
- */
-
-.message {
-    border-bottom: 1px solid #D5D5D5;
-}
-.message iframe {
-    width: 100%;
-}
-.message .message-body {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-.message .message-header {
-    margin-bottom: 15px;
-}
-.message-object {
-    border-bottom: 1px solid #D5D5D5;
-    padding-bottom: 15px;
-    font-size: 18px;
-}
-.message.collapsed .message-header {
-    margin-bottom: 0;
-}
-.message.collapsed .message-body {
-    display: none;
-}
-.message.collapsed .message-header-meta-to {
-    display: none;
-}
-.message.collapsed .message-header-meta-from .email {
-    display: none;
-}
-.message .message-header-meta-body-preview {
-    display: none;
-}
-.message .message-header-meta-body-preview p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin: 0;
-}
-.message.collapsed .message-header-meta-body-preview {
-    display: block;
-}
-
-/*
- * Thread composer
- */
-
-/*Show thread composer only if write-mode class is active*/
- .thread-composer {
-     display: none;
- }
- .thread-composer-parent.write-mode .thread-composer {
-     display: block;
- }
-
-.thread-composer-row {
-     width: 100%;
-     margin: 0;
-     padding: 0;
-     border-top: 1px solid #DDD;
-     border-left: 1px solid #DDD;
-     border-right: 1px solid #DDD;
-     background-color: white;
- }
-
-.thread-composer-row.no-border {
-     border-left: 0;
-     border-right: 0;
-     border-top: 0;
- }
-
-.thread-composer-row.no-background {
-     background-color: transparent;
- }
 
 
-/* Row 2 columns */
-.thread-composer-row .thread-composer-row-left {
-     display: none
-}
-
-.thread-composer-row .thread-composer-row-middle {
-     width: calc(~"100% - 60px");
-     display: inline-block;
-}
-
-.thread-composer-row .thread-composer-row-right {
-     width: 50px;
-     display: inline-block;
-}
-
-.thread-composer-row .thread-composer-row-centered {
-     width: 100%;
-}
 
 
-/* Row 3 columns */
-.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-left {
-    width: 50px;
-    display: inline-block;
-}
-
-.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-middle {
-     width: calc(~"100% - 110px");
-     display: inline-block;
-}
-
-.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-right {
-     width: 50px;
-     display: inline-block;
-}
-
-.thread-composer-row.thread-composer-row-tree-columns .thread-composer-row-centered {
-     margin-left: 52px;
-     width: calc(~"100% - 52px");
-}
 
 
- .thread-composer-row input {
-     width: 100%;
-     border: 0;
-     padding: 10px;
- }
 
- .thread-composer .btn-group, .btn-group-vertical {
-     border-radius: 0;
-     margin: 0;
-     box-shadow: 0 0 0 rgba(0, 0, 0, 0.23), 0 0 0 rgba(0, 0, 0, 0.16);
- }
-
- .thread-composer .thread-composer-destination-selector {
-     padding: 8px 0;
-     width: 100%;
-     vertical-align: central;
- }
-
- .thread-composer .cke {
-     background-color: transparent;
-     border: 0;
-     padding: 0;
- }
- .thread-composer .cke .cke_bottom, .thread-composer .cke .cke_top {
-     background-color: transparent;
- }
-
- .thread-composer .cke .cke_contents {
-     border-radius: 0;
- }
-
- /* Show cc if class */
-
- .thread-composer-parent .thread-composer-row-cc {
-     display: none;
- }
- .thread-composer-parent.show-cc .thread-composer-row-cc {
-     display: block;
- }
- .thread-composer-parent.show-cc .cc-link {
-     display: none;
- }
-
- /* Show bcc if class */
-
- .thread-composer-parent .thread-composer-row-bcc {
-     display: none;
- }
- .thread-composer-parent.show-bcc .thread-composer-row-bcc {
-     display: block;
- }
- .thread-composer-parent.show-bcc .bcc-link {
-     display: none;
- }
-
- /* Show subject if class */
-
- .thread-composer-parent .thread-composer-row-subject {
-     display: none;
- }
- .thread-composer-parent.show-subject .thread-composer-row-subject {
-     display: block;
- }
-
-/*
- * Thread precomposer
- */
-
-.thread-precomposer {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #DDD;
-    height: 100px;
-    background-color: white;
-}
-.thread-precomposer a {
-    cursor: pointer;
-}
-.thread-precomposer {
-    display: block;
-}
-.thread-composer-parent.write-mode .thread-precomposer {
-    display: none;
-}
-
-
-/*
- * New message floating area
- */
-
-.bottom-floating-area {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-}
-
-.new-message-floating {
-    display: inline-block;
-    width: 500px;
-    vertical-align: bottom;
-    margin: 0 5px;
-}
-
-.new-message-floating .cke_bottom {
-    margin: 0 5px;
-}
-
-/*
- * New message
- */
-
-.new-message {
-    background: white;
-}
-
-.new-message .new-message-title-bar {
-    background: #795548;
-    padding: 10px;
-}
-
-.new-message .new-message-title-bar,
-.new-message .new-message-title-bar a {
-    color: #f8f8f8;
-    text-decoration: none;
-}
-
-.new-message .new-message-title-bar a {
-    cursor: pointer;
-}
-
-.new-message .new-message-send {
-    margin-left: 5px;
-}

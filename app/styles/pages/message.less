@@ -1,0 +1,66 @@
+.thread-element {
+	padding-top: 7px;
+	padding-bottom: 7px;
+
+	.media-body {
+		width: 100%;
+	}
+}
+
+
+.message-object {
+	border-bottom: 1px solid #D5D5D5;
+	padding-bottom: 15px;
+	font-size: 18px;
+}
+
+
+.message {
+	border-bottom: 1px solid #D5D5D5;
+
+	iframe {
+		width: 100%;
+	}
+
+	.message-header {
+		margin-bottom: 15px;
+	}
+
+	.message-body {
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+
+	.message-header-meta-body-preview {
+		display: none;
+	}
+
+	.message-header-meta-body-preview p {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		margin: 0;
+	}
+}
+
+.message.collapsed {
+	.message-header-meta-to {
+		display: none;
+	}
+
+	.message-header-meta-from .email {
+		display: none;
+	}
+
+	.message-body {
+		display: none;
+	}
+
+	.message-header-meta-body-preview {
+		display: block;
+	}
+
+	.message-header {
+		margin-bottom: 0;
+	}
+}
