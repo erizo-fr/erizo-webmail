@@ -4,7 +4,7 @@ import DateUtil from "erizo-webmail/utils/date"
 import MessagesCategoryFactory from "erizo-webmail/models/factories/messagesCategory"
 
 export default Ember.ArrayController.extend({
-	needs: ["messages", "box"],
+	needs: ["messages", "box", "boxes"],
 
 	currentPage: -1,
 	pageSize: 10,
@@ -41,13 +41,14 @@ export default Ember.ArrayController.extend({
 		loadMoreMessages: function () {
 			this.loadMoreMessages()
 		},
+
 		deleteSelectedMessages: function () {
 			Ember.Logger.debug("Action received: Delete selected messages")
 
 			let box = this.get("controllers.box.model")
 			let self = this
-			this.get("selectedMessagesControllers").forEach(function (messageController) {
-				var message = messageController.get("model")
+			this.get("selectedMessagesControllers").forEach(function (controller) {
+				var message = controller.get("model")
 				Api.deleteMessage(box, message)
 					.done(function () {
 						self.unloadMessage(message)
@@ -64,6 +65,29 @@ export default Ember.ArrayController.extend({
 						})
 					})
 			})
+		},
+
+		moveSelectedMessages: function (newBox) {
+			Ember.Logger.debug("Action received: Move selected messages")
+			let currentBox = this.get("controllers.box.model")
+			this.get("selectedMessagesControllers").forEach(function (controller) {
+				var message = controller.get("model")
+				Api.moveMessage(currentBox, message, newBox).done(function () {
+					Ember.$.snackbar({
+						content: "Message moved to " + newBox.get("name") + " !",
+						timeout: 3000,
+					})
+				}).fail(function () {
+					Ember.$.snackbar({
+						content: "Failed to move the message :(<br/>Maybe you should try to move it later",
+						style: "error",
+						timeout: 3000,
+					})
+				})
+			})
+
+			// Update the page
+			this.transitionToRoute("box")
 		},
 	},
 

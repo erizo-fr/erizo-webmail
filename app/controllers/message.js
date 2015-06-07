@@ -59,11 +59,27 @@ export default Ember.ObjectController.extend({
 				})
 			})
 		},
-		moveMessage: function (box) {
-			Ember.Logger.assert(box)
-			Ember.Logger.debug("Action received: Move message to box#" + box.get("path"))
+		moveMessage: function (newBox) {
+			Ember.Logger.assert(newBox)
+			Ember.Logger.debug("Action received: Move message to box#" + newBox.get("path"))
 
-			Ember.Logger.warn("TODO")
+			let self = this
+			Api.moveMessage(this.get("controllers.box.model"), this.get("model"), newBox).done(function () {
+				Ember.$.snackbar({
+					content: "Message moved to " + newBox.get("name") + " !",
+					timeout: 3000,
+				})
+
+				// Go the the boxes route
+				self.transitionToRoute("box")
+
+			}).fail(function () {
+				Ember.$.snackbar({
+					content: "Failed to move the message :(<br/>Maybe you should try to move it later",
+					style: "error",
+					timeout: 3000,
+				})
+			})
 		},
 
 		goToWriteModeReply: function () {

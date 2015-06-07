@@ -2,10 +2,22 @@
 {{#if hasSelectedMessages}}
 	<nav id="bottom-toolbar" class="navbar navbar-default navbar-fixed-bottom nav-erizo" role="navigation">
 		<div class="container-fluid">
-			<div class="text-center">
+			<div class="buttons text-center">
 				<button {{action "deleteSelectedMessages"}} class="btn btn-flat btn-default">
 					<i class="mdi-action-delete"></i>
 				</button>
+
+				<!-- Move -->
+				<div class="dropup">
+					<button data-target="#" data-toggle="dropdown" class="btn btn-flat btn-default">
+						<i class="mdi-content-inbox"></i>
+					</button>
+					<ul class="box-selector-small dropdown-menu">
+						{{#each box in controllers.boxes}}
+							{{box-item box=box clickAction="moveSelectedMessages" hiddenBoxes=controllers.boxes.selectedBox}}
+						{{/each}}
+					</ul>
+				</div>
 			</div>
 		</div>
 	</nav>
@@ -22,7 +34,7 @@
 								<p class="message-list-group-title">{{messageCategory.name}}</p>
 
 								{{#each message in messageCategory.messages itemController="message-row"}}
-									<div {{bind-attr class=":message-row message.model.isSeen::seen" }}>
+									<div {{bind-attr class=":message-row message.model.isSeen::unseen" }}>
 										<p class="message-row-date pull-right">{{date-formatter message.model.date null "message-list"}}</p>
 										<div class="checkbox message-row-selector message-column">
 											<label>

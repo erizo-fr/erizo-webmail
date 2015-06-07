@@ -369,6 +369,33 @@ export default Ember.Object.extend({
 	},
 
 	// #####################################################
+	// Move message
+	// URL: PATCH /boxes/:boxPath/messages/:messageId
+	// #####################################################
+
+	moveMessage: function (box, message, newBox) {
+		Ember.Logger.assert(box)
+		Ember.Logger.assert(message)
+		Ember.Logger.assert(newBox)
+
+		let boxPath = box.get("path")
+		let newBoxPath = newBox.get("path")
+		Ember.Logger.info("Move message#" + message.get("uid") + " in box#" + boxPath + " to box#" + newBoxPath)
+
+		var data = {
+			boxPath: newBoxPath,
+		}
+		var stringData = JSON.stringify(data)
+
+		return Ember.$.ajax({
+			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid"),
+			type: "PATCH",
+			contentType: "application/json",
+			data: stringData,
+		})
+	},
+
+	// #####################################################
 	// Get contacts
 	// URL: GET /contacts?criteria=:criteria&limit=:limit
 	// #####################################################
