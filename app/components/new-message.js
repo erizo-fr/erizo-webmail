@@ -4,6 +4,7 @@ import Api from "erizo-webmail/utils/api"
 export default Ember.Component.extend({
 	newMessage: null,
 	isOpen: true,
+	isSending: false,
 
 	title: function () {
 		var subject = this.get("newMessage").get("subject")
@@ -23,8 +24,17 @@ export default Ember.Component.extend({
 		},
 		sendMessage: function () {
 			Ember.Logger.debug("Action received: Send new message")
+			if (this.get("isSending")) {
+				Ember.Logger.debug("A send request is already running, ignoring ...")
+				return
+			}
+
+			this.set("isSending", true)
 			let self = this
 			Api.sendMessage(this.get("newMessage")).done(function () {
+				// Disable sending state
+				self.set("isSending", false)
+
 				// Show success
 				Ember.$.snackbar({
 					content: "Message sent !",
@@ -32,7 +42,11 @@ export default Ember.Component.extend({
 				})
 				// Close the new message
 				self.sendAction("delete", self.get("newMessage"))
+
 			}).fail(function () {
+				// Disable sending state
+				self.set("isSending", false)
+
 				// Show error
 				Ember.$.snackbar({
 					content: "Failed to send the message :(<br/>Maybe you should try to send it later",

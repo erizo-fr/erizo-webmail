@@ -6,6 +6,7 @@ import NewMessage from "erizo-webmail/models/new-message"
 export default Ember.ObjectController.extend({
 	needs: ["boxes", "box", "account"],
 
+	isSending: false,
 	newMessage: null,
 
 	init: function () {
@@ -41,8 +42,17 @@ export default Ember.ObjectController.extend({
 		},
 		sendMessage: function () {
 			Ember.Logger.debug("Action received: Send new message")
+			if (this.get("isSending")) {
+				Ember.Logger.debug("A send request is already running, ignoring ...")
+				return
+			}
+
 			let self = this
+			this.set("isSending", true)
 			Api.sendMessage(this.get("newMessage")).done(function () {
+				// Disable sending state
+				self.set("isSending", false)
+
 				// Show success
 				Ember.$.snackbar({
 					content: "Message sent !",
@@ -51,6 +61,9 @@ export default Ember.ObjectController.extend({
 				// Go the the boxes route
 				self.transitionToRoute("boxes")
 			}).fail(function () {
+				// Disable sending state
+				self.set("isSending", false)
+
 				// Show error
 				Ember.$.snackbar({
 					content: "Failed to send the message :(<br/>Maybe you should try to send it later",
