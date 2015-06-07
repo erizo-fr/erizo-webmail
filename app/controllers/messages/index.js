@@ -1,7 +1,7 @@
 import Ember from "ember"
 import Api from "erizo-webmail/utils/api"
 import DateUtil from "erizo-webmail/utils/date"
-import MessagesCategoryFactory from "erizo-webmail/models/factories/messagesCategory"
+import MessagesCategoryFactory from "erizo-webmail/models/factories/messages-category"
 
 export default Ember.ArrayController.extend({
 	needs: ["messages", "box", "boxes"],

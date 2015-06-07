@@ -1,5 +1,5 @@
 import Ember from "ember"
-import MessagesCategory from "erizo-webmail/models/messagesCategory"
+import MessagesCategory from "erizo-webmail/models/messages-category"
 
 export default Ember.Object.extend({
 	create: function (json) {
