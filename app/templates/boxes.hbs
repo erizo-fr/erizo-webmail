@@ -8,7 +8,7 @@
 	</div>
 	<ul class="box-list box-selector nav navmenu-nav">
 		{{#each box in model}}
-			{{box-item box=box clickAction="selectBox" activeBoxes=selectedBox}}
+			{{box-item box=box clickAction="selectBox" elementDropped="messageDropped" activeBoxes=selectedBox}}
 		{{/each}}
 	</ul>
 

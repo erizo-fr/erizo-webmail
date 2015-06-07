@@ -7,12 +7,35 @@
 		//Padding on nested box
     	padding-left: 15px;
     }
+
+    .draggableDropzone.activated {
+		color: #f8f8f8;
+  		background-color: #795548;
+
+  		a, a:hover, a:focus {
+  			color: #f8f8f8;
+  		}
+    }
+
+    li>div>a {
+		position: relative;
+		display: block;
+		padding: 10px 15px;
+	}
+
+	li>div>a:hover, li>div>a:focus {
+		text-decoration: none;
+		color: #333;
+		background-color: transparent;
+	}
+
+
 }
 
 .box-selector-small {
 	.box-selector;
 
-	li>a {
+	li>div>a, li a {
 		display: block;
 		padding: 4px 20px;
 		clear: both;

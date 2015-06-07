@@ -378,9 +378,17 @@ export default Ember.Object.extend({
 		Ember.Logger.assert(message)
 		Ember.Logger.assert(newBox)
 
+		return this.moveMessageByUid(box, message.get("uid"), newBox)
+	},
+
+	moveMessageByUid: function (box, messageUid, newBox) {
+		Ember.Logger.assert(box)
+		Ember.Logger.assert(messageUid)
+		Ember.Logger.assert(newBox)
+
 		let boxPath = box.get("path")
 		let newBoxPath = newBox.get("path")
-		Ember.Logger.info("Move message#" + message.get("uid") + " in box#" + boxPath + " to box#" + newBoxPath)
+		Ember.Logger.info("Move message#" + messageUid + " in box#" + boxPath + " to box#" + newBoxPath)
 
 		var data = {
 			boxPath: newBoxPath,
@@ -388,7 +396,7 @@ export default Ember.Object.extend({
 		var stringData = JSON.stringify(data)
 
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid"),
+			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + messageUid,
 			type: "PATCH",
 			contentType: "application/json",
 			data: stringData,

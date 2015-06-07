@@ -39,6 +39,13 @@ export default Ember.Component.extend({
 		childBoxItemClick: function (box) {
 			this.sendAction("clickAction", box)
 		},
+		elementDropped: function (data) {
+			Ember.Logger.debug("BoxItemComponent elementDropped action triggered")
+			this.sendAction("elementDropped", this.get("box"), data)
+		},
+		childBoxElementDropped: function (box, data) {
+			this.sendAction("elementDropped", box, data)
+		},
 	},
 
 	isInBoxList: function (boxes) {
