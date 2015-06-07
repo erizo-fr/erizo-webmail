@@ -58,7 +58,7 @@ export default Ember.Component.extend({
 		var self = this
 		instance.on("change", function () {
 			var htmlValue = instance.getData()
-			var textValue = "" // TODO: Convert HTML content to formatted text
+			var textValue = instance.document.getBody().getText()
 			Ember.Logger.debug("CKEditor onBlur event fired: " + htmlValue)
 			self.set("htmlValue", htmlValue)
 			self.set("textValue", textValue)
