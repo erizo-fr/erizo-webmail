@@ -1,7 +1,7 @@
 import Ember from "ember"
 import Api from "erizo-webmail/utils/api"
 import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
-import NewMessage from "erizo-webmail/models/new-message"
+import NewMessageFactory from "erizo-webmail/models/factories/new-message"
 
 export default Ember.ObjectController.extend({
 	needs: ["boxes", "box", "account"],
@@ -11,7 +11,7 @@ export default Ember.ObjectController.extend({
 
 	init: function () {
 		this._super.apply(this, arguments)
-		var newMessage = NewMessage.create()
+		var newMessage = NewMessageFactory.create()
 		newMessage.from = EmailAddressFactory.createEmailArray(this.get("controllers.account.model.defaultIdentity"))
 		this.set("newMessage", newMessage)
 	},

@@ -4,6 +4,9 @@ import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
 export default Ember.Component.extend({
 	classNames: ["media-body"],
 
+	replyContainer: "<div><p>Previous message: </p><div><message/></div></div>",
+	forwardContainer: "<div><p>Transfered message: </p><div><message/></div></div>",
+
 	isWriteModeReply: false,
 	isWriteModeForward: false,
 	isSubjectVisible: false,
@@ -31,6 +34,12 @@ export default Ember.Component.extend({
 			var newMessage = this.get("newMessage")
 			newMessage.set("subject", "RE: " + lastMessage.envelope.subject)
 			newMessage.set("to", EmailAddressFactory.createEmailArray(lastMessage.envelope.from))
+			if (this.get("lastMessage")) {
+				// Set body from old message
+				let html = this.get("replyContainer").replace("<message/>", this.get("lastMessage.part.htmlMessage"))
+				this.get("newMessage").set("htmlBody", html)
+			}
+
 			this.set("isWriteModeReply", true)
 			this.set("isWriteModeForward", false)
 		},
@@ -39,6 +48,12 @@ export default Ember.Component.extend({
 			var newMessage = this.get("newMessage")
 			newMessage.set("subject", "FWD: " + lastMessage.envelope.subject)
 			newMessage.set("to", [])
+			if (this.get("lastMessage")) {
+				// Set body from old message
+				let html = this.get("forwardContainer").replace("<message/>", this.get("lastMessage.part.htmlMessage"))
+				this.get("newMessage").set("htmlBody", html)
+			}
+
 			this.set("isWriteModeReply", false)
 			this.set("isWriteModeForward", true)
 		},
