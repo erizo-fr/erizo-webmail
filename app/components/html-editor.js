@@ -67,7 +67,7 @@ export default Ember.Component.extend({
 		var self = this
 		instance.on("change", function () {
 			var htmlValue = instance.getData()
-			var textValue = instance.document.getBody().getText()
+			var textValue = Ember.$(htmlValue).text()
 			Ember.Logger.debug("CKEditor onBlur event fired: " + htmlValue)
 			self.set("htmlValue", htmlValue)
 			self.set("textValue", textValue)
