@@ -1,6 +1,6 @@
 <div id="page-content">
 	<div class="container-fluid">
-		<div class="thread">
+		<div class="erizo-thread">
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- Back -->
@@ -22,26 +22,36 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="message-object">
-						{{model.envelope.subject}}
+					<div class="erizo-thread-subject">
+						<h3>{{model.envelope.subject}}</h3>
 					</div>
 				</div>
 			</div>
 
 			<!-- Message -->
-			{{thread-message model=model}}
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="erizo-thread-message">
+						{{thread-message model=model}}
+					</div>
+				</div>
+			</div>
 
 			<!-- Message composer -->
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="thread-element media">
-						<!-- Icon -->
-						<div class="media-left">
-							<div class="avatar">
-								<i class="mdi-social-person"></i>
+					<div class="erizo-thread-element">
+						<div class="erizo-fixeRelative">
+							<!-- Icon -->
+							<div class="erizo-fixeRelative-fixe40">
+								{{contact-avatar model=newMessage.from}}
+							</div>
+
+							<!-- Message -->
+							<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--withPadding erizo-fixeRelative-relative--margin40">
+								{{message-composer newMessage=newMessage lastMessage=model}}
 							</div>
 						</div>
-						{{message-composer newMessage=newMessage lastMessage=model}}
 					</div>
 				</div>
 			</div>

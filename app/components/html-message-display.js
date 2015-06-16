@@ -13,6 +13,7 @@ export default Ember.Component.extend({
 			iframeContent.find("html").html(model)
 			// Set CSS
 			iframeContent.find("html").css("background-color", "rgb(250, 250, 250)")
+			iframeContent.find("body").css("margin", "0")
 			// Resize
 			Ember.Logger.debug("Resizing iframe: " + iframe)
 			var iframBodyHeight = iframeContent.find("html").height()

@@ -43,7 +43,7 @@
 												</label>
 											</div>
 											<div class="message-row-icon message-column">
-												<i class="mdi-social-person"></i>
+												{{contact-avatar model=message.model.envelope.from}}
 											</div>
 											{{#link-to "message" message.model.uid}}
 												<p class="message-row-from message-column">{{#each from in message.model.envelope.from}}{{mail-address model=from}}{{/each}}</p>

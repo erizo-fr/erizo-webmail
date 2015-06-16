@@ -1,54 +1,64 @@
-<div class="row">
-	<div class="col-xs-12">
-		<div {{bind-attr class=":message :thread-element :media collapsed"}}>
-			<!-- Icon -->
-			<div class="media-left">
-				<div class="avatar">
-					<i class="mdi-social-person"></i>
-				</div>
-			</div>
+<div {{bind-attr class=":erizo-threadMessage collapsed:erizo-threadMessage--collapsed"}}>
+	<div class="erizo-fixeRelative">
+		<!-- Icon -->
+		<div class="erizo-fixeRelative-fixe40">
+			{{contact-avatar model=model.envelope.from}}
+		</div>
 
-			<!-- Message -->
-			<div class="media-body">
-				<!-- Header -->
-				<div class="message-header clearfix" {{action "toggleCollapse"}}>
+		<!-- Message -->
+		<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--withPadding erizo-fixeRelative-relative--margin40">
+			<!-- Header -->
+			<div class="erizo-threadMessage-header">
+				<div class="erizo-fixeRelative" {{action "toggleCollapse"}}>
 
 					<!-- Meta -->
-					<div class="message-header-meta pull-left">
+					<div class="erizo-fixeRelative-relative--margin120">
 						<!-- From -->
 						{{#each address in model.envelope.from}}
-							<div class="message-header-meta-from">
-								<strong>{{address.name}}</strong>
-								<span class="email text-muted">{{address.mailbox}}@{{address.host}}</span>
+							<div>
+								<span>From: </span>
+								{{mail-address model=address}}
 							</div>
 						{{/each}}
 
 						<!-- To -->
-						{{#each address in model.envelope.to}}
-							<div class="message-header-meta-to">
-								<strong>{{address.name}}</strong>
-								<span class="email text-muted">{{address.mailbox}}@{{address.host}}</span>
+						{{#if model.envelope.hasTo}}
+							<div>
+								<span>To: </span>
+								{{#each address in model.envelope.to}}
+									{{mail-address model=address collapsed=collapsed}}
+								{{/each}}
 							</div>
-						{{/each}}
+						{{/if}}
 
-						<!-- Body preview -->
-						<div class="message-header-meta-body-preview text-muted">
-							<p>{{model.part.previewMessage}}</p>
-						</div>
+						<!-- Cc -->
+						{{#if model.envelope.hasCc}}
+							<div>
+								<span>Cc: </span>
+								{{#each address in model.envelope.cc}}
+									{{mail-address model=address collapsed=collapsed}}
+								{{/each}}
+							</div>
+						{{/if}}
 					</div>
 
-
 					<!-- Date -->
-					<div class="message-header-date pull-right">
+					<div class="erizo-fixeRelative-fixe120 text-right">
 						{{date-formatter model.date null "ll"}}
 					</div>
 				</div>
-
-				<!-- Body -->
-				<div class="message-body clearfix">
-					{{thread-message-html model=model.part.htmlMessage}}
-				</div>
 			</div>
+
+			<!-- Body -->
+			<div class="erizo-threadMessage-body">
+				{{html-message-display model=model.part.htmlMessage}}
+			</div>
+
+			<!-- Body preview -->
+			<div class="erizo-threadMessage-body-preview" {{action "toggleCollapse"}}>
+				<span class="text-muted">{{model.part.previewMessage}}</span>
+			</div>
+
 		</div>
 	</div>
 </div>

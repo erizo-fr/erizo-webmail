@@ -1,6 +1,7 @@
 import Ember from "ember"
 import Message from "erizo-webmail/models/message"
 import PartFactory from "erizo-webmail/models/factories/part"
+import MessageEnveloppeFactory from "erizo-webmail/models/factories/message-enveloppe"
 
 export default Ember.Object.extend({
 
@@ -11,7 +12,7 @@ export default Ember.Object.extend({
 		}
 
 		if (json.attrs && json.attrs.envelope) {
-			data.envelope = json.attrs.envelope
+			data.envelope = MessageEnveloppeFactory.create(json.attrs.envelope)
 		}
 
 		if (json.attrs && json.attrs.date) {

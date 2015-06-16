@@ -2,8 +2,6 @@ import Ember from "ember"
 import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
 
 export default Ember.Component.extend({
-	classNames: ["media-body"],
-
 	replyContainer: "<div><p>Previous message: </p><div><message/></div></div>",
 	forwardContainer: "<div><p>Transfered message: </p><div><message/></div></div>",
 

@@ -1,5 +1,12 @@
-{{#if model.name}}
-	{{model.name}}
+{{#if collapsed}}
+	{{model.displayName}}
 {{else}}
-	{{model.mailbox}}@{{model.host}}
+	{{#if model.hasName}}
+		{{model.name}} <span class="text-muted">{{model.mailbox}}@{{model.host}}</span>
+	{{else}}
+		{{model.mailbox}}@{{model.host}}
+	{{/if}}
 {{/if}}
+
+
+

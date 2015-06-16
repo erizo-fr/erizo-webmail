@@ -24,6 +24,10 @@ export default Ember.Object.extend({
 		}
 	}.property("address", "name"),
 
+	hasName: function () {
+		return this.get("name") && this.get("name").length > 0
+	}.property("name"),
+
 	toJSON: function () {
 		return {
 			name: this.get("name"),
