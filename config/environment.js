@@ -18,7 +18,7 @@ module.exports = function (environment) {
 			"script-src": "'self' 'unsafe-eval' 'unsafe-inline'",
 			"font-src": "'self'",
 			"connect-src": "'self'",
-			"img-src": "'self' data:",
+			"img-src": "'self' data: www.gravatar.com",
 			"style-src": "'self' 'unsafe-inline'",
 			"media-src": "'self'",
 		},

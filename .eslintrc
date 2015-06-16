@@ -10,6 +10,7 @@ globals:
   window: true
   document: true
   quotedPrintable: true
+  CryptoJS: true
 
 env:
   es6: true
@@ -69,5 +70,9 @@ rules:
   # Camel case
   "camelcase": [2, {"properties": "always"}]
 
-  # Disabl
+  # Disable "exit process" warning
   "no-process-exit": [0]
+
+  # Disable new-cap. Some libs does not match the pattern
+  new-cap: [0]
+

@@ -1,10 +1,10 @@
 /* global require, module */
 
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var mergeTrees = require('broccoli-merge-trees');
-var pickFiles = require('broccoli-static-compiler');
+var EmberApp = require("ember-cli/lib/broccoli/ember-app")
+var mergeTrees = require("broccoli-merge-trees")
+var pickFiles = require("broccoli-static-compiler")
 
-var app = new EmberApp();
+var app = new EmberApp()
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
@@ -19,59 +19,61 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('bower_components/animate.css/animate.min.css');
-app.import('bower_components/moment/moment.js');
-app.import('bower_components/moment-timezone/builds/moment-timezone-with-data.min.js');
-app.import('bower_components/quoted-printable/quoted-printable.js');
-app.import('bower_components/utf8/utf8.js');
+app.import("bower_components/animate.css/animate.min.css")
+app.import("bower_components/moment/moment.js")
+app.import("bower_components/moment-timezone/builds/moment-timezone-with-data.min.js")
+app.import("bower_components/quoted-printable/quoted-printable.js")
+app.import("bower_components/utf8/utf8.js")
 
-//Selectize
-app.import('bower_components/selectize/dist/js/standalone/selectize.min.js');
+// Selectize
+app.import("bower_components/selectize/dist/js/standalone/selectize.min.js")
 
-//Arrive.js
-app.import('bower_components/arrive/minified/arrive.min.js');
+// Arrive.js
+app.import("bower_components/arrive/minified/arrive.min.js")
 
-//SnackbarJS
-app.import('bower_components/snackbarjs/dist/snackbar.min.js');
-app.import('bower_components/snackbarjs/dist/snackbar.min.css');
+// SnackbarJS
+app.import("bower_components/snackbarjs/dist/snackbar.min.js")
+app.import("bower_components/snackbarjs/dist/snackbar.min.css")
 
-//Bootstrap
-app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
-app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
-app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', {
-    destDir: 'fonts'
-});
+// Bootstrap
+app.import("bower_components/bootstrap/dist/css/bootstrap.min.css")
+app.import("bower_components/bootstrap/dist/js/bootstrap.min.js")
+app.import("bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff", {
+	destDir: "fonts",
+})
 
-//Bootstrap - jasny
-app.import('bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css');
-app.import('bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js');
+// Bootstrap - jasny
+app.import("bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css")
+app.import("bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js")
 
-//Bootstrap - Material design
-app.import('bower_components/bootstrap-material-design/dist/css/ripples.min.css');
-app.import('bower_components/bootstrap-material-design/dist/css/ripples.min.css.map', {
-    destDir: 'assets'
-});
-app.import('bower_components/bootstrap-material-design/dist/js/ripples.min.js');
-app.import('bower_components/bootstrap-material-design/dist/js/ripples.min.js.map', {
-    destDir: 'assets'
-});
-app.import('bower_components/bootstrap-material-design/dist/js/material.min.js');
-app.import('bower_components/bootstrap-material-design/dist/fonts/Material-Design-Icons.woff', {
-    destDir: 'fonts'
-});
+// Bootstrap - Material design
+app.import("bower_components/bootstrap-material-design/dist/css/ripples.min.css")
+app.import("bower_components/bootstrap-material-design/dist/css/ripples.min.css.map", {
+	destDir: "assets",
+})
+app.import("bower_components/bootstrap-material-design/dist/js/ripples.min.js")
+app.import("bower_components/bootstrap-material-design/dist/js/ripples.min.js.map", {
+	destDir: "assets",
+})
+app.import("bower_components/bootstrap-material-design/dist/js/material.min.js")
+app.import("bower_components/bootstrap-material-design/dist/fonts/Material-Design-Icons.woff", {
+	destDir: "fonts",
+})
 
-//CKEditor
-var ckeditor = pickFiles('bower_components/ckeditor', {
-   srcDir: '/',
-   destDir: '/assets/ckeditor'
-});
+// Crypto JS
+app.import("bower_components/crypto-js/crypto-js.js")
 
-//CKEditor Bootstrap skin
-var ckeditorSkin = pickFiles('bower_components/bootstrapck4-skin/skins/bootstrapck', {
-   srcDir: '/',
-   destDir: '/assets/bootstrapck'
-});
+// CKEditor
+var ckeditor = pickFiles("bower_components/ckeditor", {
+	srcDir: "/",
+	destDir: "/assets/ckeditor",
+})
 
+// CKEditor Bootstrap skin
+var ckeditorSkin = pickFiles("bower_components/bootstrapck4-skin/skins/bootstrapck", {
+	srcDir: "/",
+	destDir: "/assets/bootstrapck",
+})
 
 // Merge the app tree and our new font assets.
-module.exports = mergeTrees([app.toTree(), ckeditor, ckeditorSkin]);
+module.exports = mergeTrees([app.toTree(), ckeditor, ckeditorSkin])

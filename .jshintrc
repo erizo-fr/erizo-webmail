@@ -6,7 +6,8 @@
 		"moment",
 		"quotedPrintable",
 		"utf8",
-		"CKEDITOR"
+		"CKEDITOR",
+		"CryptoJS"
   	],
 	"browser": true,
 	"boss": true,

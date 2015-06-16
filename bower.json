@@ -24,7 +24,8 @@
     "bootstrap-material-design": "~0.3.0",
     "arrive": "~2.1.0",
     "snackbarjs": "~1.0.0",
-    "selectize": "~0.12.0"
+    "selectize": "~0.12.0",
+    "crypto-js": "~3.1.5"
   },
   "resolutions": {
     "jquery": ">= 1.9.1"
