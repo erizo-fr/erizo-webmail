@@ -6,14 +6,18 @@ export default Ember.Component.extend({
 		this._super()
 		Ember.run.scheduleOnce("afterRender", this, function () {
 			// Get iframe
-			var model = this.get("model")
-			var iframe = this.$("iframe")
-			var iframeContent = iframe.contents()
-			// Set content
-			iframeContent.find("html").html(model)
-			// Set CSS
-			iframeContent.find("html").css("background-color", "rgb(250, 250, 250)")
-			iframeContent.find("body").css("margin", "0")
+			let model = this.get("model")
+			let iframe = this.$("iframe")
+			let iframeContent = iframe.contents()
+
+			// Set BODY
+			iframeContent.find("body").html(model)
+
+			// Set HEAD
+			let head = "<link rel='stylesheet' href='assets/vendor.css'>\n"
+			head += "<link rel='stylesheet' href='assets/erizo-webmail.css'>\n"
+			iframeContent.find("head").append(head)
+
 			// Resize
 			Ember.Logger.debug("Resizing iframe: " + iframe)
 			var iframBodyHeight = iframeContent.find("html").height()
