@@ -14,29 +14,28 @@
 					<!-- Meta -->
 					<div class="erizo-fixeRelative-relative--margin120">
 						<!-- From -->
-						{{#each address in model.envelope.from}}
-							<div>
-								<span>From: </span>
+						<div class="erizo-threadMessage-addressBlock erizo-threadMessage-from">
+							{{#each address in model.envelope.from}}
 								{{mail-address model=address}}
-							</div>
-						{{/each}}
+							{{/each}}
+						</div>
 
 						<!-- To -->
 						{{#if model.envelope.hasTo}}
-							<div>
-								<span>To: </span>
+							<div class="erizo-threadMessage-addressBlock erizo-threadMessage-to">
+								<span>To </span>
 								{{#each address in model.envelope.to}}
-									{{mail-address model=address collapsed=collapsed}}
+									{{mail-address model=address collapsed=true}}
 								{{/each}}
 							</div>
 						{{/if}}
 
 						<!-- Cc -->
 						{{#if model.envelope.hasCc}}
-							<div>
+							<div class="erizo-threadMessage-addressBlock erizo-threadMessage-cc">
 								<span>Cc: </span>
 								{{#each address in model.envelope.cc}}
-									{{mail-address model=address collapsed=collapsed}}
+									{{mail-address model=address collapsed=true}}
 								{{/each}}
 							</div>
 						{{/if}}

@@ -14,3 +14,28 @@
 .erizo-threadMessage-body-preview {
 	display: none;
 }
+
+.erizo-threadMessage-from {
+	&:extend(.erizo-threadMessage-addressBlock);
+	font-weight: bold;
+}
+
+.erizo-threadMessage-to {
+	&:extend(.erizo-threadMessage-addressBlock);
+	color: #777;
+}
+
+.erizo-threadMessage-cc {
+	&:extend(.erizo-threadMessage-addressBlock);
+	color: #777;
+}
+
+.erizo-threadMessage-addressBlock {
+	.erizo-mailAddress:after {
+		content: ", ";
+	}
+
+	.erizo-mailAddress:last-child:after {
+		content: "";
+	}
+}
