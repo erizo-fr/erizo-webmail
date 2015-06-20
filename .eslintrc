@@ -3,7 +3,6 @@ ecmaFeatures:
   jsx: true
 
 globals:
-  CKEDITOR: true
   Ember: true
   moment: true
   utf8: true
@@ -11,6 +10,7 @@ globals:
   document: true
   quotedPrintable: true
   CryptoJS: true
+  Quill: true
 
 env:
   es6: true

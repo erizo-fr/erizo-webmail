@@ -1,0 +1,177 @@
+/*
+* Thread composer
+*/
+
+
+.thread-composer {
+	//Show thread composer only if write-mode class is active
+	display: none;
+
+	.btn-group, .btn-group-vertical {
+		border-radius: 0;
+		margin: 0;
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0.23), 0 0 0 rgba(0, 0, 0, 0.16);
+	}
+
+	.thread-composer-destination-selector {
+		padding: 8px 0;
+		width: 100%;
+		vertical-align: central;
+	}
+
+	.cke {
+		background-color: transparent;
+		border: 0;
+		padding: 0;
+
+		.cke_bottom, .thread-composer .cke .cke_top {
+			background-color: transparent;
+		}
+
+		.cke_contents {
+			border-radius: 0;
+		}
+	}
+}
+
+.thread-composer-parent.write-mode .thread-composer {
+	display: block;
+}
+
+.thread-composer-row {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border-top: 1px solid #DDD;
+	border-left: 1px solid #DDD;
+	border-right: 1px solid #DDD;
+	background-color: white;
+
+	input {
+		width: 100%;
+		border: 0;
+		padding: 10px;
+	}
+
+	/* Row 2 columns */
+	.thread-composer-row-left {
+		display: none
+	}
+
+	.thread-composer-row-middle {
+		width: calc(~"100% - 60px");
+		display: inline-block;
+	}
+
+	.thread-composer-row-right {
+		width: 50px;
+		display: inline-block;
+	}
+
+	.thread-composer-row-centered {
+		width: 100%;
+	}
+}
+
+.thread-composer-row.no-border {
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+}
+
+.thread-composer-row.no-background {
+	background-color: transparent;
+}
+
+
+
+
+/* Row 3 columns */
+.thread-composer-row.thread-composer-row-tree-columns {
+	.thread-composer-row-left {
+		width: 50px;
+		display: inline-block;
+	}
+
+	.thread-composer-row-middle {
+		width: calc(~"100% - 110px");
+		display: inline-block;
+	}
+
+	.thread-composer-row-right {
+		width: 50px;
+		display: inline-block;
+	}
+
+	.thread-composer-row-centered {
+		margin-left: 52px;
+		width: calc(~"100% - 52px");
+	}
+}
+
+
+
+
+
+.thread-composer-parent {
+
+	.thread-composer-row-cc {
+		display: none;
+	}
+
+	.thread-composer-row-bcc {
+		display: none;
+	}
+
+	.thread-composer-row-subject {
+		display: none;
+	}
+}
+
+.thread-composer-parent.show-cc {
+	.thread-composer-row-cc {
+		display: block;
+	}
+	.cc-link {
+		display: none;
+	}
+}
+
+.thread-composer-parent.show-bcc {
+	.thread-composer-row-bcc {
+		display: block;
+	}
+
+	.bcc-link {
+		display: none;
+	}
+}
+
+.thread-composer-parent.show-subject {
+	.thread-composer-row-subject {
+		display: block;
+	}
+}
+
+/*
+* Thread precomposer
+*/
+
+.thread-precomposer {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #DDD;
+	height: 100px;
+	display: block;
+	background-color: white;
+
+	a {
+		cursor: pointer;
+	}
+}
+
+.thread-composer-parent.write-mode {
+	.thread-precomposer {
+		display: none;
+	}
+}

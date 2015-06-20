@@ -1,10 +1,10 @@
 .erizo-fixeRelative {
 	width: 100%;
-	overflow: hidden;
+	display: table;
 }
 
 .erizo-fixeRelative-relative {
-	float: left;
+	display: table-cell;
 }
 
 .erizo-fixeRelative-relative--withPadding {
@@ -68,12 +68,17 @@
 
 // Fixes
 .erizo-fixeRelative-fixe {
-	float: left;
+	display: table-cell;
 }
 
 .erizo-fixeRelative-fixe20 {
 	&:extend(.erizo-fixeRelative-fixe);
 	width: 20px;
+}
+
+.erizo-fixeRelative-fixe30 {
+	&:extend(.erizo-fixeRelative-fixe);
+	width: 30px;
 }
 
 .erizo-fixeRelative-fixe40 {

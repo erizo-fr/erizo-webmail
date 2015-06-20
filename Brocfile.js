@@ -2,7 +2,6 @@
 
 var EmberApp = require("ember-cli/lib/broccoli/ember-app")
 var mergeTrees = require("broccoli-merge-trees")
-var pickFiles = require("broccoli-static-compiler")
 
 var app = new EmberApp()
 
@@ -63,17 +62,8 @@ app.import("bower_components/bootstrap-material-design/dist/fonts/Material-Desig
 // Crypto JS
 app.import("bower_components/crypto-js/crypto-js.js")
 
-// CKEditor
-var ckeditor = pickFiles("bower_components/ckeditor", {
-	srcDir: "/",
-	destDir: "/assets/ckeditor",
-})
-
-// CKEditor Bootstrap skin
-var ckeditorSkin = pickFiles("bower_components/bootstrapck4-skin/skins/bootstrapck", {
-	srcDir: "/",
-	destDir: "/assets/bootstrapck",
-})
+// Quill
+app.import("bower_components/quill/dist/quill.min.js")
 
 // Merge the app tree and our new font assets.
-module.exports = mergeTrees([app.toTree(), ckeditor, ckeditorSkin])
+module.exports = mergeTrees([app.toTree()])

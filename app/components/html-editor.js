@@ -7,68 +7,28 @@ export default Ember.Component.extend({
 	htmlValue: "",
 	textValue: "",
 
+	formattedHtmlValue: function () {
+		return this.get("htmlValue") ? this.get("htmlValue") : ""
+	}.property("htmlValue"),
+
 	htmlValueObserver: function () {
-		if (this.get("instance").getData() !== this.get("htmlValue")) {
-			this.get("instance").setData(this.get("htmlValue"))
+		if (this.get("instance").getHTML() !== this.get("htmlValue")) {
+			this.get("instance").setHTML(this.get("formattedHtmlValue"))
 		}
 	}.observes("htmlValue"),
 
 	didInsertElement: function () {
-		// Init CKEditor
-		var editor = this.$(".html-editor")[0]
-		var instance = CKEDITOR.replace(editor, {
-			// Define changes to default configuration here.
-			// For complete reference see:
-			// http:// docs.ckeditor.com/#!/api/CKEDITOR.config
-
-			// The toolbar groups arrangement, optimized for a single toolbar row.
-			toolbarGroups: [
-				{
-					name: "document",
-					groups: ["mode", "document", "doctools"],
-				}, {
-					name: "editing",
-					groups: ["find", "selection"],
-				}, {
-					name: "forms",
-				}, {
-					name: "basicstyles",
-					groups: ["basicstyles", "cleanup"],
-				}, {
-					name: "paragraph",
-					groups: ["list", "indent", "blocks", "align", "bidi"],
-				}, {
-					name: "links",
-				}, {
-					name: "insert",
-				}, {
-					name: "styles",
-				}, {
-					name: "colors",
-				}, {
-					name: "others",
-				},
-			],
-
-			// The default plugins included in the basic setup define some buttons that
-			// are not needed in a basic editor. They are removed here.
-			removeButtons: "Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript",
-
-			// Dialog windows are also simplified.
-			removeDialogTabs: "link:advanced",
-
-			skin: "bootstrapck,/assets/bootstrapck/",
-
-			toolbarLocation: "bottom",
-			removePlugins: "elementspath",
+		// Init
+		var instance = new Quill(".erizo-htmlEditor-editor", {
+			styles: false,
 		})
-		instance.setData(this.get("htmlValue"))
-		// Update the value when CKEditor content change
+		instance.setHTML(this.get("formattedHtmlValue"))
+
+		// Update the value when content change
 		var self = this
-		instance.on("change", function () {
-			var htmlValue = instance.getData()
+		instance.on("text-change", function () {
+			var htmlValue = instance.getHTML()
 			var textValue = Ember.$(htmlValue).text()
-			Ember.Logger.debug("CKEditor onBlur event fired: " + htmlValue)
 			self.set("htmlValue", htmlValue)
 			self.set("textValue", textValue)
 		})
