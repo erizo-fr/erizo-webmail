@@ -1,13 +1,13 @@
 import Ember from "ember"
 
-export default Ember.ObjectController.extend({
+export default Ember.Component.extend({
 	isSelected: false,
 
 	registerOnParent: function () {
-		this.send("registerMessageRow", this)
+		this.sendAction("register", this)
 	}.on("init"),
 
 	willDestroy: function () {
-		this.send("unregisterMessageRow", this)
+		this.sendAction("unregister", this)
 	},
 })

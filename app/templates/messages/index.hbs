@@ -33,26 +33,9 @@
 							<div class="message-list-group">
 								<p class="message-list-group-title">{{messageCategory.name}}</p>
 
-								{{#each message in messageCategory.messages itemController="message-row"}}
-									{{#draggable-item content=message.model.uid}}
-										<div {{bind-attr class=":message-row message.model.isSeen::unseen" }}>
-											<p class="message-row-date pull-right">{{date-formatter message.model.date null "message-list"}}</p>
-											<div class="checkbox message-row-selector message-column">
-												<label>
-													{{input type="checkbox" checked=message.isSelected}}
-												</label>
-											</div>
-											<div class="message-row-icon message-column">
-												{{contact-avatar model=message.model.envelope.from}}
-											</div>
-											{{#link-to "message" message.model.uid}}
-												<p class="message-row-from message-column">{{#each from in message.model.envelope.from}}{{mail-address model=from}}{{/each}}</p>
-												<p class="message-row-content message-column">
-													<span class="message-row-subject">{{message.model.envelope.subject}}</span>
-													<span class="message-row-preview">{{message.model.previewMessage}}</span>
-												</p>
-											{{/link-to}}
-										</div>
+								{{#each message in messageCategory.messages}}
+									{{#draggable-item content=message.uid}}
+										{{message-row model=message register="registerMessageRow" unregister="unregisterMessageRow"}}
 									{{/draggable-item}}
 									<div class="message-list-separator"></div>
 								{{/each}}
