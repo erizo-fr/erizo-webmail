@@ -8,6 +8,7 @@ export default Ember.Object.extend({
 	subject: null,
 	htmlBody: null,
 	textBody: null,
+	attachments: null,
 
 	init: function () {
 		this._super()
@@ -19,6 +20,9 @@ export default Ember.Object.extend({
 		}
 		if (!this.to) {
 			this.to = []
+		}
+		if (!this.attachments) {
+			this.attachments = []
 		}
 	},
 })

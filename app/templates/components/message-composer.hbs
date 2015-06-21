@@ -11,7 +11,7 @@
 			<!-- Subject -->
 			{{#if isSubjectVisible}}
 				<div class="erizo-messageComposer-row erizo-messageComposer-subjectRow">
-					{{input type="text" placeholder="Subject" value=newMessage.subject}}
+					{{input type="text" placeholder="Subject" value=model.subject}}
 				</div>
 			{{/if}}
 
@@ -47,17 +47,17 @@
 					</div>
 
 					<!-- To input -->
-					<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin100">
-						{{message-composer-addresses addresses=newMessage.to placeholder="To"}}
+					<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin80">
+						{{message-composer-addresses addresses=model.to placeholder="To"}}
 					</div>
 
 					<!-- Cc link -->
-					<div class="erizo-fixeRelative-fixe30">
+					<div class="erizo-fixeRelative-fixe20">
 						{{#unless isCcVisible}}
 							<a class="cc-link" href="javascript:void(0)" {{action "showCc"}}>Cc</a>
 						{{/unless}}
 					</div>
-					<div class="erizo-fixeRelative-fixe30">
+					<div class="erizo-fixeRelative-fixe20">
 						{{#unless isBccVisible}}
 							<a class="bcc-link" href="javascript:void(0)" {{action "showBcc"}}>Bcc</a>
 						{{/unless}}
@@ -68,19 +68,43 @@
 			<!-- Cc -->
 			{{#if isCcVisible}}
 				<div class="erizo-messageComposer-row erizo-messageComposer-ccRow">
-					{{message-composer-addresses addresses=newMessage.cc placeholder="Cc"}}
+					{{message-composer-addresses addresses=model.cc placeholder="Cc"}}
 				</div>
 			{{/if}}
 
 			<!-- Bcc -->
 			{{#if isBccVisible}}
 				<div class="erizo-messageComposer-row erizo-messageComposer-bccRow">
-					{{message-composer-addresses addresses=newMessage.bcc placeholder="Bcc"}}
+					{{message-composer-addresses addresses=model.bcc placeholder="Bcc"}}
 				</div>
 			{{/if}}
 
+			<!-- HTML editor -->
 			<div class="erizo-messageComposer-row erizo-messageComposer-htmlEditorRow">
-				{{html-editor htmlValue=newMessage.htmlBody textValue=newMessage.textBody}}
+				{{html-editor htmlValue=model.htmlBody textValue=model.textBody}}
+			</div>
+
+			<!-- Attachment editor -->
+			<div class="erizo-messageComposer-addAttachment">
+				<span class="btn btn-default btn-square btn-no-margin btn-file">
+					<i class="mdi-editor-attach-file"></i>
+					<input type="file" {{action "newAttachment" on="change"}}/>
+				</span>
+			</div>
+
+			<div class="erizo-messageComposer-row erizo-messageComposer-attachmentsRow">
+				{{#each attachment in model.attachments}}
+					<div class="erizo-messageComposer-attachment">
+						<div class="erizo-fixeRelative">
+							<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin20">
+								{{message-composer-attachment model=attachment}}
+							</div>
+							<div class="erizo-fixeRelative-fixe20">
+								<a href="javascript:void(0)" {{action "deleteAttachment" attachment}}><i class="mdi-content-clear small"></i></a>
+							</div>
+						</div>
+					</div>
+				{{/each}}
 			</div>
 		</div>
 	{{/unless}}

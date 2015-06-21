@@ -96,20 +96,10 @@ export default Ember.ObjectController.extend({
 		},
 
 		goToWriteModeReply: function () {
-			var lastMessage = this.get("model")
-			var newMessage = this.get("newMessage")
-			newMessage.set("subject", "RE: " + lastMessage.envelope.subject)
-			newMessage.set("to", EmailAddressFactory.createEmailArray(lastMessage.envelope.from))
 			this.set("isWriteModeReply", true)
-			this.set("isWriteModeForward", false)
 		},
 
 		goToWriteModeForward: function () {
-			var lastMessage = this.get("model")
-			var newMessage = this.get("newMessage")
-			newMessage.set("subject", "FWD: " + lastMessage.envelope.subject)
-			newMessage.set("to", [])
-			this.set("isWriteModeReply", false)
 			this.set("isWriteModeForward", true)
 		},
 	},
