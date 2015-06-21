@@ -308,22 +308,60 @@ export default Ember.Object.extend({
 	sendMessage: function (message) {
 		Ember.Logger.debug("sendMessage(" + message + ")")
 		Ember.Logger.assert(message)
-		var data = {
-			from: this.sendMessageEmailFormatter(message.get("from")),
-			to: this.sendMessageEmailFormatter(message.get("to")),
-			cc: this.sendMessageEmailFormatter(message.get("cc")),
-			bcc: this.sendMessageEmailFormatter(message.get("bcc")),
-			subject: message.get("subject"),
-			html: message.get("htmlBody"),
-			text: message.get("textBody"),
-		}
-		var stringData = JSON.stringify(data)
-		Ember.Logger.debug("Api Message : " + stringData + "")
-		return Ember.$.ajax({
-			url: REST_SERVER + "/messages",
-			type: "POST",
-			contentType: "application/json",
-			data: stringData,
+
+		let self = this
+		return this.sendMessageAttachmentsFormatter(message.get("attachments")).then(function (attachments) {
+			return Ember.$.ajax({
+				url: REST_SERVER + "/messages",
+				type: "POST",
+				data: {
+					from: self.sendMessageEmailFormatter(message.get("from")),
+					to: self.sendMessageEmailFormatter(message.get("to")),
+					cc: self.sendMessageEmailFormatter(message.get("cc")),
+					bcc: self.sendMessageEmailFormatter(message.get("bcc")),
+					subject: message.get("subject"),
+					html: message.get("htmlBody"),
+					text: message.get("textBody"),
+					attachments: attachments,
+				},
+			})
+		})
+	},
+
+	sendMessageAttachmentsFormatter: function (attachments) {
+		Ember.Logger.assert(attachments)
+
+		let self = this
+		let promises = Ember.$.map(attachments, function (attachment) {
+			return self.sendMessageAttachmentFormatter(attachment)
+		})
+
+		return Ember.RSVP.Promise.all(promises)
+	},
+
+	sendMessageAttachmentFormatter: function (attachment) {
+		Ember.Logger.assert(attachment)
+		Ember.Logger.debug("Formatting attachment: " + attachment.get("file").name)
+		let file = attachment.get("file")
+
+		return new Ember.RSVP.Promise(function (resolve, reject) {
+			let reader = new FileReader()
+
+			reader.onerror = function (error) {
+				reject(error)
+			}
+
+			reader.onload = function () {
+				let b64String = btoa(String.fromCharCode.apply(null, new Uint8Array(reader.result)))
+				Ember.Logger.debug("Formatting attachment: " + attachment.get("file").name + " ... done")
+				resolve({
+					filename: file.name,
+					content: b64String,
+					encoding: "base64",
+				})
+			}
+
+			reader.readAsArrayBuffer(file)
 		})
 	},
 

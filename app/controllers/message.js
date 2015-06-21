@@ -49,7 +49,7 @@ export default Ember.ObjectController.extend({
 
 			let self = this
 			this.set("isSending", true)
-			Api.sendMessage(this.get("newMessage")).done(function () {
+			Api.sendMessage(this.get("newMessage")).then(function () {
 				// Disable sending state
 				self.set("isSending", false)
 
@@ -60,7 +60,7 @@ export default Ember.ObjectController.extend({
 				})
 				// Go the the boxes route
 				self.transitionToRoute("boxes")
-			}).fail(function () {
+			}, function () {
 				// Disable sending state
 				self.set("isSending", false)
 
