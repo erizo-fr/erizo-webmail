@@ -19,32 +19,34 @@
 			<div class="erizo-messageComposer-row">
 				<div class="erizo-fixeRelative">
 					<!-- Mode selector -->
-					<div class="erizo-fixeRelative-fixe40">
-						<div class="btn-group btn-group-no-margin btn-group-no-shadow">
-							<a href="javascript:void(0)" class="erizo-messageComposer-destinationSelector btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward :small"}}></i>
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								{{#unless isWriteModeReply}}
-									<li>
-										<a href="javascript:void(0)" {{action "goToWriteModeReply"}}><i class="mdi-content-reply small"></i> Reply</a>
-									</li>
-								{{/unless}}
-								{{#unless isWriteModeForward}}
-									<li>
-										<a href="javascript:void(0)" {{action "goToWriteModeForward"}}><i class="mdi-content-forward small"></i> Forward</a>
-									</li>
-								{{/unless}}
-								{{#unless isSubjectVisible}}
-									<hr/>
-									<li>
-										<a href="javascript:void(0)" {{action "showSubject"}}>Change subject</a>
-									</li>
-								{{/unless}}
-							</ul>
+					{{#unless isNewMessage}}
+						<div class="erizo-fixeRelative-fixe40">
+							<div class="btn-group btn-group-no-margin btn-group-no-shadow">
+								<a href="javascript:void(0)" class="erizo-messageComposer-destinationSelector btn btn-default dropdown-toggle" data-toggle="dropdown">
+									<i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward :small"}}></i>
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									{{#unless isWriteModeReply}}
+										<li>
+											<a href="javascript:void(0)" {{action "goToWriteModeReply"}}><i class="mdi-content-reply small"></i> Reply</a>
+										</li>
+									{{/unless}}
+									{{#unless isWriteModeForward}}
+										<li>
+											<a href="javascript:void(0)" {{action "goToWriteModeForward"}}><i class="mdi-content-forward small"></i> Forward</a>
+										</li>
+									{{/unless}}
+									{{#unless isSubjectVisible}}
+										<hr/>
+										<li>
+											<a href="javascript:void(0)" {{action "showSubject"}}>Change subject</a>
+										</li>
+									{{/unless}}
+								</ul>
+							</div>
 						</div>
-					</div>
+					{{/unless}}
 
 					<!-- To input -->
 					<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin80">

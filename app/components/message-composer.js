@@ -16,11 +16,7 @@ export default Ember.Component.extend({
 	model: null,
 
 	isWriteMode: function () {
-		if (this.get("isNewMessage")) {
-			return true
-		} else {
-			return this.get("isWriteModeReply") || this.get("isWriteModeForward")
-		}
+		return this.get("isNewMessage") || this.get("isWriteModeReply") || this.get("isWriteModeForward")
 	}.property("isWriteModeReply", "isWriteModeForward", "isNewMessage"),
 
 	isNewMessage: function () {

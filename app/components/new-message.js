@@ -2,18 +2,17 @@ import Ember from "ember"
 import Api from "erizo-webmail/utils/api"
 
 export default Ember.Component.extend({
-	newMessage: null,
 	isOpen: true,
 	isSending: false,
 
 	title: function () {
-		var subject = this.get("newMessage").get("subject")
+		var subject = this.get("model").get("subject")
 		if (this.get("isOpen")) {
 			return "New message"
 		} else {
 			return subject ? subject : "New message"
 		}
-	}.property("newMessage.subject", "isOpen"),
+	}.property("model.subject", "isOpen"),
 
 	actions: {
 		toggleHide: function () {
@@ -31,7 +30,7 @@ export default Ember.Component.extend({
 
 			this.set("isSending", true)
 			let self = this
-			Api.sendMessage(this.get("newMessage")).done(function () {
+			Api.sendMessage(this.get("model")).then(function () {
 				// Disable sending state
 				self.set("isSending", false)
 
@@ -41,9 +40,9 @@ export default Ember.Component.extend({
 					timeout: 3000,
 				})
 				// Close the new message
-				self.sendAction("delete", self.get("newMessage"))
+				self.sendAction("delete", self.get("model"))
 
-			}).fail(function () {
+			}, function () {
 				// Disable sending state
 				self.set("isSending", false)
 
@@ -56,7 +55,7 @@ export default Ember.Component.extend({
 			})
 		},
 		close: function () {
-			this.sendAction("delete", this.get("newMessage"))
+			this.sendAction("delete", this.get("model"))
 		},
 	},
 })
