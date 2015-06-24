@@ -5,6 +5,7 @@ import MessageFactory from "erizo-webmail/models/factories/message"
 import BoxFactory from "erizo-webmail/models/factories/box"
 import OpenBoxFactory from "erizo-webmail/models/factories/openBox"
 import DataCacheUtil from "erizo-webmail/utils/dataCache"
+import ArrayBufferUtil from "erizo-webmail/utils/arrayBuffer"
 
 var REST_SERVER = ""
 
@@ -352,7 +353,8 @@ export default Ember.Object.extend({
 			}
 
 			reader.onload = function () {
-				let b64String = btoa(String.fromCharCode.apply(null, new Uint8Array(reader.result)))
+				Ember.Logger.debug(reader.result)
+				let b64String = ArrayBufferUtil.toBase64(reader.result)
 				Ember.Logger.debug("Formatting attachment: " + attachment.get("file").name + " ... done")
 				resolve({
 					filename: file.name,

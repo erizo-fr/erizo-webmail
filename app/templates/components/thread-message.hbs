@@ -53,6 +53,15 @@
 				{{html-message-display model=model.part.htmlMessage}}
 			</div>
 
+			<!-- Attachments -->
+			<div class="erizo-threadMessage-attachments">
+				{{#each attachmentPart in model.part.attachmentParts}}
+					<div class="erizo-threadMessage-attachment">
+						{{thread-message-attachment model=attachmentPart}}
+					</div>
+				{{/each}}
+			</div>
+
 			<!-- Body preview -->
 			<div class="erizo-threadMessage-body-preview" {{action "toggleCollapse"}}>
 				<span class="text-muted">{{model.part.previewMessage}}</span>

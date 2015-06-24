@@ -1,9 +1,9 @@
 import Ember from "ember"
 import Multipart from "erizo-webmail/models/part-multipart"
 import MultipartRelated from "erizo-webmail/models/part-multipart-related"
-import TextHtmlPart from "erizo-webmail/models/part-bodypart-text-html"
-import TextPlainPart from "erizo-webmail/models/part-bodypart-text-plain"
-import Part from "erizo-webmail/models/part"
+import TextHtmlBodyPart from "erizo-webmail/models/part-bodypart-text-html"
+import TextPlainBodyPart from "erizo-webmail/models/part-bodypart-text-plain"
+import BodyPart from "erizo-webmail/models/part-bodypart"
 
 export default Ember.Object.extend({
 	createPart: function (data) {
@@ -16,11 +16,11 @@ export default Ember.Object.extend({
 
 	createBodyPart: function (data) {
 		if (data.type === "text" && data.subtype === "html") {
-			return TextHtmlPart.create(data)
+			return TextHtmlBodyPart.create(data)
 		} else if (data.type === "text" && data.subtype === "plain") {
-			return TextPlainPart.create(data)
+			return TextPlainBodyPart.create(data)
 		} else {
-			return Part.create(data)
+			return BodyPart.create(data)
 		}
 	},
 

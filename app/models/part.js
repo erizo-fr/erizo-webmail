@@ -6,6 +6,10 @@ export default Ember.Object.extend({
 	textMessage: null,
 	previewMessage: null,
 
+	name: function () {
+		return "Unamed"
+	}.property(),
+
 	previewParts: function () {
 		return []
 	}.property(),
@@ -51,7 +55,7 @@ export default Ember.Object.extend({
 
 	attachmentParts: function () {
 		var isAttachment = this.get("isAttachment")
-		if (isAttachment()) {
+		if (isAttachment) {
 			return [this]
 		} else {
 			return []
