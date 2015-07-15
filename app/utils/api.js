@@ -7,7 +7,7 @@ import OpenBoxFactory from "erizo-webmail/models/factories/openBox"
 import DataCacheUtil from "erizo-webmail/utils/dataCache"
 import ArrayBufferUtil from "erizo-webmail/utils/arrayBuffer"
 
-var REST_SERVER = ""
+var REST_SERVER = "/api"
 
 export default Ember.Object.extend({
 

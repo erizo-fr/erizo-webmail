@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "ember server --port 8222 --proxy http://localhost:8081",
+    "start": "ember server --port 8222",
     "build": "ember build",
     "lint": "eslint -f node_modules/eslint-friendly-formatter/index.js --ext .js,.jsx,.es ./app ./tests ./config ./vendor ./public",
     "test": "npm run lint && npm run ember-test",
@@ -39,6 +39,9 @@
     "ember-cli-windows-addon": "^1.2.0",
     "ember-export-application-global": "^1.0.2",
     "eslint": "^0.21.2",
-    "eslint-friendly-formatter": "^1.0.8"
+    "eslint-friendly-formatter": "^1.0.8",
+    "glob": "^4.5.3",
+    "http-proxy": "^1.11.1",
+    "morgan": "^1.6.1"
   }
 }
