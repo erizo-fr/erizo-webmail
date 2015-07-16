@@ -1,5 +1,5 @@
 import Ember from "ember"
-import Api from "erizo-webmail/utils/api"
+
 import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
 let REGEX_EMAIL = "([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" +
 	"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)"
@@ -74,7 +74,7 @@ export default Ember.Component.extend({
 				if (!query.length) {
 					return callback()
 				}
-				Api.getContactsEmails(query, 10).then(function (emails) {
+				this.api.getContactsEmails(query, 10).then(function (emails) {
 					let res = []
 					Ember.$.each(emails, function (index, email) {
 						res.push(email.toJSON())

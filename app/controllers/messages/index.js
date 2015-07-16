@@ -1,5 +1,5 @@
 import Ember from "ember"
-import Api from "erizo-webmail/utils/api"
+
 import DateUtil from "erizo-webmail/utils/date"
 import MessagesCategoryFactory from "erizo-webmail/models/factories/messages-category"
 
@@ -49,7 +49,7 @@ export default Ember.ArrayController.extend({
 			let self = this
 			this.get("selectedMessagesControllers").forEach(function (controller) {
 				var message = controller.get("model")
-				Api.deleteMessage(box, message)
+				self.api.deleteMessage(box, message)
 					.done(function () {
 						self.unloadMessage(message)
 						Ember.$.snackbar({
@@ -70,9 +70,10 @@ export default Ember.ArrayController.extend({
 		moveSelectedMessages: function (newBox) {
 			Ember.Logger.debug("Action received: Move selected messages")
 			let currentBox = this.get("controllers.box.model")
+			let self = this
 			this.get("selectedMessagesControllers").forEach(function (controller) {
 				var message = controller.get("model")
-				Api.moveMessage(currentBox, message, newBox).done(function () {
+				self.api.moveMessage(currentBox, message, newBox).done(function () {
 					Ember.$.snackbar({
 						content: "Message moved to " + newBox.get("name") + " !",
 						timeout: 3000,
@@ -188,8 +189,8 @@ export default Ember.ArrayController.extend({
 		var idMax = Math.min(totalElements - 1, idMin + pageSize) + 1
 		var self = this
 		var ids = messagesOrder.slice(idMin, idMax)
-		Api.getMessagesByIds(box, ids).then(function (newMessages) {
-			Api.downloadMessagesPreview(box, newMessages).then(function () {
+		this.api.getMessagesByIds(box, ids).then(function (newMessages) {
+			self.api.downloadMessagesPreview(box, newMessages).then(function () {
 
 				// Insert the messages
 				var newMessagesReversed = newMessages.reverse()

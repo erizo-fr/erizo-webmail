@@ -9,7 +9,7 @@ import ArrayBufferUtil from "erizo-webmail/utils/arrayBuffer"
 
 var REST_SERVER = "/api"
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
 
 	// #####################################################
 	// Get user data
@@ -471,7 +471,7 @@ export default Ember.Object.extend({
 	// URL: GET /contacts?criteria=:criteria&limit=:limit
 	// #####################################################
 
-	getContacts (criteria, limit) {
+	getContacts: function (criteria, limit) {
 		Ember.Logger.debug("getContacts(" + criteria + ", " + limit + ")")
 		Ember.Logger.assert(criteria)
 		let self = this
@@ -489,7 +489,7 @@ export default Ember.Object.extend({
 		return adaptedResult
 	},
 
-	getContactsEmails (criteria, limit) {
+	getContactsEmails: function (criteria, limit) {
 		return this.getContacts(criteria, limit).then(function (contacts) {
 			let emails = []
 			for (let i = 0; i < contacts.length; i++) {
@@ -504,4 +504,4 @@ export default Ember.Object.extend({
 			return emails
 		})
 	},
-}).create()
+})

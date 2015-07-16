@@ -1,5 +1,4 @@
 import Ember from "ember"
-import Api from "erizo-webmail/utils/api"
 
 export default Ember.ObjectController.extend({
 	username: "",
@@ -23,7 +22,7 @@ export default Ember.ObjectController.extend({
 
 			this.set("requestRunning", true)
 			let self = this
-			Api.login(username, password)
+			this.api.login(username, password)
 				.always(function () {
 					self.set("requestRunning", false)
 				}).done(function () {

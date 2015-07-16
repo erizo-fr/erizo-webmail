@@ -1,5 +1,4 @@
 import Ember from "ember"
-import Api from "erizo-webmail/utils/api"
 
 export default Ember.Route.extend({
 	model: function (param) {
@@ -14,7 +13,7 @@ export default Ember.Route.extend({
 		let box = this.getMatchingBox(boxes, boxPath)
 		if (!box) {
 			Ember.Logger.error("No box is matching the path '" + boxPath + "', redirect to inbox")
-			this.transitionTo("box", "INBOX")
+			this.transitionTo("boxes")
 		} else {
 			return box
 		}
@@ -24,7 +23,7 @@ export default Ember.Route.extend({
 		for (let i = 0; i < boxes.length; i++) {
 			let box = boxes.get(i)
 			if (box.get("path") === boxPath) {
-				return Api.getBox(box)
+				return this.api.getBox(box)
 			} else if (box.isParentOf(boxPath)) {
 				return this.getMatchingBox(box.get("children"), boxPath)
 			}

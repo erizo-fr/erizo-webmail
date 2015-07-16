@@ -1,5 +1,4 @@
 import Ember from "ember"
-import Api from "erizo-webmail/utils/api"
 
 export default Ember.Route.extend({
 	model: function (param) {
@@ -8,8 +7,9 @@ export default Ember.Route.extend({
 		let messageId = param.id
 		Ember.Logger.assert(messageId)
 
-		return Api.getMessage(box, messageId).then(function (message) {
-			return Api.downloadMessageDisplayContent(box, message).then(function () {
+		let self = this
+		return this.api.getMessage(box, messageId).then(function (message) {
+			return self.api.downloadMessageDisplayContent(box, message).then(function () {
 				return message
 			})
 		})

@@ -1,5 +1,4 @@
 import Ember from "ember"
-import Api from "erizo-webmail/utils/api"
 
 export default Ember.Component.extend({
 	isOpen: true,
@@ -30,7 +29,7 @@ export default Ember.Component.extend({
 
 			this.set("isSending", true)
 			let self = this
-			Api.sendMessage(this.get("model")).then(function () {
+			this.api.sendMessage(this.get("model")).then(function () {
 				// Disable sending state
 				self.set("isSending", false)
 

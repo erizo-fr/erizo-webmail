@@ -1,5 +1,5 @@
 import Ember from "ember"
-import Api from "erizo-webmail/utils/api"
+
 import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
 import NewMessageFactory from "erizo-webmail/models/factories/new-message"
 
@@ -24,7 +24,7 @@ export default Ember.ObjectController.extend({
 			// Get the message id
 			var message = this.get("model")
 			var self = this
-			Api.deleteMessage(box, message)
+			this.api.deleteMessage(box, message)
 				.done(function () {
 					Ember.$.snackbar({
 						content: "Message deleted",
@@ -49,7 +49,7 @@ export default Ember.ObjectController.extend({
 
 			let self = this
 			this.set("isSending", true)
-			Api.sendMessage(this.get("newMessage")).then(function () {
+			this.api.sendMessage(this.get("newMessage")).then(function () {
 				// Disable sending state
 				self.set("isSending", false)
 
@@ -77,7 +77,7 @@ export default Ember.ObjectController.extend({
 			Ember.Logger.debug("Action received: Move message to box#" + newBox.get("path"))
 
 			let self = this
-			Api.moveMessage(this.get("controllers.box.model"), this.get("model"), newBox).done(function () {
+			this.api.moveMessage(this.get("controllers.box.model"), this.get("model"), newBox).done(function () {
 				Ember.$.snackbar({
 					content: "Message moved to " + newBox.get("name") + " !",
 					timeout: 3000,
