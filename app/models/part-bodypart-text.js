@@ -10,8 +10,6 @@ export default BodyPart.extend({
 			return null
 		}
 
-		// Decode model content
-		content = window.atob(content)
 		// Decode part
 		try {
 			if (encoding === "quoted-printable") {

@@ -200,7 +200,7 @@ export default Ember.Object.extend({
 			// Server version
 			Ember.Logger.debug("Ask the server for part#" + partId + " of message#" + message.get("uid") + " in box#" + boxPath)
 			promise = Ember.$.ajax({
-				url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid") + "?&markSeen=true&bodies=" + partId,
+				url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid") + "/parts/" + partId,
 				type: "GET",
 				dataType: "json",
 			}).then(function (result) {
@@ -212,8 +212,9 @@ export default Ember.Object.extend({
 
 		// Return promise
 		return promise.then(function (result) {
-			Ember.Logger.assert(result.bodies[partId])
-			bodyPart.set("content", result.bodies[partId])
+			Ember.Logger.assert(result)
+			Ember.Logger.assert(result.content)
+			bodyPart.set("content", result.content)
 		})
 	},
 
