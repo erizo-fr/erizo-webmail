@@ -121,7 +121,7 @@ export default Ember.Object.extend({
 
 		let self = this
 		return Ember.$.ajax({
-				url: REST_SERVER + "/boxes/" + boxPath + "/messages?seqs=" + seqMin + ":" + seqMax + "&fetchStruct=true&fetchEnvelope=true",
+				url: REST_SERVER + "/boxes/" + boxPath + "/messages?seqs=" + seqMin + ":" + seqMax + "&fetchStruct=true&fetchEnvelope=true&markSeen=false",
 				type: "GET",
 				dataType: "json",
 			}).then(self.getMessagesAdapter)
@@ -142,7 +142,7 @@ export default Ember.Object.extend({
 
 		let self = this
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/messages?ids=" + ids.join("&ids=") + "&fetchStruct=true&fetchEnvelope=true",
+			url: REST_SERVER + "/boxes/" + boxPath + "/messages?ids=" + ids.join("&ids=") + "&fetchStruct=true&fetchEnvelope=true&markSeen=false",
 			type: "GET",
 			dataType: "json",
 		}).then(self.getMessagesAdapter).then(self.getMessagesResultLogger)
@@ -181,6 +181,11 @@ export default Ember.Object.extend({
 		})
 	},
 
+	// ###############################################################
+	// Get part
+	// URL: GET /boxes/:boxPath/messages/:messageId/parts/:partId
+	// ###############################################################
+
 	downloadBodyPartContent: function (box, message, bodyPart) {
 		Ember.Logger.assert(box)
 		let boxPath = box.get("path")
@@ -188,7 +193,7 @@ export default Ember.Object.extend({
 		Ember.Logger.assert(partId)
 		// Get part promise
 		let promise
-		let cacheKey = boxPath + "." + message.get("uid") + "." + partId
+		let cacheKey = boxPath + "/" + message.get("uid") + "/" + partId
 		let part = DataCacheUtil.getData("part", cacheKey)
 		if (part) {
 			// Cache version
@@ -281,6 +286,23 @@ export default Ember.Object.extend({
 		Ember.Logger.debug("Ask the server for displayable parts of message#" + message.get("seq") + " in box#" + boxPath)
 		var parts = message.get("part").get("displayParts")
 		return this.downloadPartsContent(box, message, parts)
+	},
+
+	// #########################################################################
+	// Get part content url
+	// URL: GET /boxes/:boxPath/messages/:messageId/parts/:partId/content
+	// #########################################################################
+
+	getPartContentUrl: function (box, message, part) {
+		Ember.Logger.assert(box)
+		let boxPath = box.get("path")
+		Ember.Logger.assert(boxPath)
+		Ember.Logger.assert(message)
+		Ember.Logger.assert(part)
+		let partId = part.get("partID")
+		Ember.Logger.assert(partId)
+
+		return REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid") + "/parts/" + partId + "/content"
 	},
 
 	// #####################################################
