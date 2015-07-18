@@ -94,13 +94,5 @@ export default Ember.ObjectController.extend({
 				})
 			})
 		},
-
-		goToWriteModeReply: function () {
-			this.set("isWriteModeReply", true)
-		},
-
-		goToWriteModeForward: function () {
-			this.set("isWriteModeForward", true)
-		},
 	},
 })

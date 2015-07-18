@@ -1,113 +1,95 @@
-<div class="erizo-messageComposer">
-	{{#unless isWriteMode}}
-		<!-- Thread precomposer -->
-		<div class="erizo-messageComposer-precomposer">
-			<span class="text-muted">Click here to <a {{action "goToWriteModeReply"}}>answer</a> or <a {{action "goToWriteModeForward"}}>forward</a> the message</span>
+<div {{bind-attr class=":erizo-messageComposer isWriteMode isWriteModeReply isWriteModeForward isSubjectVisible isCcVisible isBccVisible"}}>
+	<!-- Thread precomposer -->
+	<div class="erizo-messageComposer-precomposer hideOnWriteMode">
+		<span class="text-muted">Click here to <a {{action "goToWriteModeReply"}}>answer</a> or <a {{action "goToWriteModeForward"}}>forward</a> the message</span>
+	</div>
+
+	<!-- Thread composer -->
+	<div class="erizo-messageComposer-composer showOnWriteMode">
+
+		<!-- Subject -->
+		<div class="erizo-messageComposer-row erizo-messageComposer-subjectRow showOnSubjectVisible">
+			{{input type="text" placeholder="Subject" value=model.subject}}
 		</div>
-	{{else}}
-		<!-- Thread composer -->
-		<div class="erizo-messageComposer-composer">
 
-			<!-- Subject -->
-			{{#if isSubjectVisible}}
-				<div class="erizo-messageComposer-row erizo-messageComposer-subjectRow">
-					{{input type="text" placeholder="Subject" value=model.subject}}
-				</div>
-			{{/if}}
-
-			<!-- To -->
-			<div class="erizo-messageComposer-row">
-				<div class="erizo-fixeRelative">
-					<!-- Mode selector -->
-					{{#unless isNewMessage}}
-						<div class="erizo-fixeRelative-fixe40">
-							<div class="btn-group btn-group-no-margin btn-group-no-shadow">
-								<a href="javascript:void(0)" class="erizo-messageComposer-destinationSelector btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward :small"}}></i>
-									<span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu">
-									{{#unless isWriteModeReply}}
-										<li>
-											<a href="javascript:void(0)" {{action "goToWriteModeReply"}}><i class="mdi-content-reply small"></i> Reply</a>
-										</li>
-									{{/unless}}
-									{{#unless isWriteModeForward}}
-										<li>
-											<a href="javascript:void(0)" {{action "goToWriteModeForward"}}><i class="mdi-content-forward small"></i> Forward</a>
-										</li>
-									{{/unless}}
-									{{#unless isSubjectVisible}}
-										<hr/>
-										<li>
-											<a href="javascript:void(0)" {{action "showSubject"}}>Change subject</a>
-										</li>
-									{{/unless}}
-								</ul>
-							</div>
-						</div>
-					{{/unless}}
-
-					<!-- To input -->
-					<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin80">
-						{{message-composer-addresses addresses=model.to placeholder="To"}}
-					</div>
-
-					<!-- Cc link -->
-					<div class="erizo-fixeRelative-fixe20">
-						{{#unless isCcVisible}}
-							<a class="cc-link" href="javascript:void(0)" {{action "showCc"}}>Cc</a>
-						{{/unless}}
-					</div>
-					<div class="erizo-fixeRelative-fixe20">
-						{{#unless isBccVisible}}
-							<a class="bcc-link" href="javascript:void(0)" {{action "showBcc"}}>Bcc</a>
-						{{/unless}}
-					</div>
-				</div>
-			</div>
-
-			<!-- Cc -->
-			{{#if isCcVisible}}
-				<div class="erizo-messageComposer-row erizo-messageComposer-ccRow">
-					{{message-composer-addresses addresses=model.cc placeholder="Cc"}}
-				</div>
-			{{/if}}
-
-			<!-- Bcc -->
-			{{#if isBccVisible}}
-				<div class="erizo-messageComposer-row erizo-messageComposer-bccRow">
-					{{message-composer-addresses addresses=model.bcc placeholder="Bcc"}}
-				</div>
-			{{/if}}
-
-			<!-- HTML editor -->
-			<div class="erizo-messageComposer-row erizo-messageComposer-htmlEditorRow">
-				{{html-editor htmlValue=model.htmlBody textValue=model.textBody}}
-			</div>
-
-			<!-- Attachment editor -->
-			<div class="erizo-messageComposer-addAttachment">
-				<span class="btn btn-default btn-square btn-no-margin btn-file">
-					<i class="mdi-editor-attach-file"></i>
-					<input type="file" {{action "newAttachment" on="change"}}/>
-				</span>
-			</div>
-
-			<div class="erizo-messageComposer-row erizo-messageComposer-attachmentsRow">
-				{{#each attachment in model.attachments}}
-					<div class="erizo-messageComposer-attachment">
-						<div class="erizo-fixeRelative">
-							<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin20">
-								{{message-composer-attachment model=attachment}}
-							</div>
-							<div class="erizo-fixeRelative-fixe20">
-								<a href="javascript:void(0)" {{action "deleteAttachment" attachment}}><i class="mdi-content-clear small"></i></a>
-							</div>
+		<!-- To -->
+		<div class="erizo-messageComposer-row">
+			<div class="erizo-fixeRelative">
+				<!-- Mode selector -->
+				{{#unless isNewMessage}}
+					<div class="erizo-fixeRelative-fixe40">
+						<div class="btn-group btn-group-no-margin btn-group-no-shadow">
+							<a href="javascript:void(0)" class="erizo-messageComposer-destinationSelector btn btn-default dropdown-toggle" data-toggle="dropdown">
+								<i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward :small"}}></i>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="hideOnWriteModeReply">
+									<a href="javascript:void(0)" {{action "goToWriteModeReply"}}><i class="mdi-content-reply small"></i> Reply</a>
+								</li>
+								<li class="hideOnWriteModeForward">
+									<a href="javascript:void(0)" {{action "goToWriteModeForward"}}><i class="mdi-content-forward small"></i> Forward</a>
+								</li>
+								<hr class="hideOnSubjectVisible"/>
+								<li class="hideOnSubjectVisible">
+									<a href="javascript:void(0)" {{action "showSubject"}}>Change subject</a>
+								</li>
+							</ul>
 						</div>
 					</div>
-				{{/each}}
+				{{/unless}}
+
+				<!-- To input -->
+				<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin80">
+					{{message-composer-addresses addresses=model.to placeholder="To"}}
+				</div>
+
+				<!-- Cc link -->
+				<div class="erizo-fixeRelative-fixe20">
+					<a class="cc-link hideOnCcVisible" href="javascript:void(0)" {{action "showCc"}}>Cc</a>
+				</div>
+				<div class="erizo-fixeRelative-fixe20">
+					<a class="bcc-link hideOnBccVisible" href="javascript:void(0)" {{action "showBcc"}}>Bcc</a>
+				</div>
 			</div>
 		</div>
-	{{/unless}}
+
+		<!-- Cc -->
+		<div class="erizo-messageComposer-row erizo-messageComposer-ccRow showOnCcVisible">
+			{{message-composer-addresses addresses=model.cc placeholder="Cc"}}
+		</div>
+
+		<!-- Bcc -->
+		<div class="erizo-messageComposer-row erizo-messageComposer-bccRow showOnBccVisible">
+			{{message-composer-addresses addresses=model.bcc placeholder="Bcc"}}
+		</div>
+
+		<!-- HTML editor -->
+		<div class="erizo-messageComposer-row erizo-messageComposer-htmlEditorRow">
+			{{html-editor htmlValue=model.htmlBody textValue=model.textBody}}
+		</div>
+
+		<!-- Attachment editor -->
+		<div class="erizo-messageComposer-addAttachment">
+			<span class="btn btn-default btn-square btn-no-margin btn-file">
+				<i class="mdi-editor-attach-file"></i>
+				<input type="file" {{action "newAttachment" on="change"}}/>
+			</span>
+		</div>
+
+		<div class="erizo-messageComposer-row erizo-messageComposer-attachmentsRow">
+			{{#each attachment in model.attachments}}
+				<div class="erizo-messageComposer-attachment">
+					<div class="erizo-fixeRelative">
+						<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin20">
+							{{message-composer-attachment model=attachment}}
+						</div>
+						<div class="erizo-fixeRelative-fixe20">
+							<a href="javascript:void(0)" {{action "deleteAttachment" attachment}}><i class="mdi-content-clear small"></i></a>
+						</div>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
 </div>
