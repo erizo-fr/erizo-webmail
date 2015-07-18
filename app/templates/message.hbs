@@ -58,7 +58,13 @@
 
 			<!-- Send button -->
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary" {{action "sendMessage"}}>Send</button>
+				<button type="submit" class="btn btn-primary" {{action "sendMessage"}}>
+					{{#if isSending}}
+						<div class="loading rotation"><i class="mdi-notification-sync"></i></div>
+					{{else}}
+						Send
+					{{/if}}
+				</button>
 			</div>
 		</div>
 	</div>

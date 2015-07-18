@@ -20,9 +20,13 @@
 		<!-- Message composer -->
 		{{message-composer model=model isSubjectVisible=true}}
 
-
-		<button type="submit" class="btn btn-primary new-message-send" {{action "sendMessage"}}>Send</button>
-
+		<button type="submit" class="btn btn-primary new-message-send" {{action "sendMessage"}}>
+			{{#if isSending}}
+				<div class="loading rotation"><i class="mdi-notification-sync"></i></div>
+			{{else}}
+				Send
+			{{/if}}
+		</button>
 	</div>
 	{{/if}}
 </div>
