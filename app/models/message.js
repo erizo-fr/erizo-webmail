@@ -8,11 +8,11 @@ export default Ember.Object.extend({
 	seq: null,
 	flags: null,
 
-	hasAttachment: function () {
+	hasAttachments: function () {
 		if (!this.get("part")) {
 			return null // Struct element has not been fetched
 		}
-		return this.get("part").hasAttachments()
+		return this.get("part.hasAttachments")
 	}.property("part"),
 
 	isSeen: function () {
@@ -26,6 +26,6 @@ export default Ember.Object.extend({
 		if (!this.get("part")) {
 			return ""
 		}
-		return this.get("part").get("previewMessage")
+		return this.get("part.previewMessage")
 	}.property("part.previewMessage"),
 })
