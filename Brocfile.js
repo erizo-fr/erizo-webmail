@@ -64,6 +64,7 @@ app.import("bower_components/crypto-js/crypto-js.js")
 
 // Quill
 app.import("bower_components/quill/dist/quill.min.js")
+app.import("bower_components/quill/dist/quill.snow.css")
 
 // Merge the app tree and our new font assets.
 module.exports = mergeTrees([app.toTree()])

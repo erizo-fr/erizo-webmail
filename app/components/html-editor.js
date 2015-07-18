@@ -19,7 +19,8 @@ export default Ember.Component.extend({
 
 	didInsertElement: function () {
 		// Init
-		var instance = new Quill(".erizo-htmlEditor-editor", {
+		let id = this.elementId
+		var instance = new Quill("#" + id + " .erizo-htmlEditor-editor", {
 			styles: false,
 		})
 		instance.setHTML(this.get("formattedHtmlValue"))
