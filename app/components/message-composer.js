@@ -3,14 +3,17 @@ import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
 import NewMessageAttachmentFactory from "erizo-webmail/models/factories/new-message-attachment"
 
 export default Ember.Component.extend({
-	replyContainer: "<div><p>Previous message: </p><div><message/></div></div>",
-	forwardContainer: "<div><p>Transfered message: </p><div><message/></div></div>",
+	replyContainer: "<br/><br/><div>----------------------------<p>Previous message: </p><br/><div><message/></div></div>",
+	forwardContainer: "<br/><br/><div>----------------------------<p>Transfered message: </p><br/><div><message/></div></div>",
 
 	isWriteModeReply: false,
 	isWriteModeForward: false,
 	isSubjectVisible: false,
 	isCcVisible: false,
 	isBccVisible: false,
+
+	cursorPositionBegin: 0,
+	cursorPositionEnd: 0,
 
 	lastMessage: null,
 	model: null,
@@ -72,11 +75,19 @@ export default Ember.Component.extend({
 		var model = this.get("model")
 		model.set("subject", "RE: " + lastMessage.envelope.subject)
 		model.set("to", EmailAddressFactory.createEmailArray(lastMessage.envelope.from))
-		if (this.get("lastMessage")) {
+
+		// Set HTML
+		let html = ""
+		if (this.get("lastMessage.part.htmlMessage")) {
 			// Set body from old message
-			let html = this.get("replyContainer").replace("<message/>", this.get("lastMessage.part.htmlMessage"))
-			this.get("model").set("htmlBody", html)
+			html = this.get("replyContainer").replace("<message/>", this.get("lastMessage.part.htmlMessage"))
 		}
+		this.get("model").set("htmlBody", html)
+
+		// Set focus
+		Ember.$("#" + this.elementId + " .ql-editor").focus()
+		this.set("cursorPositionBegin", 0)
+		this.set("cursorPositionEnd", 0)
 	},
 
 	goToWriteModeForward: function () {
@@ -85,10 +96,17 @@ export default Ember.Component.extend({
 		var model = this.get("model")
 		model.set("subject", "FWD: " + lastMessage.envelope.subject)
 		model.set("to", [])
-		if (this.get("lastMessage")) {
-			// Set body from old message
-			let html = this.get("forwardContainer").replace("<message/>", this.get("lastMessage.part.htmlMessage"))
-			this.get("model").set("htmlBody", html)
+
+		// Set HTML
+		let html = ""
+		if (this.get("lastMessage.part.htmlMessage")) {
+			html = this.get("forwardContainer").replace("<message/>", this.get("lastMessage.part.htmlMessage"))
 		}
+		this.get("model").set("htmlBody", html)
+
+		// Set focus
+		Ember.$("#" + this.elementId + " .ql-editor").focus()
+		this.set("cursorPositionBegin", 0)
+		this.set("cursorPositionEnd", 0)
 	},
 })
