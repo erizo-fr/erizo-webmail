@@ -74,7 +74,7 @@ export default Ember.Component.extend({
 				if (!query.length) {
 					return callback()
 				}
-				this.api.getContactsEmails(query, 10).then(function (emails) {
+				self.api.getContactsEmails(query, 10).then(function (emails) {
 					let res = []
 					Ember.$.each(emails, function (index, email) {
 						res.push(email.toJSON())
