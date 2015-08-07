@@ -20,7 +20,7 @@ export default Ember.Component.extend({
 
 			// Resize
 			Ember.Logger.debug("Resizing iframe: " + iframe)
-			var iframBodyHeight = iframeContent.find("html").height()
+			var iframBodyHeight = iframeContent.find("html").height() + 10
 			Ember.Logger.debug("iframe content height: " + iframBodyHeight)
 			iframe.height(iframBodyHeight)
 		})
