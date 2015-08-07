@@ -22,14 +22,25 @@ export default Ember.Component.extend({
 		},
 		sendMessage: function () {
 			Ember.Logger.debug("Action received: Send new message")
+			let self = this
+
+			// Prevent multiple clicks
 			if (this.get("isSending")) {
 				Ember.Logger.debug("A send request is already running, ignoring ...")
 				return
 			}
-
 			this.set("isSending", true)
-			let self = this
-			this.api.sendMessage(this.get("model")).then(function () {
+
+			// Test the fields
+			if (!this.validateFields()) {
+				this.set("isSending", false)
+				Ember.Logger.debug("Invalid fields. Aborting")
+				return
+			}
+
+			// Send the message
+			let model = this.get("model")
+			this.api.sendMessage(model).then(function () {
 				// Disable sending state
 				self.set("isSending", false)
 
@@ -39,7 +50,7 @@ export default Ember.Component.extend({
 					timeout: 3000,
 				})
 				// Close the new message
-				self.sendAction("delete", self.get("model"))
+				self.sendAction("delete", model)
 
 			}, function () {
 				// Disable sending state
@@ -53,8 +64,25 @@ export default Ember.Component.extend({
 				})
 			})
 		},
+
 		close: function () {
 			this.sendAction("delete", this.get("model"))
 		},
+	},
+
+	validateFields: function () {
+		let message = this.get("model")
+
+		if (!message.get("subject")) {
+			this.animationManager.shake(this.$(".erizo-messageComposer-subject"))
+			return false
+		}
+
+		if (!message.get("to.length")) {
+			this.animationManager.shake(this.$(".erizo-messageComposer-to"))
+			return false
+		}
+
+		return true
 	},
 })

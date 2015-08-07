@@ -9,7 +9,7 @@
 
 		<!-- Subject -->
 		<div class="erizo-messageComposer-row erizo-messageComposer-subjectRow showOnSubjectVisible">
-			{{input type="text" placeholder="Subject" value=model.subject}}
+			{{input class="erizo-messageComposer-subject" type="text" placeholder="Subject" value=model.subject}}
 		</div>
 
 		<!-- To -->
@@ -41,7 +41,7 @@
 
 				<!-- To input -->
 				<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin80">
-					{{message-composer-addresses addresses=model.to placeholder="To"}}
+					{{message-composer-addresses class="erizo-messageComposer-to" addresses=model.to placeholder="To"}}
 				</div>
 
 				<!-- Cc link -->

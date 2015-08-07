@@ -42,13 +42,23 @@ export default Ember.ObjectController.extend({
 		},
 		sendMessage: function () {
 			Ember.Logger.debug("Action received: Send new message")
+			let self = this
+
+			// Prevent multiple clicks
 			if (this.get("isSending")) {
 				Ember.Logger.debug("A send request is already running, ignoring ...")
 				return
 			}
-
-			let self = this
 			this.set("isSending", true)
+
+			// Test the fields
+			if (!this.validateNewMessageFields()) {
+				this.set("isSending", false)
+				Ember.Logger.debug("Invalid fields. Aborting")
+				return
+			}
+
+			// Send the message
 			this.api.sendMessage(this.get("newMessage")).then(function () {
 				// Disable sending state
 				self.set("isSending", false)
@@ -94,5 +104,21 @@ export default Ember.ObjectController.extend({
 				})
 			})
 		},
+	},
+
+	validateNewMessageFields: function () {
+		let message = this.get("newMessage")
+
+		if (!message.get("subject")) {
+			this.animationManager.shake(Ember.$(".erizo-thread .erizo-messageComposer-subject"))
+			return false
+		}
+
+		if (!message.get("to.length")) {
+			this.animationManager.shake(Ember.$(".erizo-thread .erizo-messageComposer-to"))
+			return false
+		}
+
+		return true
 	},
 })
