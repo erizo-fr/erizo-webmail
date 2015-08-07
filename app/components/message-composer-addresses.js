@@ -20,7 +20,7 @@ export default Ember.Component.extend({
 			instance.addOption(value.toJSON())
 			instance.addItem(value.get("address"), true)
 		})
-	}.observes("addresses"),
+	}.observes("addresses", "addresses.@each"),
 
 	didInsertElement: function () {
 		// Init auto complete addresses instance
@@ -84,6 +84,15 @@ export default Ember.Component.extend({
 			},
 			onItemAdd: function (addedValue) {
 				Ember.Logger.debug("onItemAdd event fired: " + JSON.stringify(addedValue))
+				// Test if the item is already in the list
+				let addresses = self.get("addresses")
+				for (var i = 0; i < addresses.length; i++) {
+					if (addresses[i].get("address") === addedValue) {
+						Ember.Logger.debug("Item already in list. Ignoring")
+						return
+					}
+				}
+
 				// Convert records into model objects
 				let option = instance.options[addedValue]
 				let address = EmailAddressFactory.createEmail(option)
@@ -98,7 +107,6 @@ export default Ember.Component.extend({
 					if (addresses[i].get("address") === removedValue) {
 						Ember.Logger.debug("Item removed from model")
 						addresses.removeObject(addresses[i])
-						break
 					}
 				}
 			},
