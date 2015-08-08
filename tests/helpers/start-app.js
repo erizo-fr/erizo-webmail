@@ -1,8 +1,12 @@
 import Ember from "ember"
 import Application from "../../app"
 import config from "../../config/environment"
+import Server from "./server"
 
 export default function startApp (attrs) {
+	// Init mock server
+	Server.init()
+
 	var application
 	var attributes = Ember.merge({}, config.APP)
 	attributes = Ember.merge(attributes, attrs) // use defaults, but you can override
