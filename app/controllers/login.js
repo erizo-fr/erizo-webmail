@@ -22,19 +22,18 @@ export default Ember.Controller.extend({
 
 			this.set("requestRunning", true)
 			let self = this
-			this.api.login(username, password)
-				.always(function () {
-					self.set("requestRunning", false)
-				}).done(function () {
-					self.transitionToRoute("boxes")
-				}).fail(function (jqXHR) {
-					// Show error
-					Ember.$.snackbar({
-						content: "Failed login: " + jqXHR.responseText,
-						style: "error",
-						timeout: 3000,
-					})
+			this.api.login(username, password).then(function () {
+				self.set("requestRunning", false)
+				self.transitionToRoute("boxes")
+			}, function (error) {
+				self.set("requestRunning", false)
+				Ember.Logger.error("Login failed: " + error)
+				Ember.$.snackbar({
+					content: "Failed login: " + error.responseText,
+					style: "error",
+					timeout: 3000,
 				})
+			})
 		},
 	},
 

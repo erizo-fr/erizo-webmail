@@ -315,13 +315,22 @@ export default Ember.Service.extend({
 		Ember.Logger.debug("login(" + username + ", ***********)")
 		Ember.Logger.assert(username)
 		Ember.Logger.assert(password)
-		return Ember.$.ajax({
-			url: this.get("restServer") + "/login",
-			type: "POST",
-			data: {
-				username: username,
-				password: password,
-			},
+
+		let self = this
+		return new Ember.RSVP.Promise(function (resolve, reject) {
+			Ember.$.ajax({
+				url: self.get("restServer") + "/login",
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify({
+					username: username,
+					password: password,
+				}),
+			}).done(function (result) {
+				Ember.run(null, resolve, result)
+			}).fail(function (error) {
+				Ember.run(null, reject, error)
+			})
 		})
 	},
 
@@ -339,7 +348,8 @@ export default Ember.Service.extend({
 			return Ember.$.ajax({
 				url: self.get("restServer") + "/messages",
 				type: "POST",
-				data: {
+				contentType: "application/json",
+				data: JSON.stringify({
 					from: self.sendMessageEmailFormatter(message.get("from")),
 					to: self.sendMessageEmailFormatter(message.get("to")),
 					cc: self.sendMessageEmailFormatter(message.get("cc")),
@@ -348,7 +358,7 @@ export default Ember.Service.extend({
 					html: message.get("htmlBody"),
 					text: message.get("textBody"),
 					attachments: attachments,
-				},
+				}),
 			})
 		})
 	},
@@ -457,13 +467,12 @@ export default Ember.Service.extend({
 		var data = {
 			boxPath: newBoxPath,
 		}
-		var stringData = JSON.stringify(data)
 
 		return Ember.$.ajax({
 			url: this.get("restServer") + "/boxes/" + boxPath + "/messages/" + messageUid,
 			type: "PATCH",
 			contentType: "application/json",
-			data: stringData,
+			data: JSON.stringify(data),
 		})
 	},
 
