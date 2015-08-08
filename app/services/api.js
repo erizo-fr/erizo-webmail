@@ -1,4 +1,5 @@
 import Ember from "ember"
+import Config from "../config/environment"
 import UserDataFactory from "erizo-webmail/models/factories/user-data"
 import ContactFactory from "erizo-webmail/models/factories/contact"
 import MessageFactory from "erizo-webmail/models/factories/message"
@@ -7,9 +8,9 @@ import OpenBoxFactory from "erizo-webmail/models/factories/openBox"
 import DataCacheUtil from "erizo-webmail/utils/dataCache"
 import ArrayBufferUtil from "erizo-webmail/utils/arrayBuffer"
 
-var REST_SERVER = "/api"
-
 export default Ember.Service.extend({
+
+	restServer: Config.apiURL || "/api",
 
 	// #####################################################
 	// Get user data
@@ -19,7 +20,7 @@ export default Ember.Service.extend({
 	getUserData: function () {
 		Ember.Logger.debug("getUserData()")
 		return Ember.$.ajax({
-			url: REST_SERVER + "/account/data",
+			url: this.get("restServer") + "/account/data",
 			type: "GET",
 			dataType: "json",
 		}).then(function (result) {
@@ -36,7 +37,7 @@ export default Ember.Service.extend({
 		Ember.Logger.debug("getBoxes()")
 		let self = this
 		return Ember.$.ajax({
-				url: REST_SERVER + "/boxes",
+				url: this.get("restServer") + "/boxes",
 				type: "GET",
 				dataType: "json",
 			}).then(function (boxes) {
@@ -64,7 +65,7 @@ export default Ember.Service.extend({
 		Ember.Logger.debug("getBox(" + boxPath + ")")
 		let self = this
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath,
+			url: this.get("restServer") + "/boxes/" + boxPath,
 			type: "GET",
 			dataType: "json",
 		}).then(function (openBoxDetail) {
@@ -90,7 +91,7 @@ export default Ember.Service.extend({
 
 		let self = this
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/order",
+			url: this.get("restServer") + "/boxes/" + boxPath + "/order",
 			type: "GET",
 			dataType: "json",
 		}).then(self.getBoxOrderResultLogger)
@@ -121,7 +122,7 @@ export default Ember.Service.extend({
 
 		let self = this
 		return Ember.$.ajax({
-				url: REST_SERVER + "/boxes/" + boxPath + "/messages?seqs=" + seqMin + ":" + seqMax + "&fetchStruct=true&fetchEnvelope=true&markSeen=false",
+				url: this.get("restServer") + "/boxes/" + boxPath + "/messages?seqs=" + seqMin + ":" + seqMax + "&fetchStruct=true&fetchEnvelope=true&markSeen=false",
 				type: "GET",
 				dataType: "json",
 			}).then(self.getMessagesAdapter)
@@ -142,7 +143,7 @@ export default Ember.Service.extend({
 
 		let self = this
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/messages?ids=" + ids.join("&ids=") + "&fetchStruct=true&fetchEnvelope=true&markSeen=false",
+			url: this.get("restServer") + "/boxes/" + boxPath + "/messages?ids=" + ids.join("&ids=") + "&fetchStruct=true&fetchEnvelope=true&markSeen=false",
 			type: "GET",
 			dataType: "json",
 		}).then(self.getMessagesAdapter).then(self.getMessagesResultLogger)
@@ -173,7 +174,7 @@ export default Ember.Service.extend({
 		Ember.Logger.assert(boxPath)
 		Ember.Logger.assert(messageId)
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + messageId + "?fetchStruct=true&fetchEnvelope=true&markSeen=true",
+			url: this.get("restServer") + "/boxes/" + boxPath + "/messages/" + messageId + "?fetchStruct=true&fetchEnvelope=true&markSeen=true",
 			type: "GET",
 			dataType: "json",
 		}).then(function (result) {
@@ -205,7 +206,7 @@ export default Ember.Service.extend({
 			// Server version
 			Ember.Logger.debug("Ask the server for part#" + partId + " of message#" + message.get("uid") + " in box#" + boxPath)
 			promise = Ember.$.ajax({
-				url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid") + "/parts/" + partId,
+				url: this.get("restServer") + "/boxes/" + boxPath + "/messages/" + message.get("uid") + "/parts/" + partId,
 				type: "GET",
 				dataType: "json",
 			}).then(function (result) {
@@ -302,7 +303,7 @@ export default Ember.Service.extend({
 		let partId = part.get("partID")
 		Ember.Logger.assert(partId)
 
-		return REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid") + "/parts/" + partId + "/content"
+		return this.get("restServer") + "/boxes/" + boxPath + "/messages/" + message.get("uid") + "/parts/" + partId + "/content"
 	},
 
 	// #####################################################
@@ -315,7 +316,7 @@ export default Ember.Service.extend({
 		Ember.Logger.assert(username)
 		Ember.Logger.assert(password)
 		return Ember.$.ajax({
-			url: REST_SERVER + "/login",
+			url: this.get("restServer") + "/login",
 			type: "POST",
 			data: {
 				username: username,
@@ -336,7 +337,7 @@ export default Ember.Service.extend({
 		let self = this
 		return this.sendMessageAttachmentsFormatter(message.get("attachments")).then(function (attachments) {
 			return Ember.$.ajax({
-				url: REST_SERVER + "/messages",
+				url: self.get("restServer") + "/messages",
 				type: "POST",
 				data: {
 					from: self.sendMessageEmailFormatter(message.get("from")),
@@ -426,7 +427,7 @@ export default Ember.Service.extend({
 		let boxPath = box.get("path")
 		Ember.Logger.info("Delete message#" + message.get("uid") + " in box#" + boxPath)
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + message.get("uid"),
+			url: this.get("restServer") + "/boxes/" + boxPath + "/messages/" + message.get("uid"),
 			type: "DELETE",
 		})
 	},
@@ -459,7 +460,7 @@ export default Ember.Service.extend({
 		var stringData = JSON.stringify(data)
 
 		return Ember.$.ajax({
-			url: REST_SERVER + "/boxes/" + boxPath + "/messages/" + messageUid,
+			url: this.get("restServer") + "/boxes/" + boxPath + "/messages/" + messageUid,
 			type: "PATCH",
 			contentType: "application/json",
 			data: stringData,
@@ -476,7 +477,7 @@ export default Ember.Service.extend({
 		Ember.Logger.assert(criteria)
 		let self = this
 		return Ember.$.ajax({
-			url: REST_SERVER + "/contacts?criteria=" + criteria + (limit ? "&limit=" + limit : ""),
+			url: this.get("restServer") + "/contacts?criteria=" + criteria + (limit ? "&limit=" + limit : ""),
 			type: "GET",
 		}).then(self.getContactsAdapter)
 	},

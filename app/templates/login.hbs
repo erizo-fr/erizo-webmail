@@ -9,11 +9,11 @@
 					<div class="form-group">
 						{{input id="input-password" action="login" value=password type="password" class="form-control floating-label" placeholder="Password"}}
 					</div>
-					
+
 					{{#if requestRunning}}
 						<a href="javascript:void(0)" class="btn btn-primary pull-right"><div class="loading rotation"><i class="mdi-notification-sync"></i></div></a>
 					{{else}}
-						<a id="login" href="#" class="btn btn-primary pull-right" {{action "login"}}>Login !</a>
+						<a id="btn-login" href="#" class="btn btn-primary pull-right" {{action "login"}}>Login !</a>
 					{{/if}}
 				</form>
 			</div>

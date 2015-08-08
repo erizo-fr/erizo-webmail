@@ -11,12 +11,12 @@ export default Ember.ObjectController.extend({
 			let password = this.get("password")
 			if (!username) {
 				this.shakeButton()
-				Ember.$("#input-username").focus()
+				Ember.$("#login-panel #input-username").focus()
 				return
 			}
 			if (!password) {
 				this.shakeButton()
-				Ember.$("#input-password").focus()
+				Ember.$("#login-panel #input-password").focus()
 				return
 			}
 
@@ -39,10 +39,7 @@ export default Ember.ObjectController.extend({
 	},
 
 	shakeButton: function () {
-		let button = Ember.$("#login")
-		button.addClass("animated shake")
-		button.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
-			button.removeClass("animated shake")
-		})
+		let button = Ember.$("#login-panel #btn-login")
+		this.animationManager.shake(button)
 	},
 })
