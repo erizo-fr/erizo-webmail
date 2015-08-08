@@ -1,7 +1,7 @@
 {{outlet}}
 
 <div class="bottom-floating-area">
-{{#each newMessage in newMessages}}
+{{#each newMessages as |newMessage|}}
 	<div class="new-message-floating shadow-z-1">
 		{{new-message model=newMessage delete="deleteNewMessage"}}
 	</div>

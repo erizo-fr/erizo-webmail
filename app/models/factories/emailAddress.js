@@ -4,6 +4,11 @@ import EmailAddress from "erizo-webmail/models/emailAddress"
 export default Ember.Object.extend({
 
 	createEmail: function (email) {
+		if (email instanceof EmailAddress) {
+			// Already an email object
+			return email
+		}
+
 		let data = {}
 		let emailParts
 		if (typeof email === "string") {

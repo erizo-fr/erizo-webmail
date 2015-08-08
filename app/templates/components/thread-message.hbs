@@ -1,4 +1,4 @@
-<div {{bind-attr class=":erizo-threadMessage collapsed:erizo-threadMessage--collapsed"}}>
+<div class="erizo-threadMessage {{if collapsed "erizo-threadMessage--collapsed"}}">
 	<div class="erizo-fixeRelative">
 		<!-- Icon -->
 		<div class="erizo-fixeRelative-fixe40">
@@ -15,7 +15,7 @@
 					<div class="erizo-fixeRelative-relative--margin120">
 						<!-- From -->
 						<div class="erizo-threadMessage-addressBlock erizo-threadMessage-from">
-							{{#each address in model.envelope.from}}
+							{{#each model.envelope.from as |address|}}
 								{{mail-address model=address}}
 							{{/each}}
 						</div>
@@ -24,7 +24,7 @@
 						{{#if model.envelope.hasTo}}
 							<div class="erizo-threadMessage-addressBlock erizo-threadMessage-to">
 								<span>To </span>
-								{{#each address in model.envelope.to}}
+								{{#each model.envelope.to as |address|}}
 									{{mail-address model=address collapsed=true}}
 								{{/each}}
 							</div>
@@ -34,7 +34,7 @@
 						{{#if model.envelope.hasCc}}
 							<div class="erizo-threadMessage-addressBlock erizo-threadMessage-cc">
 								<span>Cc: </span>
-								{{#each address in model.envelope.cc}}
+								{{#each model.envelope.cc as |address|}}
 									{{mail-address model=address collapsed=true}}
 								{{/each}}
 							</div>
@@ -55,7 +55,7 @@
 
 			<!-- Attachments -->
 			<div class="erizo-threadMessage-attachments">
-				{{#each attachmentPart in model.part.attachmentParts}}
+				{{#each model.part.attachmentParts as |attachmentPart|}}
 					<div class="erizo-threadMessage-attachment">
 						{{thread-message-attachment model=attachmentPart message=model box=box}}
 					</div>

@@ -32,6 +32,6 @@ export default Ember.Route.extend({
 
 	setupController: function (controller, model) {
 		controller.set("model", model)
-		controller.set("controllers.boxes.selectedBox", model)
+		controller.set("boxes.selectedBox", model)
 	},
 })

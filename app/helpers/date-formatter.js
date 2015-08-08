@@ -1,6 +1,9 @@
 import Ember from "ember"
 
-export default Ember.Handlebars.makeBoundHelper(function (value, input, output) {
+export default Ember.Helper.helper(function (params) {
+	let value = params[0]
+	let input = params[1]
+	let output = params[2]
 	var date
 	if (input) {
 		date = moment(value, input)

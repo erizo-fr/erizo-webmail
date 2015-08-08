@@ -1,6 +1,7 @@
 import Ember from "ember"
 
-export default Ember.Handlebars.makeBoundHelper(function (size) {
+export default Ember.Helper.helper(function (param) {
+	let size = param[0]
 	let unit = "B"
 
 	// Transform to ko

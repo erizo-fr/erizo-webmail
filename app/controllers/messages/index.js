@@ -3,8 +3,10 @@ import Ember from "ember"
 import DateUtil from "erizo-webmail/utils/date"
 import MessagesCategoryFactory from "erizo-webmail/models/factories/messages-category"
 
-export default Ember.ArrayController.extend({
-	needs: ["messages", "box", "boxes"],
+export default Ember.Controller.extend({
+	boxes: Ember.inject.controller(),
+	box: Ember.inject.controller(),
+	messages: Ember.inject.controller(),
 
 	currentPage: -1,
 	pageSize: 10,
@@ -45,7 +47,7 @@ export default Ember.ArrayController.extend({
 		deleteSelectedMessages: function () {
 			Ember.Logger.debug("Action received: Delete selected messages")
 
-			let box = this.get("controllers.box.model")
+			let box = this.get("box.model")
 			let self = this
 			this.get("selectedMessagesControllers").forEach(function (controller) {
 				var message = controller.get("model")
@@ -69,7 +71,7 @@ export default Ember.ArrayController.extend({
 
 		moveSelectedMessages: function (newBox) {
 			Ember.Logger.debug("Action received: Move selected messages")
-			let currentBox = this.get("controllers.box.model")
+			let currentBox = this.get("box.model")
 			let self = this
 			this.get("selectedMessagesControllers").forEach(function (controller) {
 				var message = controller.get("model")
@@ -169,8 +171,8 @@ export default Ember.ArrayController.extend({
 		}
 
 		// Get variables
-		var messagesOrder = this.get("controllers.messages.model")
-		let box = this.get("controllers.box.model")
+		var messagesOrder = this.get("messages.model")
+		let box = this.get("box.model")
 		var pageSize = this.get("pageSize")
 		var currentPage = this.get("currentPage")
 		var nextPage = currentPage + 1

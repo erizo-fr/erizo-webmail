@@ -13,8 +13,8 @@
 						<i class="mdi-content-inbox"></i>
 					</button>
 					<ul class="box-selector-small dropdown-menu">
-						{{#each box in controllers.boxes}}
-							{{box-item box=box clickAction="moveSelectedMessages" hiddenBoxes=controllers.boxes.selectedBox}}
+						{{#each boxes.model as |boxModel|}}
+							{{box-item box=boxModel clickAction="moveSelectedMessages" hiddenBoxes=boxes.selectedBox}}
 						{{/each}}
 					</ul>
 				</div>
@@ -29,11 +29,11 @@
 			<div class="col-xs-12">
 				<div class="message-list">
 					<div class="message-list">
-						{{#each messageCategory in model}}
+						{{#each model as |messageCategory|}}
 							<div class="message-list-group">
 								<p class="message-list-group-title">{{messageCategory.name}}</p>
 
-								{{#each message in messageCategory.messages}}
+								{{#each messageCategory.messages as |message|}}
 									{{#draggable-item content=message.uid}}
 										{{message-row model=message register="registerMessageRow" unregister="unregisterMessageRow"}}
 									{{/draggable-item}}

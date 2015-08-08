@@ -1,4 +1,4 @@
-<div {{bind-attr class=":erizo-messageComposer isWriteMode isWriteModeReply isWriteModeForward isSubjectVisible isCcVisible isBccVisible"}}>
+<div class="erizo-messageComposer {{if isWriteMode "is-write-mode"}} {{if isWriteModeReply "is-write-mode-reply"}} {{if isWriteModeForward "is-write-mode-forward"}} {{if isSubjectVisible "is-subject-visible"}} {{if isCcVisible "is-cc-visible"}} {{if isBccVisible "is-bcc-visible"}}" >
 	<!-- Thread precomposer -->
 	<div class="erizo-messageComposer-precomposer hideOnWriteMode">
 		<span class="text-muted">Click here to <a {{action "goToWriteModeReply"}}>answer</a> or <a {{action "goToWriteModeForward"}}>forward</a> the message</span>
@@ -20,7 +20,7 @@
 					<div class="erizo-fixeRelative-fixe40">
 						<div class="btn-group btn-group-no-margin btn-group-no-shadow">
 							<a href="javascript:void(0)" class="erizo-messageComposer-destinationSelector btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<i {{bind-attr class="isWriteModeReply:mdi-content-reply isWriteModeForward:mdi-content-forward :small"}}></i>
+								<i class="small {{if isWriteModeReply "mdi-content-reply"}} {{if isWriteModeForward "mdi-content-forward"}}"></i>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -78,7 +78,7 @@
 		</div>
 
 		<div class="erizo-messageComposer-row erizo-messageComposer-attachmentsRow">
-			{{#each attachment in model.attachments}}
+			{{#each model.attachments as |attachment|}}
 				<div class="erizo-messageComposer-attachment">
 					<div class="erizo-fixeRelative">
 						<div class="erizo-fixeRelative-relative erizo-fixeRelative-relative--margin20">

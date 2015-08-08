@@ -1,4 +1,4 @@
-<div {{bind-attr class=":erizo-messageRow model.isSeen::erizo-messageRow--unseen" }}>
+<div class="erizo-messageRow {{unless model.isSeen "erizo-messageRow--unseen"}}">
 	<div class="erizo-fixeRelative">
 
 		<!-- Checkbox -->
@@ -18,7 +18,7 @@
 		<!-- From -->
 		<div class="erizo-fixeRelative-fixe200">
 			{{#link-to "message" model.uid}}
-				<span class="erizo-messageRow-from">{{#each from in model.envelope.from}}{{mail-address model=from}}{{/each}}</span>
+				<span class="erizo-messageRow-from">{{#each model.envelope.from as |from|}}{{mail-address model=from}}{{/each}}</span>
 			{{/link-to}}
 		</div>
 

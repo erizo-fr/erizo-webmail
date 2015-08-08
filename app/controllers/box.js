@@ -1,5 +1,5 @@
 import Ember from "ember"
 
-export default Ember.ObjectController.extend({
-	needs: ["boxes"],
+export default Ember.Controller.extend({
+	boxes: Ember.inject.controller(),
 })

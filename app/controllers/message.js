@@ -3,8 +3,10 @@ import Ember from "ember"
 import EmailAddressFactory from "erizo-webmail/models/factories/emailAddress"
 import NewMessageFactory from "erizo-webmail/models/factories/new-message"
 
-export default Ember.ObjectController.extend({
-	needs: ["boxes", "box", "account"],
+export default Ember.Controller.extend({
+	boxes: Ember.inject.controller(),
+	box: Ember.inject.controller(),
+	account: Ember.inject.controller(),
 
 	isSending: false,
 	newMessage: null,
@@ -12,7 +14,7 @@ export default Ember.ObjectController.extend({
 	init: function () {
 		this._super.apply(this, arguments)
 		var newMessage = NewMessageFactory.create()
-		newMessage.from = EmailAddressFactory.createEmailArray(this.get("controllers.account.model.defaultIdentity"))
+		newMessage.from = EmailAddressFactory.createEmailArray(this.get("account.model.defaultIdentity"))
 		this.set("newMessage", newMessage)
 	},
 
@@ -20,7 +22,7 @@ export default Ember.ObjectController.extend({
 		deleteMessage: function () {
 			Ember.Logger.debug("Action received: Delete message")
 			// Get the box model
-			var box = this.get("controllers.box.model")
+			var box = this.get("box.model")
 			// Get the message id
 			var message = this.get("model")
 			var self = this
@@ -87,7 +89,7 @@ export default Ember.ObjectController.extend({
 			Ember.Logger.debug("Action received: Move message to box#" + newBox.get("path"))
 
 			let self = this
-			this.api.moveMessage(this.get("controllers.box.model"), this.get("model"), newBox).done(function () {
+			this.api.moveMessage(this.get("box.model"), this.get("model"), newBox).done(function () {
 				Ember.$.snackbar({
 					content: "Message moved to " + newBox.get("name") + " !",
 					timeout: 3000,

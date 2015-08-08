@@ -10,8 +10,8 @@
 					<div class="btn-group">
 						<a href="#" data-target="#" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"><i class="mdi-content-inbox small"></i></a>
 						<ul class="box-selector-small dropdown-menu">
-							{{#each box in controllers.boxes}}
-								{{box-item box=box clickAction="moveMessage" hiddenBoxes=controllers.boxes.selectedBox}}
+							{{#each boxes.model as |boxModel|}}
+								{{box-item box=boxModel clickAction="moveMessage" hiddenBoxes=boxes.selectedBox}}
 							{{/each}}
 						</ul>
 					</div>
@@ -32,7 +32,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="erizo-thread-message">
-						{{thread-message model=model box=controllers.boxes.selectedBox}}
+						{{thread-message model=model box=boxes.selectedBox}}
 					</div>
 				</div>
 			</div>
