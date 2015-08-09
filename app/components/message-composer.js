@@ -43,7 +43,7 @@ export default Ember.Component.extend({
 			this.set("isBccVisible", true)
 		},
 		newAttachment: function () {
-			let input = this.$(".erizo-messageComposer-addAttachment input")
+			let input = this.$(".erizo-messageComposer-addAttachmentInput")
 			if (input.val()) {
 				let file = input[0].files[0]
 				Ember.Logger.debug("newAttachment event received: " + file.name)
@@ -57,17 +57,17 @@ export default Ember.Component.extend({
 		},
 	},
 
-	isWriteModeReplyChanged: function () {
+	isWriteModeReplyChanged: Ember.observer("isWriteModeReply", function () {
 		if (this.get("isWriteModeReply")) {
 			this.goToWriteModeReply()
 		}
-	}.observes("isWriteModeReply"),
+	}),
 
-	isWriteModeForwardChanged: function () {
+	isWriteModeForwardChanged: Ember.observer("isWriteModeForward", function () {
 		if (this.get("isWriteModeForward")) {
 			this.goToWriteModeForward()
 		}
-	}.observes("isWriteModeForward"),
+	}),
 
 	goToWriteModeReply: function () {
 		this.set("isWriteModeForward", false)

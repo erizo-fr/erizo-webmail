@@ -66,15 +66,7 @@
 
 		<!-- HTML editor -->
 		<div class="erizo-messageComposer-row erizo-messageComposer-htmlEditorRow">
-			{{html-editor htmlValue=model.htmlBody textValue=model.textBody cursorPositionBegin=cursorPositionBegin cursorPositionEnd=cursorPositionEnd}}
-		</div>
-
-		<!-- Attachment editor -->
-		<div class="erizo-messageComposer-addAttachment">
-			<span class="btn btn-default btn-square btn-no-margin btn-file">
-				<i class="mdi-editor-attach-file"></i>
-				<input type="file" {{action "newAttachment" on="change"}}/>
-			</span>
+			{{html-editor htmlValue=model.htmlBody textValue=model.textBody cursorPositionBegin=cursorPositionBegin cursorPositionEnd=cursorPositionEnd parentElementId=elementId}}
 		</div>
 
 		<div class="erizo-messageComposer-row erizo-messageComposer-attachmentsRow">
@@ -90,6 +82,26 @@
 					</div>
 				</div>
 			{{/each}}
+		</div>
+
+		<!-- Toolbar -->
+		<div class="erizo-messageComposer-row erizo-messageComposer-toolbarRow">
+			<div class="erizo-messageComposer-toolbar">
+				<button class="btn btn-default btn-square btn-no-margin btn-xs ql-bold"><i class="mdi-editor-format-bold small"></i></button>
+				<button class="btn btn-default btn-square btn-no-margin btn-xs ql-italic"><i class="mdi-editor-format-italic small"></i></button>
+				<button class="btn btn-default btn-square btn-no-margin btn-xs ql-strike"><i class="mdi-editor-format-strikethrough small"></i></button>
+				<button class="btn btn-default btn-square btn-no-margin btn-xs ql-underline"><i class="mdi-editor-format-underline small"></i></button>
+				<button class="btn btn-default btn-square btn-no-margin btn-xs ql-list"><i class="mdi-editor-format-list-numbered small"></i></button>
+				<button class="btn btn-default btn-square btn-no-margin btn-xs ql-bullet"><i class="mdi-editor-format-list-bulleted small"></i></button>
+
+				<!-- Attachment editor -->
+				<div class="pull-right">
+					<span class="btn btn-default btn-square btn-no-margin btn-file">
+						<i class="mdi-editor-attach-file small"></i>
+						<input type="file" class="erizo-messageComposer-addAttachmentInput" {{action "newAttachment" on="change"}}/>
+					</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

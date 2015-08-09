@@ -5,6 +5,11 @@ import config from "./config/environment"
 
 Ember.MODEL_FACTORY_INJECTIONS = true
 
+// Setup logger on promise error
+Ember.RSVP.on("error", function (error) {
+	Ember.Logger.assert(false, error)
+})
+
 var App = Ember.Application.extend({
 	modulePrefix: config.modulePrefix,
 	podModulePrefix: config.podModulePrefix,

@@ -49,15 +49,27 @@
 // HTML Editor row
 .erizo-messageComposer-htmlEditorRow {
 	padding-top: @erizo-messageComposer-composerPadding;
+	padding-bottom: @erizo-messageComposer-composerPadding;
 	border-bottom: 0px;
 }
 
-// Add attachment button
-.erizo-messageComposer-addAttachment {
-	position: absolute;
-	right: 5px;
-	bottom: 5px;
+// Toolbar : Compensate row margin
+.erizo-messageComposer-toolbarRow .erizo-messageComposer-toolbar {
+	margin-left: -@erizo-messageComposer-composerPadding;
+	margin-right: -@erizo-messageComposer-composerPadding;
 }
+.erizo-messageComposer-toolbarRow .btn-square {
+	padding: @erizo-messageComposer-composerPadding;
+}
+
+// Toolbar : Make ql-active buttons look like bootstrap active
+.erizo-messageComposer-toolbarRow button.ql-active {
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
 
 // Attachments
 .erizo-messageComposer-attachmentsRow {
@@ -71,6 +83,7 @@
   padding: 5px;
   box-shadow: 1px 1px 1px rgba(119, 119, 119, 0.35);
   min-width: 280px;
+  cursor: default;
 
   i {
   	vertical-align: middle;

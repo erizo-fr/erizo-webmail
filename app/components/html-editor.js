@@ -7,6 +7,8 @@ export default Ember.Component.extend({
 	htmlValue: "",
 	textValue: "",
 
+	parentElementId: null,
+
 	cursorPositionBegin: 0,
 	cursorPositionEnd: 0,
 
@@ -21,17 +23,17 @@ export default Ember.Component.extend({
 		return this.get("htmlValue") ? this.get("htmlValue") : ""
 	}.property("htmlValue"),
 
-	htmlValueObserver: function () {
+	htmlValueObserver: Ember.observer("htmlValue", function () {
 		if (this.get("instance").getHTML() !== this.get("htmlValue")) {
 			this.get("instance").setHTML(this.get("formattedHtmlValue"))
 		}
-	}.observes("htmlValue"),
+	}),
 
-	cursorPositionObserver: function () {
+	cursorPositionObserver: Ember.observer("cursorPosition", function () {
 		let cursorPositionBegin = this.get("cursorPositionBegin")
 		let cursorPositionEnd = this.get("cursorPositionEnd")
 		this.get("instance").setSelection(cursorPositionBegin, cursorPositionEnd)
-	}.observes("cursorPosition"),
+	}),
 
 	didInsertElement: function () {
 		// Init
@@ -39,6 +41,7 @@ export default Ember.Component.extend({
 		var instance = new Quill("#" + id + " .erizo-htmlEditor-editor", {
 			styles: false,
 		})
+
 		instance.setHTML(this.get("formattedHtmlValue"))
 
 		// Update the value when content change
@@ -61,4 +64,12 @@ export default Ember.Component.extend({
 
 		this.set("instance", instance)
 	},
+
+	bindToolbar: Ember.observer("parentElementId", "instance", function () {
+		if (this.get("parentElementId") && this.get("instance")) {
+			this.get("instance").addModule("toolbar", {
+				container: "#" + this.get("parentElementId") + " .erizo-messageComposer-toolbar",
+			})
+		}
+	}),
 })

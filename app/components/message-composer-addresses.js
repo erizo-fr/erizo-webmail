@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 
 	instance: null,
 
-	addressesChanged: function () {
+	addressesChanged: Ember.observer("addresses", "addresses.@each", function () {
 		var addresses = this.get("addresses")
 		Ember.Logger.debug("Addresses property changed: " + JSON.stringify(addresses))
 		var instance = this.get("instance")
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
 			instance.addOption(value.toJSON())
 			instance.addItem(value.get("address"), true)
 		})
-	}.observes("addresses", "addresses.@each"),
+	}),
 
 	didInsertElement: function () {
 		// Init auto complete addresses instance
