@@ -34,7 +34,7 @@
 								<p class="message-list-group-title">{{messageCategory.name}}</p>
 
 								{{#each messageCategory.messages as |message|}}
-									{{#draggable-item content=message.uid}}
+									{{#draggable-item content=message.objectReference}}
 										{{message-row model=message register="registerMessageRow" unregister="unregisterMessageRow"}}
 									{{/draggable-item}}
 									<div class="message-list-separator"></div>

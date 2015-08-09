@@ -8,6 +8,11 @@ export default Ember.Object.extend({
 	seq: null,
 	flags: null,
 
+	objectReference: function () {
+		let uid = this.get("uid")
+		return uid ? "message#" + uid : null
+	}.property("uid"),
+
 	hasAttachments: function () {
 		if (!this.get("part")) {
 			return null // Struct element has not been fetched

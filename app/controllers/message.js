@@ -89,16 +89,13 @@ export default Ember.Controller.extend({
 			Ember.Logger.debug("Action received: Move message to box#" + newBox.get("path"))
 
 			let self = this
-			this.api.moveMessage(this.get("box.model"), this.get("model"), newBox).done(function () {
+			this.api.moveMessage(this.get("box.model"), this.get("model"), newBox).then(function () {
 				Ember.$.snackbar({
 					content: "Message moved to " + newBox.get("name") + " !",
 					timeout: 3000,
 				})
-
-				// Go the the boxes route
 				self.transitionToRoute("box")
-
-			}).fail(function () {
+			}, function () {
 				Ember.$.snackbar({
 					content: "Failed to move the message :(<br/>Maybe you should try to move it later",
 					style: "error",

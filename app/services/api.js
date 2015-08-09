@@ -327,8 +327,10 @@ export default Ember.Service.extend({
 					password: password,
 				}),
 			}).done(function (result) {
+				Ember.Logger.debug("Login succeed")
 				Ember.run(null, resolve, result)
 			}).fail(function (error) {
+				Ember.Logger.debug("Login failed: " + error)
 				Ember.run(null, reject, error)
 			})
 		})
@@ -459,6 +461,7 @@ export default Ember.Service.extend({
 		Ember.Logger.assert(box)
 		Ember.Logger.assert(messageUid)
 		Ember.Logger.assert(newBox)
+		let self = this
 
 		let boxPath = box.get("path")
 		let newBoxPath = newBox.get("path")
@@ -468,11 +471,19 @@ export default Ember.Service.extend({
 			boxPath: newBoxPath,
 		}
 
-		return Ember.$.ajax({
-			url: this.get("restServer") + "/boxes/" + boxPath + "/messages/" + messageUid,
-			type: "PATCH",
-			contentType: "application/json",
-			data: JSON.stringify(data),
+		return new Ember.RSVP.Promise(function (resolve, reject) {
+			Ember.$.ajax({
+				url: self.get("restServer") + "/boxes/" + boxPath + "/messages/" + messageUid,
+				type: "PATCH",
+				contentType: "application/json",
+				data: JSON.stringify(data),
+			}).done(function (result) {
+				Ember.Logger.info("Message#" + messageUid + " moved in box#" + newBoxPath + " (from box#" + boxPath + ")")
+				Ember.run(null, resolve, result)
+			}).fail(function (error) {
+				Ember.Logger.error("Failed to move the message#" + messageUid + " in box#" + boxPath + " to box#" + newBoxPath + "\n" + JSON.stringify(error))
+				Ember.run(null, reject, error)
+			})
 		})
 	},
 

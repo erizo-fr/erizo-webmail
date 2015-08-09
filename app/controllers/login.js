@@ -27,7 +27,6 @@ export default Ember.Controller.extend({
 				self.transitionToRoute("boxes")
 			}, function (error) {
 				self.set("requestRunning", false)
-				Ember.Logger.error("Login failed: " + error)
 				Ember.$.snackbar({
 					content: "Failed login: " + error.responseText,
 					style: "error",

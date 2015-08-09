@@ -75,12 +75,12 @@ export default Ember.Controller.extend({
 			let self = this
 			this.get("selectedMessagesControllers").forEach(function (controller) {
 				var message = controller.get("model")
-				self.api.moveMessage(currentBox, message, newBox).done(function () {
+				self.api.moveMessage(currentBox, message, newBox).then(function () {
 					Ember.$.snackbar({
 						content: "Message moved to " + newBox.get("name") + " !",
 						timeout: 3000,
 					})
-				}).fail(function () {
+				}, function () {
 					Ember.$.snackbar({
 						content: "Failed to move the message :(<br/>Maybe you should try to move it later",
 						style: "error",

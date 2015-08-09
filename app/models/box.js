@@ -29,6 +29,11 @@ export default Ember.Object.extend({
 		return path
 	}.property("name", "parent.path"),
 
+	objectReference: function () {
+		let path = this.get("path")
+		return path ? "box#" + path : null
+	}.property("path"),
+
 	isTrashBox: function () {
 		return this.get("attribs").contains("\\Trash")
 	}.property("attribs"),
