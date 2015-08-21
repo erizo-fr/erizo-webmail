@@ -18,6 +18,12 @@ module("Acceptance: Login", {
 	},
 })
 
+function fillLoginFieldsAndClick (username, password) {
+	fillIn("#login-panel #input-username", username)
+	fillIn("#login-panel #input-password", password)
+	click("#login-panel #btn-login")
+}
+
 test("visiting /login", function (assert) {
 	andThen(function () {
 		assert.equal(currentPath(), "login")
@@ -25,45 +31,35 @@ test("visiting /login", function (assert) {
 })
 
 test("missing inputs", function (assert) {
-	fillIn("#login-panel #input-username", "")
-	fillIn("#login-panel #input-password", "")
-	click("#login-panel #btn-login")
+	fillLoginFieldsAndClick("", "")
 	andThen(function () {
 		assert.equal(currentPath(), "login")
 	})
 })
 
 test("missing login", function (assert) {
-	fillIn("#login-panel #input-username", "")
-	fillIn("#login-panel #input-password", "password")
-	click("#login-panel #btn-login")
+	fillLoginFieldsAndClick("", "password")
 	andThen(function () {
 		assert.equal(currentPath(), "login")
 	})
 })
 
 test("missing username", function (assert) {
-	fillIn("#login-panel #input-username", "username")
-	fillIn("#login-panel #input-password", "")
-	click("#login-panel #btn-login")
+	fillLoginFieldsAndClick("username", "")
 	andThen(function () {
 		assert.equal(currentPath(), "login")
 	})
 })
 
 test("bad credentials", function (assert) {
-	fillIn("#login-panel #input-username", "wrong")
-	fillIn("#login-panel #input-password", "password")
-	click("#login-panel #btn-login")
+	fillLoginFieldsAndClick("wrong", "password")
 	andThen(function () {
 		assert.equal(currentPath(), "login")
 	})
 })
 
 test("valid credentials", function (assert) {
-	fillIn("#login-panel #input-username", "good")
-	fillIn("#login-panel #input-password", "password")
-	click("#login-panel #btn-login")
+	fillLoginFieldsAndClick("good", "password")
 	andThen(function () {
 		assert.notEqual(currentPath(), "login")
 	})
